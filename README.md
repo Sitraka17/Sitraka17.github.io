@@ -10,4 +10,6 @@ Project 3 : Cartography
 
 
 
-
+Sources which helped to build this page: 
+https://www.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/hosting-your-website-on-github
+https://github.com/JeanMILPIED
