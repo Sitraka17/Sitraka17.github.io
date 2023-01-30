@@ -1,10 +1,10 @@
 # Sitraka FORLER
 
-Project 1 : Learning Data Science 
+- Project 1 : Learning Data Science 
 
-Project 2 :  Makimatics
+- Project 2 :  Makimatics
 
-Project 3 : Cartography
+- Project 3 : [Cartography](https://github.com/Sitraka17/Cartography-Maps)
 
 ![Cartography](https://github.com/Sitraka17/Sitraka17.github.io/blob/main/image/maps.jpg)
 
