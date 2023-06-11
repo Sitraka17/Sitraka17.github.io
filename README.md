@@ -8,6 +8,10 @@
 
 ![Cartography](https://github.com/Sitraka17/Sitraka17.github.io/blob/main/image/maps.jpg)
 
+
+
+
+
 Zen of Python shall not be forgotten. 
 
 Finally this page is clearly a showcase of my skills.
