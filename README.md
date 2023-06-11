@@ -9,7 +9,7 @@
 ![Cartography](https://github.com/Sitraka17/Sitraka17.github.io/blob/main/image/maps.jpg)
 
 
-
+Cartography is the study and practice of making and using maps. Combining science, aesthetics and technique, cartography builds on the premise that reality can be modeled in ways that communicate spatial information effectively. Wikipedia
 
 
 Zen of Python shall not be forgotten. 
