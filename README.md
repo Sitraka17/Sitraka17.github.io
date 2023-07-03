@@ -1,6 +1,6 @@
 # Sitraka FORLER
 
-- Project 1 : Learning Data Science 
+- Project 1 : [Learning Data Science](https://github.com/Sitraka17/Learning-Data-Science)
 
 - Project 2 :  [Makimatics](https://github.com/Sitraka17/Makimathics)
 
