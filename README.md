@@ -22,3 +22,5 @@ Finally this page is clearly a showcase of my skills.
 
 NEW IDEA ! 
 Make a streamlit app to draw the city map :) 
+
+Ho and health ! 
