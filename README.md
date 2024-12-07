@@ -18,3 +18,4 @@ Finally this page is clearly a showcase of my skills.
  <ins> Sources which helped me to build this page </ins> :
 - https://www.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/hosting-your-website-on-github
 - https://github.com/JeanMILPIED
+- https://docs.github.com/fr/pages/getting-started-with-github-pages/creating-a-github-pages-site
