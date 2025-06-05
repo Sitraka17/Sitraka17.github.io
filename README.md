@@ -21,3 +21,6 @@ Finally this page is clearly a showcase of my skills.... using the free GitHub D
 - https://github.com/JeanMILPIED
 - https://docs.github.com/fr/pages/getting-started-with-github-pages/creating-a-github-pages-site
 - https://huggingface.co/spaces/SitrakaForler/First_agent_template
+
+- NEW : to do a better one like this one : https://healermikado.github.io/EnsaiCloudComputing/docs/presentation/cloud-computing-CM1.html
+
