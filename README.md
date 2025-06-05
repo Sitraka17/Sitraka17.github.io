@@ -12,9 +12,7 @@
 Cartography is the study and practice of making and using maps. Combining science, aesthetics and technique, cartography builds on the premise that reality can be modeled in ways that communicate spatial information effectively. Wikipedia
 
 
-Finally this page is clearly a showcase of my skills.
-
-
+Finally this page is clearly a showcase of my skills.... using the free GitHub DNS. 
 
 
 
