@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<!--	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
+
+<html>
+	<head>
+		<title>Teachings - Sitraka's Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-gem"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>Teachings</h1>
+								<p>Sharing knowledge on Databases, Data in Finance, and Python</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="index.html#work">Work</a></li>
+								<li><a href="index.html#code">Code</a></li>
+								<li><a href="#toc">TOC</a></li>
+								<li><a href="#databases">Databases</a></li>
+								<li><a href="#finance">Data in Finance</a></li>
+								<li><a href="#python">Python</a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Table of Contents -->
+							<article id="toc">
+								<h2 class="major">Table of Contents</h2>
+								<ul>
+									<li><a href="#databases">Databases</a></li>
+									<li><a href="#finance">Data in Finance</a></li>
+									<li><a href="#python">Python</a></li>
+								</ul>
+							</article>
+
+						<!-- Databases -->
+							<article id="databases">
+								<h2 class="major">Databases</h2>
+								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<p>Databases are essential for storing, managing, and retrieving data efficiently. There are various types of databases, including relational databases like MySQL and PostgreSQL, and NoSQL databases like MongoDB and Cassandra. Understanding database design, normalization, and query optimization is crucial for any data professional.</p>
+								<p>In my experience, I've worked with SQL databases to handle large datasets in finance and other domains. Key concepts include:</p>
+								<ul>
+									<li>Entity-Relationship modeling</li>
+									<li>SQL queries (SELECT, JOIN, GROUP BY)</li>
+									<li>Indexing for performance</li>
+									<li>ACID properties</li>
+								</ul>
+								<h3>Example SQL Query</h3>
+								<p>Here's a basic SQL query to retrieve data from a financial transactions table:</p>
+								<pre><code>SELECT customer_id, SUM(amount) AS total_amount
+FROM transactions
+WHERE transaction_date >= '2023-01-01'
+GROUP BY customer_id
+HAVING SUM(amount) > 1000
+ORDER BY total_amount DESC;</code></pre>
+							</article>
+
+						<!-- Data in Finance -->
+							<article id="finance">
+								<h2 class="major">Data in Finance</h2>
+								<span class="image main"><img src="image/Engineering.jpg" alt="" /></span>
+								<p>Data plays a pivotal role in finance, from risk assessment to algorithmic trading. Financial data includes stock prices, transaction records, credit scores, and economic indicators. Analyzing this data helps in making informed decisions, detecting fraud, and optimizing portfolios.</p>
+								<p>Key areas include:</p>
+								<ul>
+									<li>Time series analysis for stock market prediction</li>
+									<li>Risk modeling using statistical methods</li>
+									<li>Big data processing for high-frequency trading</li>
+									<li>Regulatory compliance and data governance</li>
+								</ul>
+								<h3>Interactive Compound Interest Calculator</h3>
+								<p>Try calculating compound interest with different values:</p>
+								<div class="fields">
+									<div class="field half">
+										<label for="principal">Principal Amount ($)</label>
+										<input type="number" id="principal" value="1000" />
+									</div>
+									<div class="field half">
+										<label for="rate">Annual Interest Rate (%)</label>
+										<input type="number" id="rate" value="5" step="0.1" />
+									</div>
+									<div class="field half">
+										<label for="time">Time (years)</label>
+										<input type="number" id="time" value="5" />
+									</div>
+									<div class="field half">
+										<label for="compounds">Compounds per Year</label>
+										<input type="number" id="compounds" value="1" />
+									</div>
+								</div>
+								<ul class="actions">
+									<li><button id="calculate" class="button primary">Calculate</button></li>
+								</ul>
+								<div id="result" style="margin-top: 20px;"></div>
+								<p>Using pandas to analyze stock data:</p>
+								<pre><code>import pandas as pd
+import numpy as np
+
+# Load stock data
+df = pd.read_csv('stock_data.csv', parse_dates=['Date'], index_col='Date')
+
+# Calculate daily returns
+df['Daily_Return'] = df['Close'].pct_change()
+
+# Calculate volatility (standard deviation of returns)
+volatility = df['Daily_Return'].std() * np.sqrt(252)  # Annualized
+
+# Calculate moving average
+df['MA_50'] = df['Close'].rolling(window=50).mean()
+
+print(f"Annualized Volatility: {volatility:.2%}")
+print(df.tail())</code></pre>
+							</article>
+
+						<!-- Python -->
+							<article id="python">
+								<h2 class="major">Python</h2>
+								<span class="image main"><img src="image/code.jpeg" alt="" /></span>
+								<p>Python is a versatile programming language widely used in data science, machine learning, and automation. Its simplicity and extensive libraries make it ideal for financial applications, data analysis, and scripting.</p>
+								<p>Essential Python concepts for data and finance:</p>
+								<ul>
+									<li>Data manipulation with pandas and NumPy</li>
+									<li>Data visualization with Matplotlib and Seaborn</li>
+									<li>Machine learning with scikit-learn</li>
+									<li>Web scraping and API integration</li>
+									<li>Financial modeling and simulations</li>
+								</ul>
+								<p>Python's ecosystem, including Jupyter notebooks, makes it perfect for exploratory data analysis and prototyping financial models.</p>
+								<h3>Example Python Code</h3>
+								<p>A simple function to calculate compound interest:</p>
+								<pre><code>def compound_interest(principal, rate, time, n=1):
+    """
+    Calculate compound interest
+    principal: initial amount
+    rate: annual interest rate (decimal)
+    time: time in years
+    n: number of times interest is compounded per year
+    """
+    amount = principal * (1 + rate/n)**(n*time)
+    interest = amount - principal
+    return amount, interest
+
+# Example usage
+principal = 1000
+rate = 0.05  # 5%
+time = 5
+final_amount, interest_earned = compound_interest(principal, rate, time)
+print(f"Final amount: ${final_amount:.2f}")
+print(f"Interest earned: ${interest_earned:.2f}")</code></pre>
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Sitraka Forler. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				$(document).ready(function() {
+					$('#calculate').click(function() {
+						var principal = parseFloat($('#principal').val());
+						var rate = parseFloat($('#rate').val()) / 100;
+						var time = parseFloat($('#time').val());
+						var n = parseFloat($('#compounds').val());
+						
+						var amount = principal * Math.pow(1 + rate/n, n*time);
+						var interest = amount - principal;
+						
+						$('#result').html('<p><strong>Final Amount:</strong> $' + amount.toFixed(2) + '</p><p><strong>Interest Earned:</strong> $' + interest.toFixed(2) + '</p>');
+					});
+				});
+			</script>
+
+	</body>
+</html>
