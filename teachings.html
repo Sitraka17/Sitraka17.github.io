@@ -1,206 +1,632 @@
-<!DOCTYPE HTML>
-<!--	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teachings - Code & Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3898ec;
+      --primary-light: #5baee7;
+      --accent: #ff1654;
+      --accent-light: #ff4d7d;
+      --success: #4ded9f;
+      --warning: #ffb347;
+      --dark-bg: #1a1a1a;
+      --dark-bg2: #242424;
+      --dark-bg3: #2d2d2d;
+      --text-light: #e8e8e8;
+      --text-muted: #a0a0a0;
+      --border-color: #3a3a3a;
+      --sidebar-width: 280px;
+      --header-height: 60px;
+    }
 
-<html>
-	<head>
-		<title>Teachings - Sitraka's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-light);
+      overflow: hidden;
+      height: 100vh;
+    }
 
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-							<span class="icon fa-gem"></span>
-						</div>
-						<div class="content">
-							<div class="inner">
-								<h1>Teachings</h1>
-								<p>Sharing knowledge on Databases, Data in Finance, and Python</p>
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="index.html#work">Work</a></li>
-								<li><a href="index.html#code">Code</a></li>
-								<li><a href="#toc">TOC</a></li>
-								<li><a href="#databases">Databases</a></li>
-								<li><a href="#finance">Data in Finance</a></li>
-								<li><a href="#python">Python</a></li>
-							</ul>
-						</nav>
-					</header>
+    /* HEADER */
+    header {
+      height: var(--header-height);
+      background: var(--dark-bg2);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 20px;
+      position: relative;
+      z-index: 100;
+    }
 
-				<!-- Main -->
-					<div id="main">
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-light);
+    }
 
-						<!-- Table of Contents -->
-							<article id="toc">
-								<h2 class="major">Table of Contents</h2>
-								<ul>
-									<li><a href="#databases">Databases</a></li>
-									<li><a href="#finance">Data in Finance</a></li>
-									<li><a href="#python">Python</a></li>
-								</ul>
-							</article>
+    .logo span {
+      color: var(--primary);
+    }
 
-						<!-- Databases -->
-							<article id="databases">
-								<h2 class="major">Databases</h2>
-								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-								<p>Databases are essential for storing, managing, and retrieving data efficiently. There are various types of databases, including relational databases like MySQL and PostgreSQL, and NoSQL databases like MongoDB and Cassandra. Understanding database design, normalization, and query optimization is crucial for any data professional.</p>
-								<p>In my experience, I've worked with SQL databases to handle large datasets in finance and other domains. Key concepts include:</p>
-								<ul>
-									<li>Entity-Relationship modeling</li>
-									<li>SQL queries (SELECT, JOIN, GROUP BY)</li>
-									<li>Indexing for performance</li>
-									<li>ACID properties</li>
-								</ul>
-								<h3>Example SQL Query</h3>
-								<p>Here's a basic SQL query to retrieve data from a financial transactions table:</p>
-								<pre><code>SELECT customer_id, SUM(amount) AS total_amount
-FROM transactions
-WHERE transaction_date >= '2023-01-01'
-GROUP BY customer_id
-HAVING SUM(amount) > 1000
-ORDER BY total_amount DESC;</code></pre>
-							</article>
+    .header-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border-color);
+    }
 
-						<!-- Data in Finance -->
-							<article id="finance">
-								<h2 class="major">Data in Finance</h2>
-								<span class="image main"><img src="image/Engineering.jpg" alt="" /></span>
-								<p>Data plays a pivotal role in finance, from risk assessment to algorithmic trading. Financial data includes stock prices, transaction records, credit scores, and economic indicators. Analyzing this data helps in making informed decisions, detecting fraud, and optimizing portfolios.</p>
-								<p>Key areas include:</p>
-								<ul>
-									<li>Time series analysis for stock market prediction</li>
-									<li>Risk modeling using statistical methods</li>
-									<li>Big data processing for high-frequency trading</li>
-									<li>Regulatory compliance and data governance</li>
-								</ul>
-								<h3>Interactive Compound Interest Calculator</h3>
-								<p>Try calculating compound interest with different values:</p>
-								<div class="fields">
-									<div class="field half">
-										<label for="principal">Principal Amount ($)</label>
-										<input type="number" id="principal" value="1000" />
-									</div>
-									<div class="field half">
-										<label for="rate">Annual Interest Rate (%)</label>
-										<input type="number" id="rate" value="5" step="0.1" />
-									</div>
-									<div class="field half">
-										<label for="time">Time (years)</label>
-										<input type="number" id="time" value="5" />
-									</div>
-									<div class="field half">
-										<label for="compounds">Compounds per Year</label>
-										<input type="number" id="compounds" value="1" />
-									</div>
-								</div>
-								<ul class="actions">
-									<li><button id="calculate" class="button primary">Calculate</button></li>
-								</ul>
-								<div id="result" style="margin-top: 20px;"></div>
-								<p>Using pandas to analyze stock data:</p>
-								<pre><code>import pandas as pd
-import numpy as np
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-# Load stock data
-df = pd.read_csv('stock_data.csv', parse_dates=['Date'], index_col='Date')
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-# Calculate daily returns
-df['Daily_Return'] = df['Close'].pct_change()
+    .progress-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-# Calculate volatility (standard deviation of returns)
-volatility = df['Daily_Return'].std() * np.sqrt(252)  # Annualized
+    .progress-text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
 
-# Calculate moving average
-df['MA_50'] = df['Close'].rolling(window=50).mean()
+    .progress-bar {
+      width: 140px;
+      height: 3px;
+      background: var(--dark-bg3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
 
-print(f"Annualized Volatility: {volatility:.2%}")
-print(df.tail())</code></pre>
-							</article>
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent-light));
+      width: 0%;
+      transition: width 0.4s ease;
+    }
 
-						<!-- Python -->
-							<article id="python">
-								<h2 class="major">Python</h2>
-								<span class="image main"><img src="image/code.jpeg" alt="" /></span>
-								<p>Python is a versatile programming language widely used in data science, machine learning, and automation. Its simplicity and extensive libraries make it ideal for financial applications, data analysis, and scripting.</p>
-								<p>Essential Python concepts for data and finance:</p>
-								<ul>
-									<li>Data manipulation with pandas and NumPy</li>
-									<li>Data visualization with Matplotlib and Seaborn</li>
-									<li>Machine learning with scikit-learn</li>
-									<li>Web scraping and API integration</li>
-									<li>Financial modeling and simulations</li>
-								</ul>
-								<p>Python's ecosystem, including Jupyter notebooks, makes it perfect for exploratory data analysis and prototyping financial models.</p>
-								<h3>Example Python Code</h3>
-								<p>A simple function to calculate compound interest:</p>
-								<pre><code>def compound_interest(principal, rate, time, n=1):
-    """
-    Calculate compound interest
-    principal: initial amount
-    rate: annual interest rate (decimal)
-    time: time in years
-    n: number of times interest is compounded per year
-    """
-    amount = principal * (1 + rate/n)**(n*time)
-    interest = amount - principal
-    return amount, interest
+    .home-btn {
+      font-size: 12px;
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-light);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
 
-# Example usage
-principal = 1000
-rate = 0.05  # 5%
-time = 5
-final_amount, interest_earned = compound_interest(principal, rate, time)
-print(f"Final amount: ${final_amount:.2f}")
-print(f"Interest earned: ${interest_earned:.2f}")</code></pre>
-							</article>
+    .home-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
 
-					</div>
+    /* CONTAINER */
+    .container {
+      display: flex;
+      height: calc(100vh - var(--header-height));
+      overflow: hidden;
+    }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; Sitraka Forler. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
+    /* SIDEBAR */
+    aside {
+      width: var(--sidebar-width);
+      background: var(--dark-bg2);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
 
-			</div>
+    .sidebar-section {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
 
-		<!-- BG -->
-			<div id="bg"></div>
+    .sidebar-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script>
-				$(document).ready(function() {
-					$('#calculate').click(function() {
-						var principal = parseFloat($('#principal').val());
-						var rate = parseFloat($('#rate').val()) / 100;
-						var time = parseFloat($('#time').val());
-						var n = parseFloat($('#compounds').val());
-						
-						var amount = principal * Math.pow(1 + rate/n, n*time);
-						var interest = amount - principal;
-						
-						$('#result').html('<p><strong>Final Amount:</strong> $' + amount.toFixed(2) + '</p><p><strong>Interest Earned:</strong> $' + interest.toFixed(2) + '</p>');
-					});
-				});
-			</script>
+    .module-item {
+      padding: 12px 16px;
+      margin-bottom: 6px;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
 
-	</body>
+    .module-item:hover {
+      background: var(--dark-bg3);
+      color: var(--text-light);
+    }
+
+    .module-item.active {
+      background: rgba(56, 152, 236, 0.15);
+      border-left-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .lesson-sub {
+      padding: 8px 16px 8px 32px;
+      margin-bottom: 4px;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .lesson-sub:hover {
+      background: var(--dark-bg3);
+      color: var(--text-light);
+    }
+
+    .lesson-sub.active {
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 32px 40px;
+    }
+
+    .lesson-header {
+      margin-bottom: 24px;
+    }
+
+    .lesson-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .lesson-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .lesson-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+
+    .content-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+
+    /* CODE BLOCKS */
+    .code-block {
+      background: var(--dark-bg3);
+      border: 1px solid var(--border-color);
+      border-left: 3px solid var(--primary);
+      border-radius: 6px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #a8d4ff;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .code-block code {
+      color: inherit;
+    }
+
+    .kw { color: #ff79c6; font-weight: 600; }
+    .str { color: #f1fa8c; }
+    .num { color: #bd93f9; }
+    .com { color: #6272a4; }
+
+    /* INTERACTIVE ELEMENTS */
+    .interactive-box {
+      background: rgba(56, 152, 236, 0.08);
+      border: 1px solid rgba(56, 152, 236, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .interactive-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .input-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .input-field input {
+      padding: 10px 14px;
+      background: var(--dark-bg2);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-light);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      transition: border-color 0.2s;
+    }
+
+    .input-field input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .button {
+      padding: 10px 20px;
+      background: var(--primary);
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .button:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(56, 152, 236, 0.3);
+    }
+
+    .result-box {
+      background: var(--dark-bg2);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .result-box.visible {
+      display: block;
+    }
+
+    .result-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .result-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    /* LIST STYLES */
+    ul {
+      margin: 16px 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      aside {
+        width: 240px;
+      }
+
+      .content-area {
+        padding: 20px;
+      }
+
+      .lesson-title {
+        font-size: 24px;
+      }
+
+      header {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Sitraka<span>.Teach()</span></div>
+  <div class="header-divider"></div>
+  <div class="breadcrumb" id="breadcrumb">Databases</div>
+  <div class="header-right">
+    <div class="progress-info">
+      <span class="progress-text" id="progressText">0 / 12</span>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+    <a href="index.html" class="home-btn">← Back Home</a>
+  </div>
+</header>
+
+<!-- CONTAINER -->
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Modules</div>
+      <div class="module-item active" data-module="databases">📊 Databases</div>
+      <div class="module-item" data-module="finance">💰 Data in Finance</div>
+      <div class="module-item" data-module="python">🐍 Python</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Database Lessons</div>
+      <div class="lesson-sub active" data-lesson="db-intro">Introduction</div>
+      <div class="lesson-sub" data-lesson="db-sql">SQL Basics</div>
+      <div class="lesson-sub" data-lesson="db-advanced">Advanced Queries</div>
+      <div class="lesson-sub" data-lesson="db-optimization">Optimization</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Finance Lessons</div>
+      <div class="lesson-sub" data-lesson="fin-data">Financial Data</div>
+      <div class="lesson-sub" data-lesson="fin-analysis">Data Analysis</div>
+      <div class="lesson-sub" data-lesson="fin-modeling">Modeling</div>
+      <div class="lesson-sub" data-lesson="fin-calculator">Calculator</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Python Lessons</div>
+      <div class="lesson-sub" data-lesson="py-basics">Basics</div>
+      <div class="lesson-sub" data-lesson="py-data">Data Manipulation</div>
+      <div class="lesson-sub" data-lesson="py-visualization">Visualization</div>
+      <div class="lesson-sub" data-lesson="py-finance">Financial App</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="content-area" id="contentArea">
+      <!-- Content loaded dynamically -->
+    </div>
+  </main>
+
+</div>
+
+<script>
+// LESSONS DATA
+const lessons = {
+  "db-intro": { module: "databases", title: "Database Fundamentals", subtitle: "Understanding relational databases and their importance", tag: "Lesson 1 of 12", content: `<div class="section"><div class="section-title">What is a Database?</div><p class="content-text">A database is an organized collection of structured data stored and accessed electronically. Relational databases organize data into tables (collections of rows and columns) that can relate to each other.</p></div><div class="section"><div class="section-title">Key Concepts</div><ul><li><strong>Table</strong> - A collection of related data entries with rows and columns</li><li><strong>Row</strong> - A single record in a table</li><li><strong>Column</strong> - A field in a table (attribute)</li><li><strong>Primary Key</strong> - A unique identifier for each record</li><li><strong>Foreign Key</strong> - Links records between tables</li></ul></div><div class="section"><div class="section-title">Example Table Structure</div><div class="code-block"><span class="com">-- Employees Table</span><br><span class="kw">id</span> | <span class="kw">name</span> | <span class="kw">department</span> | <span class="kw">salary</span><br>-------|----------|-------------|--------<br><span class="num">1</span> | Alice | Engineering | <span class="num">95000</span><br><span class="num">2</span> | Bob   | Marketing   | <span class="num">72000</span><br><span class="num">3</span> | Carol | Engineering | <span class="num">88000</span></div></div><div class="section"><div class="section-title">Why Databases Matter</div><p class="content-text">✅ Data Integrity - Ensures data is consistent and accurate<br>✅ Performance - Efficiently query large datasets<br>✅ Security - Control who accesses what data<br>✅ Scalability - Grow from thousands to billions of records</p></div>` },
+  "db-sql": { module: "databases", title: "SQL Essentials", subtitle: "Master the SELECT statement and basic queries", tag: "Lesson 2 of 12", content: `<div class="section"><div class="section-title">SELECT Statement</div><p class="content-text">The SELECT statement is the foundation of SQL. It allows you to retrieve data from one or more tables.</p><div class="code-block"><span class="kw">SELECT</span> name, salary <span class="kw">FROM</span> employees;</div></div><div class="section"><div class="section-title">Common SQL Operations</div><div class="code-block"><span class="com">-- Get all employees in Engineering</span><br><span class="kw">SELECT</span> * <span class="kw">FROM</span> employees<br><span class="kw">WHERE</span> department = <span class="str">'Engineering'</span>;<br><br><span class="com">-- Sort by salary (descending)</span><br><span class="kw">SELECT</span> name, salary <span class="kw">FROM</span> employees<br><span class="kw">ORDER BY</span> salary <span class="kw">DESC</span>;<br><br><span class="com">-- Get top 5 highest-paid employees</span><br><span class="kw">SELECT</span> * <span class="kw">FROM</span> employees<br><span class="kw">ORDER BY</span> salary <span class="kw">DESC LIMIT</span> <span class="num">5</span>;</div></div><div class="section"><div class="section-title">Aggregate Functions</div><p class="content-text">Aggregate functions perform calculations on columns of data:</p><ul><li><code>COUNT()</code> - Count rows</li><li><code>SUM()</code> - Sum numeric values</li><li><code>AVG()</code> - Calculate average</li><li><code>MIN()</code> / <code>MAX()</code> - Find minimum/maximum</li></ul><div class="code-block"><span class="kw">SELECT</span> <span class="kw">COUNT</span>(*), <span class="kw">AVG</span>(salary)<br><span class="kw">FROM</span> employees;</div></div>` },
+  "db-advanced": { module: "databases", title: "Advanced Query Patterns", subtitle: "JOINs, subqueries, and complex filters", tag: "Lesson 3 of 12", content: `<div class="section"><div class="section-title">INNER JOIN</div><p class="content-text">Combine data from multiple tables where there's a match:</p><div class="code-block"><span class="kw">SELECT</span> e.name, d.dept_name, e.salary<br><span class="kw">FROM</span> employees e<br><span class="kw">INNER JOIN</span> departments d<br><span class="kw">ON</span> e.dept_id = d.id;</div></div><div class="section"><div class="section-title">GROUP BY & HAVING</div><p class="content-text">Group rows and filter groups with aggregate conditions:</p><div class="code-block"><span class="kw">SELECT</span> department, <span class="kw">AVG</span>(salary) as avg_salary<br><span class="kw">FROM</span> employees<br><span class="kw">GROUP BY</span> department<br><span class="kw">HAVING AVG</span>(salary) > <span class="num">75000</span>;</div></div><div class="section"><div class="section-title">Subqueries</div><p class="content-text">Use one query inside another:</p><div class="code-block"><span class="kw">SELECT</span> name, salary<br><span class="kw">FROM</span> employees<br><span class="kw">WHERE</span> salary > (<br>&nbsp;&nbsp;<span class="kw">SELECT AVG</span>(salary) <span class="kw">FROM</span> employees<br>);</div></div>` },
+  "db-optimization": { module: "databases", title: "Query Optimization", subtitle: "Writing efficient and fast queries", tag: "Lesson 4 of 12", content: `<div class="section"><div class="section-title">Indexing Strategies</div><ul><li><strong>Primary Key Index</strong> - Automatically created, uniquely identifies rows</li><li><strong>Foreign Key Index</strong> - Speeds up JOINs</li><li><strong>Selective Index</strong> - Index columns frequently used in WHERE clauses</li></ul></div><div class="section"><div class="section-title">Best Practices</div><div class="code-block"><span class="com">-- ✅ GOOD: Select only needed columns</span><br><span class="kw">SELECT</span> name, salary <span class="kw">FROM</span> employees;<br><br><span class="com">-- ❌ BAD: Select all columns when you don't need them</span><br><span class="kw">SELECT</span> * <span class="kw">FROM</span> employees;<br><br><span class="com">-- ✅ GOOD: Filter early with WHERE</span><br><span class="kw">SELECT</span> * <span class="kw">FROM</span> employees<br><span class="kw">WHERE</span> salary > <span class="num">80000</span>;<br><br><span class="com">-- ❌ BAD: Filter after JOIN with WHERE</span><br><span class="kw">SELECT</span> * <span class="kw">FROM</span> employees<br><span class="kw">WHERE UPPER</span>(name) = <span class="str">'ALICE'</span>;</div></div><div class="section"><div class="section-title">Performance Tips</div><ul><li>Use LIMIT to restrict returned rows</li><li>Denormalize when read speed matters</li><li>Monitor query execution plans</li><li>Use EXPLAIN to analyze queries</li></ul></div>` },
+  "fin-data": { module: "finance", title: "Financial Data Landscape", subtitle: "Types and sources of financial data", tag: "Lesson 5 of 12", content: `<div class="section"><div class="section-title">Financial Data Types</div><ul><li><strong>Market Data</strong> - Stock prices, volumes, indices, options data</li><li><strong>Transaction Data</strong> - Trade records, settlements, cash flows</li><li><strong>Reference Data</strong> - Instruments, counterparties, hierarchies</li><li><strong>Risk Data</strong> - Exposures, sensitivities, VaR, stress tests</li><li><strong>Alternative Data</strong> - Satellite imagery, credit card transactions, sentiment</li></ul></div><div class="section"><div class="section-title">OHLC Data (Open, High, Low, Close)</div><div class="code-block">date       | open   | high   | low    | close  | volume<br>-----------|--------|--------|--------|--------|----------<br>2024-01-15 | 150.25 | 152.80 | 150.10 | 151.50 | 2,500,000<br>2024-01-16 | 151.50 | 153.20 | 151.30 | 153.00 | 2,800,000</div></div><div class="section"><div class="section-title">Key Financial Metrics</div><p class="content-text"><strong>Return:</strong> Percentage change in price over time<br><strong>Volatility:</strong> Standard deviation of returns (price variability)<br><strong>Sharpe Ratio:</strong> Risk-adjusted return (return per unit of risk)<br><strong>Beta:</strong> How much a stock moves relative to the market</p></div>` },
+  "fin-analysis": { module: "finance", title: "Financial Data Analysis", subtitle: "Analyzing stock performance and trends", tag: "Lesson 6 of 12", content: `<div class="section"><div class="section-title">Python for Financial Analysis</div><div class="code-block"><span class="kw">import</span> pandas <span class="kw">as</span> pd<br><span class="kw">import</span> numpy <span class="kw">as</span> np<br><br><span class="com">-- Load stock data</span><br>df = pd.read_csv(<span class="str">'stock_data.csv'</span>)<br><br><span class="com">-- Calculate daily returns</span><br>df[<span class="str">'Daily_Return'</span>] = df[<span class="str">'Close'</span>].pct_change()<br><br><span class="com">-- Calculate volatility (annualized)</span><br>volatility = df[<span class="str">'Daily_Return'</span>].std() * np.sqrt(<span class="num">252</span>)<br><br><span class="com">-- 50-day moving average</span><br>df[<span class="str">'MA_50'</span>] = df[<span class="str">'Close'</span>].rolling(window=<span class="num">50</span>).mean()</div></div><div class="section"><div class="section-title">Risk Management</div><p class="content-text"><strong>Value at Risk (VaR):</strong> Maximum expected loss at a confidence level<br><strong>Drawdown:</strong> Peak to trough decline during period<br><strong>Correlation:</strong> How assets move together (portfolio diversification)</p></div>` },
+  "fin-modeling": { module: "finance", title: "Financial Modeling", subtitle: "Building predictive models and simulations", tag: "Lesson 7 of 12", content: `<div class="section"><div class="section-title">Time Series Forecasting</div><div class="code-block"><span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression<br><br><span class="com">-- Simple linear regression for trend</span><br>X = np.arange(<span class="num">len</span>(df)).reshape(-<span class="num">1</span>, <span class="num">1</span>)<br>y = df[<span class="str">'Close'</span>].values<br><br>model = LinearRegression()<br>model.fit(X, y)<br>predictions = model.predict(X)</div></div><div class="section"><div class="section-title">Monte Carlo Simulation</div><p class="content-text">Simulate thousands of possible outcomes based on historical volatility and returns:</p><div class="code-block"><span class="kw">def</span> monte_carlo_simulation(S, mu, sigma, T, N):<br>&nbsp;&nbsp;<span class="str">"""S=initial price, mu=return, sigma=volatility, T=time, N=simulations"""</span><br>&nbsp;&nbsp;dt = <span class="num">1</span> / <span class="num">252</span><br>&nbsp;&nbsp;paths = np.zeros((T, N))<br>&nbsp;&nbsp;<span class="kw">for</span> i <span class="kw">in</span> range(N):<br>&nbsp;&nbsp;&nbsp;&nbsp;price = S<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">for</span> t <span class="kw">in</span> range(T):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;price *= np.exp((mu - <span class="num">0.5</span> * sigma**<span class="num">2</span>) * dt)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;paths[t, i] = price<br>&nbsp;&nbsp;<span class="kw">return</span> paths</div></div>` },
+  "fin-calculator": { module: "finance", title: "Interactive Financial Calculator", subtitle: "Try calculations with real numbers", tag: "Lesson 8 of 12", content: `<div class="section"><div class="section-title">Compound Interest Calculator</div><div class="interactive-box"><div class="interactive-title">Calculate Future Value</div><div class="input-group"><div class="input-field" style="width: 150px;"><label>Principal ($)</label><input type="number" id="principal" value="10000" /></div><div class="input-field" style="width: 150px;"><label>Annual Rate (%)</label><input type="number" id="rate" value="5" step="0.1" /></div><div class="input-field" style="width: 150px;"><label>Years</label><input type="number" id="years" value="10" /></div><div class="input-field" style="width: 150px;"><label>Compounds Per Year</label><input type="number" id="compounds" value="12" /></div></div><button class="button" onclick="calculateCompoundInterest()">Calculate</button><div class="result-box" id="resultBox"><div class="result-label">Future Value</div><div class="result-value">$<span id="resultValue">0.00</span></div></div></div></div><div class="section"><div class="section-title">The Formula</div><p class="content-text">A = P(1 + r/n)<sup>nt</sup></p><ul><li><strong>A</strong> = Final amount</li><li><strong>P</strong> = Principal (initial investment)</li><li><strong>r</strong> = Annual interest rate (decimal)</li><li><strong>n</strong> = Number of times compounded per year</li><li><strong>t</strong> = Time in years</li></ul></div>` },
+  "py-basics": { module: "python", title: "Python Fundamentals", subtitle: "Core concepts and syntax", tag: "Lesson 9 of 12", content: `<div class="section"><div class="section-title">Data Types & Variables</div><div class="code-block"><span class="com">-- Strings</span><br>name = <span class="str">"Alice"</span><br>message = <span class="str">f"Hello, {name}"</span><br><br><span class="com">-- Numbers</span><br>salary = <span class="num">95000</span><br>percentage = <span class="num">0.05</span><br><br><span class="com">-- Collections</span><br>employees = [<span class="str">"Alice"</span>, <span class="str">"Bob"</span>, <span class="str">"Carol"</span>]<br>employee = {<span class="str">"name"</span>: <span class="str">"Alice"</span>, <span class="str">"salary"</span>: <span class="num">95000</span>}</div></div><div class="section"><div class="section-title">Functions</div><div class="code-block"><span class="kw">def</span> calculate_bonus(salary, percentage):<br>&nbsp;&nbsp;<span class="str">"""Calculate bonus based on salary"""</span><br>&nbsp;&nbsp;<span class="kw">return</span> salary * percentage<br><br>bonus = calculate_bonus(<span class="num">95000</span>, <span class="num">0.1</span>)<br>print(f<span class="str">"Bonus: ${bonus}"</span>)</div></div><div class="section"><div class="section-title">Control Flow</div><div class="code-block"><span class="com">-- Conditionals</span><br><span class="kw">if</span> salary > <span class="num">80000</span>:<br>&nbsp;&nbsp;print(<span class="str">"Senior level"</span>)<br><span class="kw">elif</span> salary > <span class="num">50000</span>:<br>&nbsp;&nbsp;print(<span class="str">"Mid level"</span>)<br><span class="kw">else</span>:<br>&nbsp;&nbsp;print(<span class="str">"Junior level"</span>)<br><br><span class="com">-- Loops</span><br><span class="kw">for</span> emp <span class="kw">in</span> employees:<br>&nbsp;&nbsp;print(emp)</div></div>` },
+  "py-data": { module: "python", title: "Data Manipulation with Pandas", subtitle: "Working with dataframes and data wrangling", tag: "Lesson 10 of 12", content: `<div class="section"><div class="section-title">Introduction to Pandas</div><p class="content-text">Pandas is the Swiss Army knife for data manipulation — it makes working with tabular data intuitive and fast.</p><div class="code-block"><span class="kw">import</span> pandas <span class="kw">as</span> pd<br><br><span class="com">-- Create a DataFrame</span><br>df = pd.DataFrame({<br>&nbsp;&nbsp;<span class="str">'name'</span>: [<span class="str">'Alice'</span>, <span class="str">'Bob'</span>, <span class="str">'Carol'</span>],<br>&nbsp;&nbsp;<span class="str">'salary'</span>: [<span class="num">95000</span>, <span class="num">72000</span>, <span class="num">88000</span>],<br>&nbsp;&nbsp;<span class="str">'dept'</span>: [<span class="str">'Eng'</span>, <span class="str">'Mkt'</span>, <span class="str">'Eng'</span>]<br>})</div></div><div class="section"><div class="section-title">Common Operations</div><div class="code-block"><span class="com">-- Filter rows</span><br>high_earners = df[df[<span class="str">'salary'</span>] > <span class="num">80000</span>]<br><br><span class="com">-- Group and aggregate</span><br>dept_avg = df.groupby(<span class="str">'dept'</span>)[<span class="str">'salary'</span>].mean()<br><br><span class="com">-- Add new column</span><br>df[<span class="str">'bonus'</span>] = df[<span class="str">'salary'</span>] * <span class="num">0.1</span><br><br><span class="com">-- Sort values</span><br>df_sorted = df.sort_values(<span class="str">'salary'</span>, ascending=False)</div></div>` },
+  "py-visualization": { module: "python", title: "Data Visualization", subtitle: "Creating charts and plots with Matplotlib", tag: "Lesson 11 of 12", content: `<div class="section"><div class="section-title">Matplotlib Basics</div><div class="code-block"><span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt<br><br><span class="com">-- Simple line plot</span><br>plt.plot(dates, prices, marker=<span class="str">'o'</span>, label=<span class="str">'Stock Price'</span>)<br>plt.xlabel(<span class="str">'Date'</span>)<br>plt.ylabel(<span class="str">'Price ($)'</span>)<br>plt.title(<span class="str">'Stock Performance'</span>)<br>plt.legend()<br>plt.show()</div></div><div class="section"><div class="section-title">Advanced Visualizations</div><div class="code-block"><span class="com">-- Subplots for multiple charts</span><br>fig, (ax1, ax2) = plt.subplots(<span class="num">1</span>, <span class="num">2</span>, figsize=(<span class="num">12</span>, <span class="num">5</span>))<br><br>ax1.plot(dates, prices)<br>ax1.set_title(<span class="str">'Price'</span>)<br><br>ax2.bar(depts, avg_salary)<br>ax2.set_title(<span class="str">'Avg Salary by Dept'</span>)<br><br>plt.tight_layout()<br>plt.show()</div></div><div class="section"><div class="section-title">Why Visualization Matters</div><p class="content-text">✓ Makes patterns obvious at a glance<br>✓ Communicates insights to non-technical stakeholders<br>✓ Helps identify outliers and anomalies<br>✓ Essential for presentations and dashboards</p></div>` },
+  "py-finance": { module: "python", title: "Building a Financial App", subtitle: "Complete example: Portfolio analysis tool", tag: "Lesson 12 of 12", content: `<div class="section"><div class="section-title">Portfolio Analysis Application</div><p class="content-text">A complete Python application that analyzes investment portfolios:</p><div class="code-block"><span class="kw">class</span> Portfolio:<br>&nbsp;&nbsp;<span class="kw">def</span> __init__(self, name):<br>&nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br>&nbsp;&nbsp;&nbsp;&nbsp;self.holdings = []<br>&nbsp;&nbsp;<span class="kw">def</span> add_stock(self, symbol, shares, price):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"""Add stock to portfolio"""</span><br>&nbsp;&nbsp;&nbsp;&nbsp;self.holdings.append({<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'symbol'</span>: symbol,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'shares'</span>: shares,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'price'</span>: price<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;<span class="kw">def</span> total_value(self):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"""Calculate portfolio total value"""</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> sum(h[<span class="str">'shares'</span>] * h[<span class="str">'price'</span>] <span class="kw">for</span> h <span class="kw">in</span> self.holdings)</div></div><div class="section"><div class="section-title">Congratulations! 🎉</div><p class="content-text">You've completed all 12 lessons covering Databases, Financial Data Analysis, and Python programming. You now have the foundational knowledge to build data-driven financial applications!</p></div>` }
+};
+
+// STATE
+let currentModule = 'databases';
+let currentLesson = 'db-intro';
+let completedLessons = new Set(['db-intro']);
+
+// INIT
+initSidebar();
+loadLesson('db-intro');
+
+function initSidebar() {
+  const modules = document.querySelectorAll('[data-module]');
+  const lessonItems = document.querySelectorAll('[data-lesson]');
+
+  modules.forEach(m => {
+    m.addEventListener('click', () => {
+      currentModule = m.dataset.module;
+      modules.forEach(el => el.classList.remove('active'));
+      m.classList.add('active');
+      updateSidebarLessons();
+    });
+  });
+
+  lessonItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const lessonId = item.dataset.lesson;
+      loadLesson(lessonId);
+    });
+  });
+}
+
+function updateSidebarLessons() {
+  const sidebar = document.getElementById('sidebar');
+  const lessonItems = sidebar.querySelectorAll('[data-lesson]');
+  
+  lessonItems.forEach(item => {
+    const lesson = lessons[item.dataset.lesson];
+    if (lesson && lesson.module === currentModule) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function loadLesson(lessonId) {
+  currentLesson = lessonId;
+  const lesson = lessons[lessonId];
+  
+  if (!lesson) return;
+
+  const modules = document.querySelectorAll('[data-module]');
+  modules.forEach(m => {
+    m.classList.toggle('active', m.dataset.module === lesson.module);
+  });
+  currentModule = lesson.module;
+  updateSidebarLessons();
+
+  const lessonItems = document.querySelectorAll('[data-lesson]');
+  lessonItems.forEach(item => {
+    item.classList.toggle('active', item.dataset.lesson === lessonId);
+  });
+
+  if (!completedLessons.has(lessonId)) {
+    completedLessons.add(lessonId);
+  }
+  updateProgress();
+
+  const contentArea = document.getElementById('contentArea');
+  contentArea.innerHTML = `<div class="lesson-header"><div class="lesson-tag">${lesson.tag}</div><div class="lesson-title">${lesson.title}</div><div class="lesson-subtitle">${lesson.subtitle}</div></div>${lesson.content}`;
+
+  document.getElementById('breadcrumb').textContent = lesson.module.charAt(0).toUpperCase() + lesson.module.slice(1);
+}
+
+function updateProgress() {
+  const total = Object.keys(lessons).length;
+  const completed = completedLessons.size;
+  const percentage = (completed / total) * 100;
+  
+  document.getElementById('progressFill').style.width = percentage + '%';
+  document.getElementById('progressText').textContent = `${completed} / ${total}`;
+}
+
+function calculateCompoundInterest() {
+  const principal = parseFloat(document.getElementById('principal').value);
+  const rate = parseFloat(document.getElementById('rate').value) / 100;
+  const years = parseFloat(document.getElementById('years').value);
+  const compounds = parseFloat(document.getElementById('compounds').value);
+  
+  const amount = principal * Math.pow(1 + rate / compounds, compounds * years);
+  
+  document.getElementById('resultValue').textContent = amount.toFixed(2);
+  document.getElementById('resultBox').classList.add('visible');
+}
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.ctrlKey) {
+    const btn = document.querySelector('.button');
+    if (btn) btn.click();
+  }
+});
+</script>
+
+</body>
 </html>
