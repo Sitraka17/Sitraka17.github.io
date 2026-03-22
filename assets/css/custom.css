@@ -431,12 +431,20 @@ article ul:not(.actions):not(.icons) li {
   transition: color 0.2s ease;
 }
 
-article ul:not(.actions):not(.icons) li::marker {
+article:not(#luxaiops) ul:not(.actions):not(.icons) li::marker {
   color: #7b2fff;
+}
+
+#luxaiops ul:not(.actions):not(.icons) li::marker {
+  color: #10b981;
 }
 
 article ul:not(.actions):not(.icons) li:hover {
   color: #d8b4fe;
+}
+
+#luxaiops ul:not(.actions):not(.icons) li:hover {
+  color: #a7f3d0;
 }
 
 /* ---------- 21. LINKS IN ARTICLES ---------- */
@@ -464,4 +472,52 @@ article a:hover {
 /* ---------- 23. PARTICLES CANVAS ---------- */
 #particles-canvas {
   z-index: 0;
+}
+
+/* ---------- 24. LUXAIOPS SECTION CUSTOM STYLING ---------- */
+#luxaiops.active {
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(74, 222, 128, 0.15),
+    0 0 40px rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+#luxaiops h2.major {
+  border-image: linear-gradient(90deg, #10b981, #0ea5e9, transparent) 1 !important;
+  background: linear-gradient(135deg, #ffffff 0%, #6ee7b7 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#luxaiops h3.major {
+  border-image: linear-gradient(90deg, rgba(16, 185, 129, 0.5), transparent) 1 !important;
+}
+
+#luxaiops article h3:not(.major) {
+  color: #6ee7b7;
+}
+
+#luxaiops hr {
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.4), rgba(14, 165, 233, 0.35), transparent);
+}
+
+#luxaiops a {
+  color: #6ee7b7;
+  border-bottom-color: rgba(110, 231, 183, 0.3);
+}
+
+#luxaiops a:hover {
+  color: #a7f3d0;
+}
+
+#luxaiops .button.primary {
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+}
+
+#luxaiops .button.primary:hover {
+  box-shadow:
+    0 8px 30px rgba(16, 185, 129, 0.55),
+    0 0 0 1px rgba(16, 185, 129, 0.4);
 }
