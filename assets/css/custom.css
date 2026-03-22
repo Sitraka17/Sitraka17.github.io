@@ -1,0 +1,412 @@
+/* ===================================================
+   custom.css — Sitraka Portfolio Modern Design Layer
+   =================================================== */
+
+/* ---------- 1. GOOGLE FONT OVERRIDE ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+body,
+input,
+select,
+textarea {
+  font-family: 'Inter', 'Source Sans Pro', sans-serif;
+}
+
+/* ---------- 2. ANIMATED GRADIENT BACKGROUND ---------- */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#bg {
+  background: linear-gradient(
+    135deg,
+    #0d0d1a 0%,
+    #0f2027 20%,
+    #1a0533 40%,
+    #0a1628 60%,
+    #09181f 80%,
+    #0d0d1a 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 18s ease infinite;
+}
+
+/* Floating orbs of colour for depth */
+#bg::before,
+#bg::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#bg::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #7b2fff 0%, transparent 70%);
+  top: -150px;
+  left: -150px;
+  animation: orb1 20s ease-in-out infinite alternate;
+}
+
+#bg::after {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #00c9ff 0%, transparent 70%);
+  bottom: -100px;
+  right: -100px;
+  animation: orb2 25s ease-in-out infinite alternate;
+}
+
+@keyframes orb1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(120px, 80px) scale(1.2); }
+}
+
+@keyframes orb2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-100px, -60px) scale(1.3); }
+}
+
+/* ---------- 3. WRAPPER ---------- */
+#wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 4. HEADER — GLASSMORPHISM ---------- */
+#header {
+  background: rgba(15, 10, 35, 0.45) !important;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.4s ease;
+}
+
+#header:hover {
+  box-shadow: 0 8px 60px rgba(123, 47, 255, 0.3),
+              0 8px 40px rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ---------- 5. LOGO ICON PULSE ---------- */
+#header .logo {
+  position: relative;
+}
+
+#header .logo .icon {
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+#header .logo:hover .icon {
+  transform: scale(1.15) rotate(8deg);
+}
+
+/* Glowing ring around logo */
+#header .logo::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #7b2fff,
+    #00c9ff,
+    #7b2fff
+  );
+  opacity: 0;
+  z-index: -1;
+  filter: blur(10px);
+  transition: opacity 0.4s ease;
+  animation: spinRing 4s linear infinite;
+}
+
+#header:hover .logo::after {
+  opacity: 0.6;
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ---------- 6. H1 GRADIENT TEXT ---------- */
+#header h1 {
+  background: linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #60c3ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.55rem;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+/* ---------- 7. NAV LINKS ---------- */
+#header nav ul li a {
+  position: relative;
+  letter-spacing: 0.18rem;
+  font-weight: 600;
+  transition: color 0.25s ease, letter-spacing 0.25s ease;
+}
+
+#header nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7b2fff, #00c9ff);
+  border-radius: 2px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+#header nav ul li a:hover {
+  color: #a78bfa;
+  letter-spacing: 0.25rem;
+  border-bottom-color: transparent;
+}
+
+#header nav ul li a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ---------- 8. ARTICLE PANELS — GLASSMORPHISM ---------- */
+#main article {
+  background: rgba(10, 8, 28, 0.55) !important;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- 9. MAJOR HEADINGS ---------- */
+h2.major,
+h3.major {
+  border-image: linear-gradient(90deg, #7b2fff, #00c9ff) 1;
+  background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 60%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border-bottom: 1px solid;
+  border-image-slice: 1;
+  padding-bottom: 0.6rem;
+  margin-bottom: 2rem;
+  /* Fallback border */
+  border-bottom-color: rgba(123, 47, 255, 0.5);
+}
+
+/* ---------- 10. SECTION HEADINGS IN ARTICLES ---------- */
+article h3 {
+  color: #c4b5fd;
+  font-weight: 700;
+  letter-spacing: 0.15rem;
+}
+
+/* ---------- 11. SKILL BADGE PILLS ---------- */
+article p b,
+article p strong {
+  background: linear-gradient(135deg, rgba(123, 47, 255, 0.25), rgba(0, 201, 255, 0.15));
+  border: 1px solid rgba(123, 47, 255, 0.35);
+  border-radius: 6px;
+  padding: 2px 8px;
+  color: #d8b4fe;
+  display: inline-block;
+}
+
+/* ---------- 12. CODE BLOCKS ---------- */
+pre code {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(123, 47, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3),
+              0 0 15px rgba(123, 47, 255, 0.05);
+  color: #86efac;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+
+code {
+  background: rgba(123, 47, 255, 0.15) !important;
+  border: 1px solid rgba(123, 47, 255, 0.3);
+  border-radius: 5px;
+  color: #d8b4fe;
+}
+
+/* ---------- 13. BUTTONS — GLOW ON HOVER ---------- */
+.button.primary,
+input[type="submit"].primary {
+  background: linear-gradient(135deg, #7b2fff 0%, #5b21b6 100%);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(123, 47, 255, 0.35);
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.button.primary:hover,
+input[type="submit"].primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(123, 47, 255, 0.6),
+              0 0 0 1px rgba(123, 47, 255, 0.5);
+  filter: brightness(1.1);
+}
+
+.button,
+input[type="submit"],
+input[type="reset"] {
+  border-radius: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.button:hover,
+input[type="reset"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- 14. FORM FIELDS — GLOW ON FOCUS ---------- */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  background: rgba(123, 47, 255, 0.08) !important;
+  border-color: #7b2fff !important;
+  box-shadow: 0 0 0 2px rgba(123, 47, 255, 0.3),
+              0 0 20px rgba(123, 47, 255, 0.15) !important;
+  outline: none;
+}
+
+/* ---------- 15. SOCIAL ICON LINKS ---------- */
+ul.icons li a {
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, background 0.3s ease;
+}
+
+ul.icons li a:hover {
+  transform: translateY(-4px) scale(1.15);
+  color: #c4b5fd;
+  box-shadow: 0 8px 25px rgba(123, 47, 255, 0.5);
+  border-bottom-color: transparent;
+}
+
+/* ---------- 16. FOOTER ---------- */
+#footer {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.75rem;
+  letter-spacing: 0.05rem;
+}
+
+#footer a {
+  color: rgba(167, 139, 250, 0.6);
+  border-bottom-color: transparent;
+  transition: color 0.25s ease;
+}
+
+#footer a:hover {
+  color: #a78bfa;
+}
+
+/* ---------- 17. HR DIVIDERS UPGRADED ---------- */
+article hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(123, 47, 255, 0.5), rgba(0, 201, 255, 0.5), transparent);
+  margin: 2.5rem 0;
+}
+
+/* ---------- 18. SCROLLBAR ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7b2fff, #00c9ff);
+  border-radius: 3px;
+}
+
+/* ---------- 19. IMAGE BORDER GLOW ---------- */
+.image.main img {
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(123, 47, 255, 0.2);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.image.main img:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6),
+              0 0 0 1px rgba(123, 47, 255, 0.4),
+              0 0 25px rgba(123, 47, 255, 0.2);
+  transform: scale(1.01);
+}
+
+/* ---------- 20. RESULT BOX (CALCULATOR) ---------- */
+#result {
+  background: rgba(123, 47, 255, 0.1);
+  border: 1px solid rgba(123, 47, 255, 0.3);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- 21. ARTICLE FADE-IN ANIMATION ---------- */
+#main article {
+  animation: panelReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes panelReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ---------- 22. LIST ITEMS WITH SUBTLE INDICATOR ---------- */
+article ul:not(.actions):not(.icons) li {
+  padding-left: 0.5em;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+article ul:not(.actions):not(.icons) li::marker {
+  color: #7b2fff;
+}
+
+article ul:not(.actions):not(.icons) li:hover {
+  color: #d8b4fe;
+}

@@ -8,7 +8,12 @@
 		<title>Sitraka's Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Sitraka Forler — Data Scientist, ML Engineer & IT Consultant Portfolio" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -24,8 +29,7 @@
 						<div class="content">
 							<div class="inner">
 								<h1>Sitraka</h1>
-								<p>A fully responsive portfolio <br />
-								in order to share my personnal github <a href="https://github.com/Sitraka17">Data projects</a>.</p>
+								<p id="typed-subtitle">Data Scientist &amp; ML Engineer<span id="typed-cursor">|</span></p>
 							</div>
 						</div>
 						<nav>
@@ -224,29 +228,8 @@ print(f"Interest earned: ${interest_earned:.2f}")</code></pre>
 								</form>
 								<ul class="icons">
 									<li><a href="https://twitter.com/ForlerSitraka" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									
-									
 									<li><a href="https://www.linkedin.com/in/sitraka-matthieu-forler/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									
-									</a>
-								
-								</li>
-
-
-
-									
-									
-									<li>
-
-										<a href="https://github.com/Sitraka17" class="icon brands fa-github"><span class="label">GitHub</span></a>
-									</li>
-								
-
-
-
-
+									<li><a href="https://github.com/Sitraka17" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul>
 							</article>
 
@@ -505,6 +488,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 		<!-- BG -->
 			<div id="bg"></div>
+			<canvas id="particles-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -513,19 +497,125 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
+				/* ---- Compound Interest Calculator ---- */
 				$(document).ready(function() {
 					$('#calculate').click(function() {
 						var principal = parseFloat($('#principal').val());
 						var rate = parseFloat($('#rate').val()) / 100;
 						var time = parseFloat($('#time').val());
 						var n = parseFloat($('#compounds').val());
-						
 						var amount = principal * Math.pow(1 + rate/n, n*time);
 						var interest = amount - principal;
-						
 						$('#result').html('<p><strong>Final Amount:</strong> $' + amount.toFixed(2) + '</p><p><strong>Interest Earned:</strong> $' + interest.toFixed(2) + '</p>');
 					});
 				});
+
+				/* ---- Typing Animation ---- */
+				(function() {
+					var phrases = [
+						'Data Scientist & ML Engineer',
+						'IT Consultant & MLOps Engineer',
+						'Python & Cloud Specialist',
+						'Cybersecurity & Automation Expert'
+					];
+					var el = document.getElementById('typed-subtitle');
+					var cursor = document.getElementById('typed-cursor');
+					if (!el || !cursor) return;
+					var phraseIdx = 0, charIdx = 0, deleting = false;
+					cursor.style.cssText = 'animation:blink 0.7s step-end infinite;margin-left:2px;color:#a78bfa;';
+					var style = document.createElement('style');
+					style.textContent = '@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}';
+					document.head.appendChild(style);
+					function tick() {
+						var phrase = phrases[phraseIdx];
+						if (deleting) {
+							charIdx--;
+						} else {
+							charIdx++;
+						}
+						// rebuild text content without cursor span
+						el.childNodes[0] && el.removeChild(el.childNodes[0]);
+						el.insertBefore(document.createTextNode(phrase.slice(0, charIdx)), cursor);
+						if (!deleting && charIdx === phrase.length) {
+							deleting = true;
+							setTimeout(tick, 1800);
+						} else if (deleting && charIdx === 0) {
+							deleting = false;
+							phraseIdx = (phraseIdx + 1) % phrases.length;
+							setTimeout(tick, 400);
+						} else {
+							setTimeout(tick, deleting ? 45 : 80);
+						}
+					}
+					setTimeout(tick, 600);
+				})();
+
+				/* ---- Floating Particles ---- */
+				(function() {
+					var canvas = document.getElementById('particles-canvas');
+					if (!canvas) return;
+					var ctx = canvas.getContext('2d');
+					var W, H, particles = [];
+					var NUM = 55;
+					function resize() {
+						W = canvas.width = window.innerWidth;
+						H = canvas.height = window.innerHeight;
+					}
+					function Particle() {
+						this.x = Math.random() * W;
+						this.y = Math.random() * H;
+						this.r = Math.random() * 1.5 + 0.3;
+						this.vx = (Math.random() - 0.5) * 0.35;
+						this.vy = (Math.random() - 0.5) * 0.35;
+						this.alpha = Math.random() * 0.5 + 0.1;
+						this.color = Math.random() > 0.5 ? '167,139,250' : '96,195,255';
+					}
+					Particle.prototype.update = function() {
+						this.x += this.vx;
+						this.y += this.vy;
+						if (this.x < 0) this.x = W;
+						if (this.x > W) this.x = 0;
+						if (this.y < 0) this.y = H;
+						if (this.y > H) this.y = 0;
+					};
+					function init() {
+						resize();
+						particles = [];
+						for (var i = 0; i < NUM; i++) particles.push(new Particle());
+					}
+					function connectParticles() {
+						for (var i = 0; i < particles.length; i++) {
+							for (var j = i + 1; j < particles.length; j++) {
+								var dx = particles[i].x - particles[j].x;
+								var dy = particles[i].y - particles[j].y;
+								var dist = Math.sqrt(dx*dx + dy*dy);
+								if (dist < 130) {
+									ctx.beginPath();
+									ctx.strokeStyle = 'rgba(123,47,255,' + (0.12 * (1 - dist/130)) + ')';
+									ctx.lineWidth = 0.6;
+									ctx.moveTo(particles[i].x, particles[i].y);
+									ctx.lineTo(particles[j].x, particles[j].y);
+									ctx.stroke();
+								}
+							}
+						}
+					}
+					function loop() {
+						ctx.clearRect(0, 0, W, H);
+						particles.forEach(function(p) {
+							p.update();
+							ctx.beginPath();
+							ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+							ctx.fillStyle = 'rgba(' + p.color + ',' + p.alpha + ')';
+							ctx.fill();
+						});
+						connectParticles();
+						requestAnimationFrame(loop);
+					}
+					window.addEventListener('resize', init);
+					init();
+					loop();
+				})();
 			</script>
 
 	</body>
