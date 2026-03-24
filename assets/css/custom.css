@@ -25,21 +25,27 @@ textarea {
 
 /* ---------- 2. ANIMATED GRADIENT BACKGROUND ---------- */
 @keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 #bg {
-  background: linear-gradient(
-    135deg,
-    #0d0d1a 0%,
-    #0f2027 15%,
-    #1a0533 30%,
-    #0b1a2e 50%,
-    #0f0c29 70%,
-    #0d0d1a 100%
-  ) !important;
+  background: linear-gradient(135deg,
+      #0d0d1a 0%,
+      #0f2027 15%,
+      #1a0533 30%,
+      #0b1a2e 50%,
+      #0f0c29 70%,
+      #0d0d1a 100%) !important;
   background-size: 400% 400% !important;
   animation: gradientShift 20s ease infinite;
 }
@@ -85,13 +91,23 @@ body::after {
 }
 
 @keyframes orb1 {
-  0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(100px, 60px) scale(1.15); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(100px, 60px) scale(1.15);
+  }
 }
 
 @keyframes orb2 {
-  0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-80px, -50px) scale(1.2); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(-80px, -50px) scale(1.2);
+  }
 }
 
 /* ---------- 3. WRAPPER ---------- */
@@ -151,8 +167,13 @@ body::after {
 }
 
 @keyframes spinRing {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ---------- 6. H1 GRADIENT TEXT ---------- */
@@ -215,6 +236,7 @@ body::after {
     opacity: 0;
     transform: scale(0.96) translateY(15px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -526,8 +548,15 @@ article hr {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---------- 20. LIST STYLING ---------- */
@@ -613,7 +642,7 @@ article a:hover {
     inset 0 1px 0 rgba(74, 222, 128, 0.15),
     0 0 40px rgba(16, 185, 129, 0.15);
   border-color: rgba(16, 185, 129, 0.2) !important;
-  background-image: 
+  background-image:
     radial-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
     radial-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px) !important;
   background-size: 20px 20px !important;
