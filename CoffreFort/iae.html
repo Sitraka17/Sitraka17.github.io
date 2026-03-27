@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les SGBD dans l'Industrie des Fonds d'Investissement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            background-color: #f8f9fa;
+        }
+
+        .title {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: #1B3A6B;
+        }
+
+        .section-title {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: #D4A017;
+            border-bottom: 2px solid #D4A017;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .code-block {
+            background: #f3f4f6;
+            border-left: 4px solid #1B3A6B;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .reference {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body class="p-6 max-w-6xl mx-auto">
+    <header class="text-center mb-8">
+        <h1 class="title text-3xl md:text-4xl mb-2">Les Systèmes de Gestion de Bases de Données (SGBD) dans l'Industrie
+            des Fonds d'Investissement</h1>
+        <p class="text-lg text-gray-600">Architectures, géographie des données et cas d'usage techniques</p>
+        <p class="mt-4 text-gray-500">Sitraka FORLER • 2026 • IAE Metz</p>
+    </header>
+
+    <section class="slide">
+        <h2 class="section-title">Guide de Lecture</h2>
+        <div class="mt-4 space-y-4">
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">Structure Pédagogique</h3>
+                <p class="mt-2 text-gray-700">
+                    Chaque concept est développé en <strong>deux parties</strong> :
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                    <li><strong>Contexte</strong> : Explication des enjeux et du cadre théorique.</li>
+                    <li><strong>Technique</strong> : Architectures, protocoles, exemples de code et normes
+                        réglementaires.</li>
+                </ul>
+                </p>
+            </div>
+            <div class="mt-6">
+                <h3 class="font-bold text-lg text-gray-800">Objectif</h3>
+                <p class="mt-2 text-gray-700">
+                    Comprendre les <strong>deux niveaux</strong> pour maîtriser les architectures SGBD en finance :
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                    <li>Le niveau <strong>conceptuel</strong> : Pourquoi tel choix ?</li>
+                    <li>Le niveau <strong>technique</strong> : Comment l'implémenter ?</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="section-title">Introduction : La Donnée comme Actif Stratégique</h2>
+        <div class="mt-4 space-y-6">
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">1. La Donnée : Pivot de l'Industrie des Fonds</h3>
+                <p class="mt-2 text-gray-700">
+                    L'industrie des fonds d'investissement repose sur deux catégories de données fondamentales, chacune
+                    avec des exigences distinctes :
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                    <li>
+                        <strong>Données de marché (Front Office)</strong> :
+                        <ul class="list-disc pl-5 mt-1 space-y-1">
+                            <li>Transactions haute fréquence, séries temporelles, analyse quantitative.</li>
+                            <li>Nécessitent une infrastructure capable de traiter des volumes massifs en temps réel.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Données administratives (Middle/Back Office)</strong> :
+                        <ul class="list-disc pl-5 mt-1 space-y-1">
+                            <li>Rapprochement de positions, valorisation (NAV/VNI), conformité réglementaire.</li>
+                            <li>Requiert une intégrité transactionnelle absolue et une traçabilité irréprochable.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="mt-6">
+                <h3 class="font-bold text-lg text-gray-800">2. Le Choix du SGBD : Une Décision Architecturale Cruciale
+                </h3>
+                <p class="mt-2 text-gray-700">
+                    Le choix d'un SGBD n'est pas anodin. Il doit s'aligner sur trois dimensions critiques :
+                </p>
+                <ol class="list-decimal pl-5 mt-2 space-y-3 text-gray-700">
+                    <li>
+                        <strong>La taille du fonds</strong> :
+                        <ul class="list-disc pl-5 mt-1 space-y-1">
+                            <li><strong>Small Funds (Family Offices)</strong> : Modélisation complexe, faible volume
+                                transactionnel.</li>
+                            <li><strong>Mid-Sized Funds (Hedge Funds)</strong> : Gestion de séries temporelles, calculs
+                                de risque.</li>
+                            <li><strong>Large Funds (Mega-Funds)</strong> : Latence sub-milliseconde, pétaoctets de
+                                données.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>La stratégie d'investissement</strong> :
+                        <ul class="list-disc pl-5 mt-1 space-y-1">
+                            <li>Trading algorithmique → Bases orientées séries temporelles (TimescaleDB, kdb+).</li>
+                            <li>Fonds diversifiés → Bases relationnelles (PostgreSQL, Oracle).</li>
+                            <li>Fonds offshore → Bases distribuées (MongoDB, bases cloud).</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>La juridiction de domiciliation</strong> :
+                        <ul class="list-disc pl-5 mt-1 space-y-1">
+                            <li><strong>Luxembourg</strong> : Normes UCITS/FIA, exigences ACID strictes.</li>
+                            <li><strong>Irlande</strong> : Hub pour ETF et Hedge Funds, besoin de scalabilité.</li>
+                            <li><strong>Offshore</strong> : Infrastructure limitée, dépendance au cloud.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                    <p class="italic text-gray-700">
+                        « Le SGBD n'est pas un outil, mais une architecture décisionnelle. »
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="section-title">Géographie des SGBD : Spécialisation par Juridiction</h2>
+        <div class="mt-4 space-y-8">
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">1. Le Luxembourg : Le Leader Européen des Fonds UCITS</h3>
+                <div class="mt-4 flex flex-col md:flex-row gap-6">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-md text-gray-800">Contexte institutionnel</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                            <li><strong>Spécialité</strong> : Domiciliation et administration de fonds grand public
+                                (UCITS) et fonds alternatifs (FIA).</li>
+                            <li><strong>Enjeux</strong> : Le Luxembourg est le <strong>premier centre de domiciliation
+                                    de fonds en Europe</strong>, avec plus de 15 000 fonds enregistrés.</li>
+                            <li><strong>Besoins SGBD</strong> :
+                                <ul class="list-disc pl-5 mt-1 space-y-1">
+                                    <li><strong>Fund Accounting</strong> : Traçabilité des transactions, valorisation en
+                                        temps réel.</li>
+                                    <li><strong>Transfer Agency</strong> : Gestion des souscriptions/rachats, tenue des
+                                        registres.</li>
+                                    <li><strong>Conformité</strong> : Respect des normes <strong>UCITS IV/V</strong> et
+                                        des exigences de transparence.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex-1">
+                        <img src="luxembourg_flag.png" alt="Drapeau du Luxembourg"
+                            class="w-48 h-auto mx-auto rounded shadow">
+                        <p class="text-center text-sm text-gray-500 mt-2">Source : ALFI Luxembourg</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">2. Le Luxembourg : Architectures Techniques Dominantes</h3>
+                <div class="mt-4">
+                    <h4 class="font-bold text-md text-gray-800">A. Technologies et Standards</h4>
+                    <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                        <li>
+                            <strong>Relational Database Management Systems (RDBMS)</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Oracle Database</strong> : Standard de facto pour les grands fonds (ex :
+                                    fonds UCITS de BlackRock, Pictet).</li>
+                                <li><strong>Microsoft SQL Server</strong> : Utilisé par les administrateurs de fonds
+                                    locaux (ex : RBC Investor Services).</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Architecture Orientée Ligne (Row-Oriented)</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li>Optimisée pour les <strong>transactions OLTP</strong> (Online Transaction
+                                    Processing) : souscriptions, rachats, rapprochements.</li>
+                                <li><strong>Propriétés ACID</strong> non négociables : <strong>Atomicité</strong>,
+                                    <strong>Cohérence</strong>, <strong>Isolement</strong>, <strong>Durabilité</strong>.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Progiciels dominants</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>eFront</strong> : Spécialisé dans la gestion de Private Equity.</li>
+                                <li><strong>Multifonds</strong> : Solution complète pour le Fund Accounting.</li>
+                                <li><strong>SimCorp Dimension</strong> : Gestion d'actifs et valorisation.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <p class="italic text-gray-700">
+                            Les SGBD au Luxembourg doivent être <strong>certifiés ISO 27001</strong> et respecter les
+                            exigences de la <strong>CSSF</strong> (Commission de Surveillance du Secteur Financier).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">3. L'Irlande : Le Hub des Hedge Funds et des ETF</h3>
+                <div class="mt-4 flex flex-col md:flex-row gap-6">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-md text-gray-800">Contexte économique</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                            <li><strong>Spécialité</strong> : Hedge Funds, ETF (Exchange-Traded Funds), et fonds
+                                monétaires.</li>
+                            <li><strong>Enjeux</strong> : <strong>1 500 fonds irlandais</strong> gèrent plus de 4 000
+                                milliards de dollars d'actifs.</li>
+                            <li><strong>Besoins SGBD</strong> :
+                                <ul class="list-disc pl-5 mt-1 space-y-1">
+                                    <li><strong>Middle-Office</strong> : Calculs de risque, valorisation multi-devises.
+                                    </li>
+                                    <li><strong>Back-Testing</strong> : Simulation de stratégies d'investissement.</li>
+                                    <li><strong>Connectivité</strong> : Intégration avec les Prime Brokers (Goldman
+                                        Sachs, Morgan Stanley).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex-1">
+                        <img src="ireland_flag.png" alt="Drapeau de l'Irlande"
+                            class="w-48 h-auto mx-auto rounded shadow">
+                        <p class="text-center text-sm text-gray-500 mt-2">Source : Irish Funds Association</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">4. L'Irlande : Hybridation des Technologies</h3>
+                <div class="mt-4">
+                    <h4 class="font-bold text-md text-gray-800">A. Approche Multi-Modèle</h4>
+                    <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                        <li>
+                            <strong>Cloud Data Warehousing</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Snowflake</strong> : Consolidation des données de risque en temps réel.</li>
+                                <li><strong>Databricks</strong> : Machine Learning pour la prédiction des tendances.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>NoSQL pour l'Ingestion</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>MongoDB</strong> : Stockage des données disparates (cotations, transactions,
+                                    données alternatives).</li>
+                                <li><strong>Apache Kafka</strong> : Pipeline de données pour les flux en temps réel.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Time-Series Databases</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>TimescaleDB</strong> : Gestion des séries temporelles pour les données de
+                                    marché.</li>
+                                <li><strong>InfluxDB</strong> : Alternative open-source pour les métriques financières.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <h5 class="font-bold mb-2">Cas d'usage : Calcul du Risque de Portefeuille</h5>
+                        <p class="text-sm text-gray-700">
+                            <strong>Méthodologie</strong> :
+                        <ol class="list-decimal pl-5 mt-1 space-y-1">
+                            <li>Agglomération des données de risque via <strong>Snowflake</strong>.</li>
+                            <li>Stockage des données brutes (cotations, transactions) dans <strong>MongoDB</strong>.
+                            </li>
+                            <li>Calcul des métriques de risque (VaR, CVaR) via <strong>Python</strong> et
+                                <strong>R</strong>.</li>
+                            <li>Visualisation des résultats avec <strong>Tableau Software</strong>.</li>
+                        </ol>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="section-title">Typologie des Fonds : Adaptation des SGBD à la Stratégie</h2>
+        <div class="mt-4 space-y-8">
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">1. Family Office : Gestion de Fortune Privée</h3>
+                <div class="mt-4 flex flex-col md:flex-row gap-6">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-md text-gray-800">Caractéristiques clés</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                            <li><strong>AUM</strong> : Moins de 1 milliard de dollars.</li>
+                            <li><strong>Classes d'actifs</strong> : Art, immobilier, Private Equity, actions.</li>
+                            <li><strong>Volume transactionnel</strong> : Faible, mais complexité juridique élevée.</li>
+                            <li><strong>Besoins</strong> :
+                                <ul class="list-disc pl-5 mt-1 space-y-1">
+                                    <li><strong>Comptabilité en partie double</strong> : Traçabilité absolue.</li>
+                                    <li><strong>Consolidation multi-entités</strong> : Gestion de plusieurs structures
+                                        juridiques.</li>
+                                    <li><strong>Reporting personnalisé</strong> : Adapté aux attentes des investisseurs
+                                        privés.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex-1">
+                        <img src="safe.png" alt="Illustration d'un coffre-fort"
+                            class="w-48 h-auto mx-auto rounded shadow">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">2. Family Office : Choix des SGBD et Modélisation</h3>
+                <div class="mt-4">
+                    <h4 class="font-bold text-md text-gray-800">A. Technologies recommandées</h4>
+                    <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                        <li>
+                            <strong>PostgreSQL</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Avantages</strong> : Open-source, support des extensions (TimescaleDB,
+                                    PostGIS).</li>
+                                <li><strong>Modélisation</strong> : Schéma en étoile classique pour la comptabilité.
+                                </li>
+                                <li><strong>Indexation</strong> : Arbre B (B-Tree) pour les opérations de recherche.
+                                </li>
+                                <li>
+                                    <strong>Exemple d'architecture</strong> :
+                                    <ul class="list-disc pl-5 mt-1 space-y-1">
+                                        <li><strong>Entités</strong> : Comptes, Transactions, Investisseurs.</li>
+                                        <li><strong>Relations</strong> : Un investisseur possède plusieurs comptes,
+                                            chaque compte a plusieurs transactions.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>SQL Server</strong> (pour les fonds avec AUM > 500M$) :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Avantages</strong> : Intégration avec Microsoft Power BI, support des cubes
+                                    OLAP.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <h5 class="font-bold mb-2">Exemple : Comptabilité en Partie Double</h5>
+                        <div class="code-block">
+                            -- Enregistrement d'une transaction d'achat<br>
+                            INSERT INTO transactions (account_id, amount, type, date)<br>
+                            VALUES (12345, 1000000.00, 'Buy', '2026-03-27');<br><br>
+                            -- Mise à jour du solde du compte<br>
+                            UPDATE accounts<br>
+                            SET balance = balance + 1000000.00<br>
+                            WHERE account_id = 12345;
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">VWAP : Indicateur clé pour évaluer l'impact d'une
+                            transaction sur le prix du marché.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">3. Fonds Moyen (Hedge Fund Quant / Asset Manager)</h3>
+                <div class="mt-4">
+                    <h4 class="font-bold text-md text-gray-800">Caractéristiques opérationnelles</h4>
+                    <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                        <li><strong>AUM</strong> : Entre 1 et 10 milliards de dollars.</li>
+                        <li><strong>Stratégies</strong> : Backtesting historique, ingestion de données alternatives,
+                            exécution d'ordres en temps réel.</li>
+                        <li><strong>Besoins</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Gestion de séries temporelles</strong> : Données de marché (prix, volumes).
+                                </li>
+                                <li><strong>Calculs de risque</strong> : VaR, Stress Testing, Backtesting.</li>
+                                <li><strong>Exécution d'ordres</strong> : Intégration avec les brokers (Interactive
+                                    Brokers, Bloomberg).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">4. Fonds Moyen : Architectures Time-Series</h3>
+                <div class="mt-4">
+                    <h4 class="font-bold text-md text-gray-800">A. Technologies optimales</h4>
+                    <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                        <li>
+                            <strong>TimescaleDB</strong> (extension PostgreSQL) :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Avantages</strong> : Partitionnement automatique des données historiques,
+                                    compatibilité avec les outils analytiques.</li>
+                                <li><strong>Fonctionnalités clés</strong> :
+                                    <ul class="list-disc pl-5 mt-1 space-y-1">
+                                        <li><strong>Hypertables</strong> : Partitionnement par temps (ex : une table par
+                                            mois).</li>
+                                        <li><strong>Time-Bucketing</strong> : Agrégation des données par intervalle (5
+                                            min, 1h, 1 jour).</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>InfluxDB</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Avantages</strong> : Optimisé pour les données de séries temporelles,
+                                    ingestion massive.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <h5 class="font-bold mb-2">Exemple : Calcul du VWAP (Volume Weighted Average Price)</h5>
+                        <div class="code-block">
+                            -- Calcul du VWAP sur des bougies de 5 minutes<br>
+                            SELECT<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;time_bucket('5 minutes', trade_time) AS intervalle,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;symbol,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;SUM(price * volume) / SUM(volume) AS vwap<br>
+                            FROM market_ticks<br>
+                            WHERE trade_time > NOW() - INTERVAL '1 day'<br>
+                            GROUP BY intervalle, symbol<br>
+                            ORDER BY intervalle DESC;
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">VWAP : Indicateur clé pour évaluer l'impact d'une
+                            transaction sur le prix du marché.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">5. Grand Fond / Mega-Fund : L'Échelle du Pétaoctet</h3>
+                <div class="mt-4 flex flex-col md:flex-row gap-6">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-md text-gray-800">Caractéristiques extrêmes</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                            <li><strong>AUM</strong> : Plus de 100 milliards de dollars.</li>
+                            <li><strong>Stratégies</strong> : High-Frequency Trading (HFT), gestion passive d'actifs.
+                            </li>
+                            <li><strong>Enjeux</strong> :
+                                <ul class="list-disc pl-5 mt-1 space-y-1">
+                                    <li><strong>Latence</strong> : Inférieure à 1 milliseconde.</li>
+                                    <li><strong>Échelle</strong> : Pétaoctets de données, milliards de transactions par
+                                        seconde.</li>
+                                    <li><strong>Complexité</strong> : Gestion de multiples stratégies (Market Making,
+                                        Arbitrage, Statistical Arbitrage).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex-1">
+                        <img src="megabank.png" alt="Illustration d'une banque"
+                            class="w-48 h-auto mx-auto rounded shadow">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">6. Grand Fond : In-Memory et Vectorisation</h3>
+                <div class="mt-4">
+                    <h4 class="font-bold text-md text-gray-800">A. Technologies de pointe</h4>
+                    <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                        <li>
+                            <strong>kdb+ (KX)</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Spécialité</strong> : Standard absolu pour le High-Frequency Trading.</li>
+                                <li><strong>Architecture</strong> :
+                                    <ul class="list-disc pl-5 mt-1 space-y-1">
+                                        <li><strong>Orienté colonne</strong> : Optimisé pour les requêtes analytiques.
+                                        </li>
+                                        <li><strong>In-Memory</strong> : Données chargées en RAM pour un accès
+                                            ultra-rapide.</li>
+                                        <li><strong>Vectorisation</strong> : Exécution parallèle des calculs.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Fonctionnalités</strong> :
+                                    <ul class="list-disc pl-5 mt-1 space-y-1">
+                                        <li><strong>Time-Series</strong> : Gestion des order books (L2/L3).</li>
+                                        <li><strong>Distributed Queries</strong> : Requêtes sur des clusters de
+                                            machines.</li>
+                                        <li><strong>Interopérabilité</strong> : Intégration avec Python, R, et Java.
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Databricks/Snowflake</strong> :
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><strong>Avantages</strong> : Machine Learning pour l'optimisation des stratégies.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <h5 class="font-bold mb-2">Exemple : Calcul du VWAP en q (langage vectoriel)</h5>
+                        <div class="code-block">
+                            // Calcul du VWAP en RAM sur des millions de ticks<br>
+                            select<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;vwap: wavg[volume; price] by 5 xbar trade_time.minute,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;symbol<br>
+                            from market_ticks<br>
+                            where trade_time.date = .z.d;
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">Explication :
+                        <ul class="list-disc pl-5 mt-1 space-y-1">
+                            <li><strong>wavg</strong> : Fonction de moyenne pondérée par le volume.</li>
+                            <li><strong>5 xbar</strong> : Agrégation par période de 5 minutes.</li>
+                            <li><strong>Performance</strong> : Exécution en quelques millisecondes, même pour des
+                                milliards de ticks.</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="section-title">Synthèse : Cartographie des SGBD par Contexte</h2>
+        <div class="mt-4">
+            <div class="table-responsive">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-800">Taille / Lieu
+                            </th>
+                            <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-800">Type de SGBD
+                            </th>
+                            <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-800">Technologies
+                                Clés</th>
+                            <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-800">Enjeux
+                                Techniques</th>
+                            <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-800">Exemples de
+                                Fonds</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-2 px-4 border-b text-gray-700">Luxembourg</td>
+                            <td class="py-2 px-4 border-b text-gray-700">RDBMS</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Oracle, SQL Server</td>
+                            <td class="py-2 px-4 border-b text-gray-700">ACID, Traçabilité, UCITS</td>
+                            <td class="py-2 px-4 border-b text-gray-700">BlackRock, Pictet</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-2 px-4 border-b text-gray-700">Family Office</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Relationnel</td>
+                            <td class="py-2 px-4 border-b text-gray-700">PostgreSQL, SQL Server</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Modélisation complexe, Comptabilité</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Fondations familiales</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-2 px-4 border-b text-gray-700">Fonds Moyen</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Time-Series</td>
+                            <td class="py-2 px-4 border-b text-gray-700">TimescaleDB, InfluxDB</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Partitionnement, VWAP, Backtesting</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Hedge Funds quantitatifs</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-2 px-4 border-b text-gray-700">Grand Fond</td>
+                            <td class="py-2 px-4 border-b text-gray-700">In-Memory</td>
+                            <td class="py-2 px-4 border-b text-gray-700">kdb+, Databricks</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Latence sub-ms, Pétaoctets</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Citadel, Renaissance Technologies</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-2 px-4 border-b text-gray-700">Irlande</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Hybride</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Snowflake, MongoDB</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Cloud, Risque, ETF</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Hedge Funds, ETF Providers</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-2 px-4 border-b text-gray-700">Londres/New York</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Time-Series/In-Memory</td>
+                            <td class="py-2 px-4 border-b text-gray-700">kdb+, TimescaleDB</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Trading algorithmique, Order Book</td>
+                            <td class="py-2 px-4 border-b text-gray-700">Hedge Funds, Asset Managers</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-2 px-4 text-gray-700">Offshore</td>
+                            <td class="py-2 px-4 text-gray-700">Distribué</td>
+                            <td class="py-2 px-4 text-gray-700">Cassandra, Couchbase</td>
+                            <td class="py-2 px-4 text-gray-700">Latence, Sécurité, Cloud</td>
+                            <td class="py-2 px-4 text-gray-700">Fonds alternatifs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                <p class="text-sm text-gray-700">
+                    <strong>Lecture transversale</strong> : La colonne "Enjeux Techniques" résume les défis majeurs pour
+                    chaque type de fond. La colonne "Exemples de Fonds" illustre des cas concrets.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="section-title">Conclusion : Vers une Architecture Data-Driven</h2>
+        <div class="mt-4 space-y-6">
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">1. Message Clé</h3>
+                <div class="mt-4 p-6 bg-blue-50 rounded-lg text-center">
+                    <p class="italic text-xl text-gray-800">
+                        « Il n’existe pas de SGBD universel en finance. <br>
+                        La structure juridique dicte l’architecture comptable (SQL classique), <br>
+                        tandis que la stratégie d’investissement dicte l’architecture de marché <br>
+                        (NoSQL, Time-Series, In-Memory). »
+                    </p>
+                </div>
+                <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                    <p class="text-gray-700">
+                        <strong>Illustration</strong> :
+                    <ul class="list-disc pl-5 mt-1 space-y-1">
+                        <li><strong>UCITS (Luxembourg)</strong> → Oracle + Fund Accounting.</li>
+                        <li><strong>Hedge Fund (Irlande)</strong> → Snowflake + MongoDB + TimescaleDB.</li>
+                        <li><strong>HFT (Londres)</strong> → kdb+ + In-Memory Computing.</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">2. Ouverture : L'Avenir des SGBD en Finance</h3>
+                <div class="mt-4">
+                    <h4 class="font-bold text-md text-gray-800">Tendances émergentes</h4>
+                    <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-700">
+                        <li><strong>Blockchain</strong> : Intégration des SGBD distribués (BigchainDB) pour la
+                            traçabilité des transactions.</li>
+                        <li><strong>IA/ML</strong> : Utilisation de <strong>Vector Databases</strong> (Pinecone,
+                            Weaviate) pour le scoring de risques.</li>
+                        <li><strong>Hyperautomatisation</strong> : Automatisation des processus de rapprochement via
+                            <strong>RPA</strong> et <strong>APIs</strong>.</li>
+                        <li><strong>Cloud Native</strong> : Adoption massive de <strong>Snowflake</strong>,
+                            <strong>BigQuery</strong>, et <strong>Redshift</strong> pour la scalabilité.</li>
+                    </ul>
+                    <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                        <p class="text-sm text-gray-700">
+                            <strong>Recommandation</strong> : Les fonds doivent adopter une approche
+                            <strong>multi-modèle</strong> pour leurs SGBD, en fonction de la criticité des données et
+                            des exigences de performance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-lg text-gray-800">3. Références Académiques</h3>
+                <div class="mt-4">
+                    <ol class="list-decimal pl-5 space-y-1 text-sm text-gray-700">
+                        <li class="reference">Directive UCITS IV/V (2009/65/CE).</li>
+                        <li class="reference">Transaction Processing: Concepts and Techniques, Jim Gray and Andreas
+                            Reuter.</li>
+                        <li class="reference">KX Documentation : <a href="https://code.kx.com/q/"
+                                class="text-blue-600 hover:underline">https://code.kx.com/q/</a></li>
+                        <li class="reference">TimescaleDB User Guide.</li>
+                        <li class="reference">Snowflake Documentation : <a href="https://docs.snowflake.com/"
+                                class="text-blue-600 hover:underline">https://docs.snowflake.com/</a></li>
+                        <li class="reference">ALFI Luxembourg Fund Industry Report (2025).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center text-gray-500 text-sm mt-8">
+        <p>© 2026 Sitraka FORLER • IAE Metz • Dernière mise à jour : Mars 2026</p>
+    </footer>
+</body>
+
+</html>
