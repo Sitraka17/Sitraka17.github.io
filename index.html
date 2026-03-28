@@ -153,27 +153,27 @@
 
 				<h3>🚀 Tech Stack</h3>
 				<div class="skill-grid">
-					<a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="skill-card" style="text-decoration: none;">
+					<a href="javascript:void(0)" onclick="document.getElementById('skill-python').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
 						<i class="fab fa-python"></i>
 						<span>Python &amp; ML</span>
 					</a>
-					<a href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank" rel="noopener noreferrer" class="skill-card" style="text-decoration: none;">
+					<a href="javascript:void(0)" onclick="document.getElementById('skill-deep-learning').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-brain"></i>
 						<span>Deep Learning</span>
 					</a>
-					<a href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer" class="skill-card" style="text-decoration: none;">
+					<a href="javascript:void(0)" onclick="document.getElementById('skill-cloud').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-cloud"></i>
 						<span>Cloud Architect</span>
 					</a>
-					<a href="https://www.mysql.com/" target="_blank" rel="noopener noreferrer" class="skill-card" style="text-decoration: none;">
+					<a href="javascript:void(0)" onclick="document.getElementById('skill-sql-nosql').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-database"></i>
 						<span>SQL &amp; NoSQL</span>
 					</a>
-					<a href="https://www.sans.org/" target="_blank" rel="noopener noreferrer" class="skill-card" style="text-decoration: none;">
+					<a href="javascript:void(0)" onclick="document.getElementById('skill-cybersecurity').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-shield-halved"></i>
 						<span>Cybersecurity</span>
 					</a>
-					<a href="https://en.wikipedia.org/wiki/Financial_technology" target="_blank" rel="noopener noreferrer" class="skill-card" style="text-decoration: none;">
+					<a href="javascript:void(0)" onclick="document.getElementById('skill-fintech').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-chart-line"></i>
 						<span>FinTech</span>
 					</a>
@@ -181,94 +181,150 @@
 
 				<hr>
 
-				<h3>💻 Data Science &amp; Analytics</h3>
-				<p>I drive the development and production of ML models in asset management, automation, and data
-					insights. The goal is always: <em>does it bring value to the customer? Does it bring value to the
-						planet? 🌍</em></p>
+				<div id="skill-python" style="padding-top: 3rem; margin-top: -3rem;">
+					<h3>🐍 Python &amp; ML</h3>
+					<p>Python is the cornerstone of my data science and machine learning workflows. I specialize in building end-to-end ML pipelines, from data wrangling with <strong>pandas</strong> and <strong>NumPy</strong> to training predictive models. Using tools like <strong>Scikit-Learn</strong> and <strong>XGBoost</strong>, I focus on delivering models that bring actionable business value and optimize operations.</p>
+					<p><b>Tech Example - Training a Random Forest for predictive classification:</b></p>
+					<pre><code>from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import pandas as pd
 
-				<hr>
+# Load data and train-test split
+df = pd.read_csv('operational_data.csv')
+X_train, X_test, y_train, y_test = train_test_split(df.drop('target', axis=1), df['target'], test_size=0.2)
 
-				<h3>🔐 Cybersecurity &amp; Monitoring</h3>
-				<p>Hands-on experience with Venafi (certificate management) and Splunk (advanced SIEM analytics) —
-					ensuring data security, anomaly detection, and system integrity.</p>
+# Initialize and train model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
 
-				<hr>
-
-				<h3>🗄️ Databases</h3>
-				<p>Relational (MySQL, PostgreSQL) and NoSQL (MongoDB, Cassandra). Key competencies:</p>
-				<ul>
-					<li>Entity-Relationship modeling &amp; normalization</li>
-					<li>Complex SQL queries (JOINs, aggregations, CTEs)</li>
-					<li>Indexing strategies &amp; query optimization</li>
-					<li>ACID properties &amp; transaction management</li>
-				</ul>
-				<p><b>Example SQL query:</b></p>
-				<pre><code>SELECT customer_id, SUM(amount) AS total_amount
-FROM transactions
-WHERE transaction_date >= '2023-01-01'
-GROUP BY customer_id
-HAVING SUM(amount) > 1000
-ORDER BY total_amount DESC;</code></pre>
-
-				<hr>
-
-				<h3>📈 Data in Finance</h3>
-				<p>From risk modeling to algorithmic trading — I leverage data to power financial insights.</p>
-				<ul>
-					<li>Time series analysis for market prediction</li>
-					<li>Risk modeling with statistical methods</li>
-					<li>High-frequency trading data processing</li>
-					<li>Regulatory compliance &amp; data governance</li>
-				</ul>
-
-				<h4>Interactive Compound Interest Calculator</h4>
-				<p>Try it out with different values:</p>
-				<div class="fields">
-					<div class="field half">
-						<label for="principal">Principal ($)</label>
-						<input type="number" id="principal" value="1000" />
-					</div>
-					<div class="field half">
-						<label for="rate">Annual Rate (%)</label>
-						<input type="number" id="rate" value="5" step="0.1" />
-					</div>
-					<div class="field half">
-						<label for="time">Years</label>
-						<input type="number" id="time" value="5" />
-					</div>
-					<div class="field half">
-						<label for="compounds">Compounds/Year</label>
-						<input type="number" id="compounds" value="1" />
-					</div>
+# Predict and evaluate
+predictions = model.predict(X_test)
+print(f"Model Accuracy on Test Set: {accuracy_score(y_test, predictions):.2%}")</code></pre>
 				</div>
-				<ul class="actions">
-					<li><button id="calculate" class="button primary">Calculate</button></li>
-				</ul>
-				<div id="result" style="margin-top: 20px;"></div>
 
 				<hr>
 
-				<h3>🐍 Python Code Examples</h3>
+				<div id="skill-deep-learning" style="padding-top: 3rem; margin-top: -3rem;">
+					<h3>🧠 Deep Learning</h3>
+					<p>Deep Learning allows me to solve complex perceptual problems such as NLP and Computer Vision. I leverage <strong>PyTorch</strong>, <strong>TensorFlow</strong>, and <strong>Hugging Face</strong> to develop, fine-tune, and deploy state-of-the-art neural networks. My recent experience includes deploying large language models (LLMs) into production environments and building retrieval-augmented generation (RAG) applications.</p>
+					<p><b>Tech Example - PyTorch Neural Network Definition:</b></p>
+					<pre><code>import torch
+import torch.nn as nn
 
-				<p><b>Stock data analysis with pandas:</b></p>
-				<pre><code>import pandas as pd
-import numpy as np
+class ResidualBlock(nn.Module):
+    def __init__(self, in_channels, out_channels):
+        super(ResidualBlock, self).__init__()
+        self.fc1 = nn.Linear(in_channels, out_channels)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(out_channels, out_channels)
 
-df = pd.read_csv('stock_data.csv', parse_dates=['Date'], index_col='Date')
-df['Daily_Return'] = df['Close'].pct_change()
-volatility = df['Daily_Return'].std() * np.sqrt(252)
-df['MA_50'] = df['Close'].rolling(window=50).mean()
+    def forward(self, x):
+        identity = x
+        out = self.fc2(self.relu(self.fc1(x)))
+        return out + identity  # Skip connection
 
-print(f"Annualized Volatility: {volatility:.2%}")
-print(df.tail())</code></pre>
+model = ResidualBlock(128, 128)
+print(model)</code></pre>
+				</div>
 
-				<p><b>Compound interest function:</b></p>
-				<pre><code>def compound_interest(principal, rate, time, n=1):
-    amount = principal * (1 + rate/n) ** (n * time)
-    return amount, amount - principal
+				<hr>
 
-final, earned = compound_interest(1000, 0.05, 5)
-print(f"Final: ${final:.2f}  |  Interest: ${earned:.2f}")</code></pre>
+				<div id="skill-cloud" style="padding-top: 3rem; margin-top: -3rem;">
+					<h3>☁️ Cloud Architecture</h3>
+					<p>Building scalable and robust backend systems is critical for modern data solutions. I design and implement cloud-native architectures on <strong>AWS</strong> and <strong>Azure</strong>, employing Infrastructure as Code (IaC) to ensure reproducible and secure deployments. This includes setting up CI/CD pipelines, container orchestration with <strong>Kubernetes</strong>, and adopting serverless architectures.</p>
+					<p><b>Tech Example - Terraform for an AWS ML Inference Node:</b></p>
+					<pre><code>provider "aws" {
+  region = "eu-west-1"
+}
+
+resource "aws_instance" "ml_inference_node" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "g4dn.xlarge" # GPU optimized instance
+
+  tags = {
+    Name        = "ML-Inference"
+    Environment = "Production"
+    ManagedBy   = "Terraform"
+  }
+}</code></pre>
+				</div>
+
+				<hr>
+
+				<div id="skill-sql-nosql" style="padding-top: 3rem; margin-top: -3rem;">
+					<h3>🗄️ SQL &amp; NoSQL</h3>
+					<p>A solid data layer is the foundation of any application. I have extensive experience modeling business requirements into both relational databases (like <strong>PostgreSQL</strong> and <strong>MySQL</strong>) and NoSQL datastores (like <strong>MongoDB</strong> and <strong>Cassandra</strong>). My expertise covers advanced querying, query optimization, dynamic indexing, and designing scalable data warehouses.</p>
+					<p><b>Tech Example - Advanced SQL Aggregation with Window Functions:</b></p>
+					<pre><code>WITH MonthlyRevenue AS (
+    SELECT 
+        DATE_TRUNC('month', transaction_date) AS month,
+        SUM(amount) AS total_revenue
+    FROM financial_transactions
+    WHERE status = 'COMPLETED'
+    GROUP BY 1
+)
+SELECT month, total_revenue,
+       LAG(total_revenue) OVER (ORDER BY month) AS prev_month_revenue,
+       (total_revenue - LAG(total_revenue) OVER (ORDER BY month)) / LAG(total_revenue) OVER (ORDER BY month) * 100 AS mom_growth_pct
+FROM MonthlyRevenue
+ORDER BY month DESC;</code></pre>
+				</div>
+
+				<hr>
+
+				<div id="skill-cybersecurity" style="padding-top: 3rem; margin-top: -3rem;">
+					<h3>🔐 Cybersecurity</h3>
+					<p>Security must be integrated from the ground up. I have hands-on experience using tools like <strong>Splunk</strong> and <strong>Venafi</strong> to implement proactive threat detection, manage certificates, and secure data in transit. My focus is on embedding security within the DevOps lifecycle (DecSecOps) to preempt vulnerabilities.</p>
+					<p><b>Tech Example - Secure Password Hashing with Salt in Python:</b></p>
+					<pre><code>import hashlib
+import os
+
+def secure_hash_password(password: str) -> str:
+    # Generate a cryptographically strong random salt
+    salt = os.urandom(16)
+    
+    # Create PBKDF2 hash using SHA-256
+    key = hashlib.pbkdf2_hmac(
+        'sha256', 
+        password.encode('utf-8'), 
+        salt, 
+        100000 # 100,000 iterations
+    )
+    return salt.hex() + ':' + key.hex()</code></pre>
+				</div>
+
+				<hr>
+
+				<div id="skill-fintech" style="padding-top: 3rem; margin-top: -3rem;">
+					<h3>📈 FinTech &amp; Quant</h3>
+					<p>Applying mathematical and statistical methods to financial markets is a specialization of mine. I build models for risk assessment, algorithmic trading, and portfolio optimization. Leveraging real-time data ingestion and time-series analysis, I deliver insights that directly impact financial decision-making.</p>
+
+					<h4>Interactive Compound Interest Calculator</h4>
+					<p>Try it out with different values to see compounded growth over time:</p>
+					<div class="fields">
+						<div class="field half">
+							<label for="principal">Principal ($)</label>
+							<input type="number" id="principal" value="1000" />
+						</div>
+						<div class="field half">
+							<label for="rate">Annual Rate (%)</label>
+							<input type="number" id="rate" value="5" step="0.1" />
+						</div>
+						<div class="field half">
+							<label for="time">Years</label>
+							<input type="number" id="time" value="5" />
+						</div>
+						<div class="field half">
+							<label for="compounds">Compounds/Year</label>
+							<input type="number" id="compounds" value="1" />
+						</div>
+					</div>
+					<ul class="actions">
+						<li><button id="calculate" class="button primary">Calculate</button></li>
+					</ul>
+					<div id="result" style="margin-top: 20px;"></div>
+				</div>
 			</article>
 
 			<!-- LuxAiOps -->
