@@ -634,26 +634,7 @@ article hr {
   opacity: 0.25 !important;
 }
 
-/* ---------- 19. CALCULATOR RESULT ---------- */
-#result:not(:empty) {
-  background: rgba(123, 47, 255, 0.08);
-  border: 1px solid rgba(123, 47, 255, 0.25);
-  border-radius: 12px;
-  padding: 1.2rem 1.5rem;
-  animation: fadeInUp 0.4s ease forwards;
-}
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* ---------- 20. LIST STYLING ---------- */
 article ul:not(.actions):not(.icons) li {

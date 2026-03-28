@@ -152,6 +152,41 @@
 				<h2 class="major">Code &amp; Skills</h2>
 				<span class="image main"><img src="image/code.jpeg" alt="Code" /></span>
 
+				<h3>🛠️ Featured Tools</h3>
+				<div class="tool-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+					<a href="#tool-progress" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-tasks"></i>
+						<span>Progress Report</span>
+						<p>Monitor your progress with a system to check and share your progress with others.</p>
+					</a>
+
+					<a href="#tool-pomodoro" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-stopwatch"></i>
+						<span>Pomodoro Timer</span>
+						<p>Make your workday more engaging and effective with the Pomodoro timer, break work into 25-minute focused intervals called "pomodoros".</p>
+					</a>
+
+					<a href="#tool-random-name" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-random"></i>
+						<span>Random Name Picker</span>
+						<p>Effortlessly choose names for class participation or group activities.</p>
+					</a>
+
+					<a href="#tool-stopwatch" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-hourglass-half"></i>
+						<span>Activity Stopwatch</span>
+						<p>Stay on track and enhance productivity with our customizable stopwatch for timed tasks, quizzes, and study sessions.</p>
+					</a>
+
+					<a href="#tool-deep-search" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-search"></i>
+						<span>Deep Search</span>
+						<p>Perform deep, contextual searches to accurately uncover knowledge across extensive resources.</p>
+					</a>
+				</div>
+
+				<hr>
+
 				<h3>🚀 Tech Stack</h3>
 				<div class="skill-grid">
 					<a href="javascript:void(0)"
@@ -372,67 +407,8 @@ def secure_hash_password(password: str) -> str:
 						build models for risk assessment, algorithmic trading, and portfolio optimization. Leveraging
 						real-time data ingestion and time-series analysis, I deliver insights that directly impact
 						financial decision-making.</p>
-
-					<h4>Interactive Compound Interest Calculator</h4>
-					<p>Try it out with different values to see compounded growth over time:</p>
-					<div class="fields">
-						<div class="field half">
-							<label for="principal">Principal ($)</label>
-							<input type="number" id="principal" value="1000" />
-						</div>
-						<div class="field half">
-							<label for="rate">Annual Rate (%)</label>
-							<input type="number" id="rate" value="5" step="0.1" />
-						</div>
-						<div class="field half">
-							<label for="time">Years</label>
-							<input type="number" id="time" value="5" />
-						</div>
-						<div class="field half">
-							<label for="compounds">Compounds/Year</label>
-							<input type="number" id="compounds" value="1" />
-						</div>
-					</div>
-					<ul class="actions">
-						<li><button id="calculate" class="button primary">Calculate</button></li>
-					</ul>
-					<div id="result" style="margin-top: 20px;"></div>
 				</div>
 
-				<hr>
-
-				<h3>🛠️ Featured Tools</h3>
-				<div class="tool-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-					<a href="#tool-progress" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-tasks"></i>
-						<span>Progress Report</span>
-						<p>Monitor your progress with a system to check and share your progress with others.</p>
-					</a>
-
-					<a href="#tool-pomodoro" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-stopwatch"></i>
-						<span>Pomodoro Timer</span>
-						<p>Make your workday more engaging and effective with the Pomodoro timer, break work into 25-minute focused intervals called "pomodoros".</p>
-					</a>
-
-					<a href="#tool-random-name" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-random"></i>
-						<span>Random Name Picker</span>
-						<p>Effortlessly choose names for class participation or group activities.</p>
-					</a>
-
-					<a href="#tool-stopwatch" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-hourglass-half"></i>
-						<span>Activity Stopwatch</span>
-						<p>Stay on track and enhance productivity with our customizable stopwatch for timed tasks, quizzes, and study sessions.</p>
-					</a>
-
-					<a href="#tool-deep-search" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-search"></i>
-						<span>Deep Search</span>
-						<p>Perform deep, contextual searches to accurately uncover knowledge across extensive resources.</p>
-					</a>
-				</div>
 			</article>
 
 			<!-- LuxAiOps -->
@@ -614,19 +590,6 @@ def secure_hash_password(password: str) -> str:
 	<script>
 		hljs.highlightAll();
 		
-		/* ---- Compound Interest Calculator ---- */
-		$(document).ready(function () {
-			$('#calculate').click(function () {
-				var principal = parseFloat($('#principal').val());
-				var rate = parseFloat($('#rate').val()) / 100;
-				var time = parseFloat($('#time').val());
-				var n = parseFloat($('#compounds').val());
-				var amount = principal * Math.pow(1 + rate / n, n * time);
-				var interest = amount - principal;
-				$('#result').html('<p><strong>Final Amount:</strong> $' + amount.toFixed(2) + '</p><p><strong>Interest Earned:</strong> $' + interest.toFixed(2) + '</p>');
-			});
-		});
-
 		/* ---- Typing Animation ---- */
 		(function () {
 			var phrases = [
