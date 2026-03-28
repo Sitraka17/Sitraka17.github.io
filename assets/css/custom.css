@@ -289,6 +289,39 @@ article h3:not(.major) {
   gap: 0.8rem;
 }
 
+/* Featured Tools Specific Card */
+.tool-card {
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.8rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(123, 47, 255, 0.02) 100%);
+  border: 1px solid rgba(123, 47, 255, 0.15);
+}
+
+.tool-card:hover {
+  background: linear-gradient(145deg, rgba(123, 47, 255, 0.1) 0%, rgba(0, 201, 255, 0.05) 100%);
+  border-color: rgba(123, 47, 255, 0.4);
+}
+
+.tool-card i {
+  font-size: 1.6rem;
+  margin-bottom: 0.2rem;
+}
+
+.tool-card span {
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.tool-card p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: #c4b5fd;
+  line-height: 1.5;
+  font-weight: 400;
+  text-transform: none;
+}
+
 .skill-card:hover {
   transform: translateY(-8px) scale(1.03);
   background: rgba(123, 47, 255, 0.08);
@@ -297,11 +330,11 @@ article h3:not(.major) {
     0 12px 30px rgba(0, 0, 0, 0.4),
     0 0 15px rgba(123, 47, 255, 0.2);
 }
-
 .skill-card i {
   font-size: 2rem;
   background: linear-gradient(135deg, #a78bfa, #60c3ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.2rem;
 }
@@ -379,26 +412,89 @@ article h3:not(.major) {
   font-weight: 500;
 }
 
-/* ---------- 11. CODE BLOCKS ---------- */
-pre code {
-  background: rgba(0, 0, 0, 0.55) !important;
+/* ---------- 11. CODE BLOCKS & IDE WINDOWS ---------- */
+.code-window {
+  background: rgba(8, 6, 22, 0.8);
   border: 1px solid rgba(123, 47, 255, 0.25);
   border-radius: 12px;
-  box-shadow:
-    inset 0 0 30px rgba(0, 0, 0, 0.3),
-    0 0 10px rgba(123, 47, 255, 0.05);
-  color: #86efac;
-  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-  font-size: 0.82rem;
-  line-height: 1.8;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  margin: 1.5rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-code {
+.code-window:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 45px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(123, 47, 255, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.code-window-header {
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(123, 47, 255, 0.15);
+  padding: 0.75rem 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.mac-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.mac-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.mac-dots:hover span {
+  opacity: 1;
+}
+
+.mac-dots span:nth-child(1) { background: #ff5f56; box-shadow: 0 0 5px rgba(255,95,86,0.5); }
+.mac-dots span:nth-child(2) { background: #ffbd2e; box-shadow: 0 0 5px rgba(255,189,46,0.5); }
+.mac-dots span:nth-child(3) { background: #27c93f; box-shadow: 0 0 5px rgba(39,201,63,0.5); }
+
+.file-name {
+  color: #a78bfa;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  margin-left: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+}
+
+pre {
+  margin: 0 !important;
+}
+
+pre code {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.85rem !important;
+  line-height: 1.6;
+  padding: 1.5rem !important;
+}
+
+/* Inline code only */
+p code, li code {
   background: rgba(123, 47, 255, 0.12) !important;
   border: 1px solid rgba(123, 47, 255, 0.25);
   border-radius: 5px;
+  padding: 0.1rem 0.4rem;
   color: #d8b4fe;
 }
+
 
 /* ---------- 12. BUTTONS — GLOW HOVER ---------- */
 .button.primary,

@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="assets/css/custom.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -201,8 +202,14 @@
 						<strong>Scikit-Learn</strong> and <strong>XGBoost</strong>, I focus on delivering models that
 						bring actionable business value and optimize operations.
 					</p>
-					<p><b>Tech Example - Training a Random Forest for predictive classification:</b></p>
-					<pre><code>from sklearn.ensemble import RandomForestClassifier
+					<div class="code-window">
+						<div class="code-window-header">
+							<div class="mac-dots">
+								<span></span><span></span><span></span>
+							</div>
+							<div class="file-name">train_model.py</div>
+						</div>
+						<pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import pandas as pd
@@ -218,6 +225,7 @@ model.fit(X_train, y_train)
 # Predict and evaluate
 predictions = model.predict(X_test)
 print(f"Model Accuracy on Test Set: {accuracy_score(y_test, predictions):.2%}")</code></pre>
+					</div>
 				</div>
 
 				<hr>
@@ -229,8 +237,14 @@ print(f"Model Accuracy on Test Set: {accuracy_score(y_test, predictions):.2%}")<
 							Face</strong> to develop, fine-tune, and deploy state-of-the-art neural networks. My recent
 						experience includes deploying large language models (LLMs) into production environments and
 						building retrieval-augmented generation (RAG) applications.</p>
-					<p><b>Tech Example - PyTorch Neural Network Definition:</b></p>
-					<pre><code>import torch
+					<div class="code-window">
+						<div class="code-window-header">
+							<div class="mac-dots">
+								<span></span><span></span><span></span>
+							</div>
+							<div class="file-name">resnet_block.py</div>
+						</div>
+						<pre><code class="language-python">import torch
 import torch.nn as nn
 
 class ResidualBlock(nn.Module):
@@ -247,6 +261,7 @@ class ResidualBlock(nn.Module):
 
 model = ResidualBlock(128, 128)
 print(model)</code></pre>
+					</div>
 				</div>
 
 				<hr>
@@ -258,8 +273,14 @@ print(model)</code></pre>
 						employing Infrastructure as Code (IaC) to ensure reproducible and secure deployments. This
 						includes setting up CI/CD pipelines, container orchestration with <strong>Kubernetes</strong>,
 						and adopting serverless architectures.</p>
-					<p><b>Tech Example - Terraform for an AWS ML Inference Node:</b></p>
-					<pre><code>provider "aws" {
+					<div class="code-window">
+						<div class="code-window-header">
+							<div class="mac-dots">
+								<span></span><span></span><span></span>
+							</div>
+							<div class="file-name">ml_inference.tf</div>
+						</div>
+						<pre><code class="language-hcl">provider "aws" {
   region = "eu-west-1"
 }
 
@@ -273,6 +294,7 @@ resource "aws_instance" "ml_inference_node" {
     ManagedBy   = "Terraform"
   }
 }</code></pre>
+					</div>
 				</div>
 
 				<hr>
@@ -285,8 +307,14 @@ resource "aws_instance" "ml_inference_node" {
 						<strong>Cassandra</strong>). My expertise covers advanced querying, query optimization, dynamic
 						indexing, and designing scalable data warehouses.
 					</p>
-					<p><b>Tech Example - Advanced SQL Aggregation with Window Functions:</b></p>
-					<pre><code>WITH MonthlyRevenue AS (
+					<div class="code-window">
+						<div class="code-window-header">
+							<div class="mac-dots">
+								<span></span><span></span><span></span>
+							</div>
+							<div class="file-name">revenue_analysis.sql</div>
+						</div>
+						<pre><code class="language-sql">WITH MonthlyRevenue AS (
     SELECT 
         DATE_TRUNC('month', transaction_date) AS month,
         SUM(amount) AS total_revenue
@@ -299,6 +327,7 @@ SELECT month, total_revenue,
        (total_revenue - LAG(total_revenue) OVER (ORDER BY month)) / LAG(total_revenue) OVER (ORDER BY month) * 100 AS mom_growth_pct
 FROM MonthlyRevenue
 ORDER BY month DESC;</code></pre>
+					</div>
 				</div>
 
 				<hr>
@@ -310,8 +339,14 @@ ORDER BY month DESC;</code></pre>
 						manage certificates, and secure data in transit. My focus is on embedding security within the
 						DevOps lifecycle (DecSecOps) to preempt vulnerabilities.
 					</p>
-					<p><b>Tech Example - Secure Password Hashing with Salt in Python:</b></p>
-					<pre><code>import hashlib
+					<div class="code-window">
+						<div class="code-window-header">
+							<div class="mac-dots">
+								<span></span><span></span><span></span>
+							</div>
+							<div class="file-name">auth_security.py</div>
+						</div>
+						<pre><code class="language-python">import hashlib
 import os
 
 def secure_hash_password(password: str) -> str:
@@ -326,6 +361,7 @@ def secure_hash_password(password: str) -> str:
         100000 # 100,000 iterations
     )
     return salt.hex() + ':' + key.hex()</code></pre>
+					</div>
 				</div>
 
 				<hr>
@@ -366,54 +402,35 @@ def secure_hash_password(password: str) -> str:
 				<hr>
 
 				<h3>🛠️ Featured Tools</h3>
-				<div
-					style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-					<a href="#tool-progress" class="skill-card"
-						style="text-align: left; align-items: flex-start; gap: 0.5rem; text-decoration: none;">
-						<i class="fas fa-tasks" style="font-size: 1.8rem; margin-bottom: 0.5rem;"></i>
-						<span style="font-size: 1.1rem; color: #ffffff;">Progress Report</span>
-						<p
-							style="font-size: 0.85rem; margin: 0; color: #c4b5fd; line-height: 1.4; font-weight: 400; text-transform: none;">
-							Monitor your progress with a system to check and share your progress with others.</p>
+				<div class="tool-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+					<a href="#tool-progress" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-tasks"></i>
+						<span>Progress Report</span>
+						<p>Monitor your progress with a system to check and share your progress with others.</p>
 					</a>
 
-					<a href="#tool-pomodoro" class="skill-card"
-						style="text-align: left; align-items: flex-start; gap: 0.5rem; text-decoration: none;">
-						<i class="fas fa-stopwatch" style="font-size: 1.8rem; margin-bottom: 0.5rem;"></i>
-						<span style="font-size: 1.1rem; color: #ffffff;">Pomodoro Timer</span>
-						<p
-							style="font-size: 0.85rem; margin: 0; color: #c4b5fd; line-height: 1.4; font-weight: 400; text-transform: none;">
-							Make your workday more engaging and effective with the Pomodoro timer, break work into
-							25-minute focused intervals called "pomodoros".</p>
+					<a href="#tool-pomodoro" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-stopwatch"></i>
+						<span>Pomodoro Timer</span>
+						<p>Make your workday more engaging and effective with the Pomodoro timer, break work into 25-minute focused intervals called "pomodoros".</p>
 					</a>
 
-					<a href="#tool-random-name" class="skill-card"
-						style="text-align: left; align-items: flex-start; gap: 0.5rem; text-decoration: none;">
-						<i class="fas fa-random" style="font-size: 1.8rem; margin-bottom: 0.5rem;"></i>
-						<span style="font-size: 1.1rem; color: #ffffff;">Random Name Picker</span>
-						<p
-							style="font-size: 0.85rem; margin: 0; color: #c4b5fd; line-height: 1.4; font-weight: 400; text-transform: none;">
-							Effortlessly choose names for class participation or group activities.</p>
+					<a href="#tool-random-name" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-random"></i>
+						<span>Random Name Picker</span>
+						<p>Effortlessly choose names for class participation or group activities.</p>
 					</a>
 
-					<a href="#tool-stopwatch" class="skill-card"
-						style="text-align: left; align-items: flex-start; gap: 0.5rem; text-decoration: none;">
-						<i class="fas fa-hourglass-half" style="font-size: 1.8rem; margin-bottom: 0.5rem;"></i>
-						<span style="font-size: 1.1rem; color: #ffffff;">Activity Stopwatch</span>
-						<p
-							style="font-size: 0.85rem; margin: 0; color: #c4b5fd; line-height: 1.4; font-weight: 400; text-transform: none;">
-							Stay on track and enhance productivity with our customizable stopwatch for timed tasks,
-							quizzes, and study sessions.</p>
+					<a href="#tool-stopwatch" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-hourglass-half"></i>
+						<span>Activity Stopwatch</span>
+						<p>Stay on track and enhance productivity with our customizable stopwatch for timed tasks, quizzes, and study sessions.</p>
 					</a>
 
-					<a href="#tool-deep-search" class="skill-card"
-						style="text-align: left; align-items: flex-start; gap: 0.5rem; text-decoration: none;">
-						<i class="fas fa-search" style="font-size: 1.8rem; margin-bottom: 0.5rem;"></i>
-						<span style="font-size: 1.1rem; color: #ffffff;">Deep Search</span>
-						<p
-							style="font-size: 0.85rem; margin: 0; color: #c4b5fd; line-height: 1.4; font-weight: 400; text-transform: none;">
-							Perform deep, contextual searches to accurately uncover knowledge across extensive
-							resources.</p>
+					<a href="#tool-deep-search" class="skill-card tool-card" style="text-decoration: none;">
+						<i class="fas fa-search"></i>
+						<span>Deep Search</span>
+						<p>Perform deep, contextual searches to accurately uncover knowledge across extensive resources.</p>
 					</a>
 				</div>
 			</article>
@@ -592,7 +609,11 @@ def secure_hash_password(password: str) -> str:
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/hcl.min.js"></script>
 	<script>
+		hljs.highlightAll();
+		
 		/* ---- Compound Interest Calculator ---- */
 		$(document).ready(function () {
 			$('#calculate').click(function () {
