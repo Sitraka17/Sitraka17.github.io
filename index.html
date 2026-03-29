@@ -592,14 +592,18 @@ def secure_hash_password(password: str) -> str:
 			<article id="tool-stopwatch">
 				<h2 class="major">Activity Stopwatch</h2>
 				<div style="text-align: center; margin: 3rem 0;">
+					<input type="text" id="stopwatch-event-name" placeholder="Name your session (e.g. Study, Work...)" style="max-width: 400px; margin: 0 auto 2rem auto; text-align: center; font-size: 1.1rem; padding: 0.8rem;" />
 					<div id="stopwatch-display"
 						style="font-size: 4rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #ffffff; text-shadow: 0 0 20px rgba(16,185,129,0.5);">
 						00:00:00.00</div>
-					<ul class="actions" style="justify-content: center; margin-top: 2rem;">
+					<ul class="actions" style="justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
 						<li><button id="stopwatch-start" class="button primary">Start</button></li>
 						<li><button id="stopwatch-stop" class="button">Stop</button></li>
 						<li><button id="stopwatch-lap" class="button">Lap</button></li>
 						<li><button id="stopwatch-reset" class="button">Reset</button></li>
+					</ul>
+					<ul class="actions" style="justify-content: center; margin-top: 1rem;">
+						<li><button id="stopwatch-export-ics" class="button"><i class="fas fa-calendar-plus" style="margin-right:0.5rem; color:#60c3ff;"></i>Export to Calendar (.ics)</button></li>
 					</ul>
 					<div id="stopwatch-laps"
 						style="margin-top: 2rem; text-align: left; max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
@@ -973,6 +977,53 @@ def secure_hash_password(password: str) -> str:
 				swLapCount = 1;
 				$('#stopwatch-display').text('00:00:00.00');
 				$('#laps-list').empty();
+			});
+			$('#stopwatch-export-ics').click(function () {
+				if (swTime === 0) {
+					alert("Run the stopwatch first to record time before exporting.");
+					return;
+				}
+				const evtName = $('#stopwatch-event-name').val().trim() || 'Activity Session';
+				const hrs = Math.floor(swTime / 3600000);
+				const mins = Math.floor((swTime % 3600000) / 60000);
+				const secs = Math.floor((swTime % 60000) / 1000);
+				const timeStr = `${hrs}h ${mins}m ${secs}s`;
+				
+				const end = new Date();
+				const start = new Date(end.getTime() - swTime);
+				
+				const pad = n => String(n).padStart(2, '0');
+				const formatICSDate = d => {
+					return d.getUTCFullYear() +
+						pad(d.getUTCMonth() + 1) +
+						pad(d.getUTCDate()) + 'T' +
+						pad(d.getUTCHours()) +
+						pad(d.getUTCMinutes()) +
+						pad(d.getUTCSeconds()) + 'Z';
+				};
+				
+				let laps = [];
+				$('#laps-list li').each(function() { laps.push($(this).text()); });
+				let desc = `Time recorded using Activity Stopwatch: ${timeStr}\\n` + (laps.length > 0 ? `\\nLaps:\\n${laps.join('\\n')}` : '');
+				
+				const icsContent = "BEGIN:VCALENDAR\r\n" +
+					"VERSION:2.0\r\n" +
+					"PRODID:-//Sitraka Portfolio//Activity Stopwatch//EN\r\n" +
+					"BEGIN:VEVENT\r\n" +
+					"DTSTART:" + formatICSDate(start) + "\r\n" +
+					"DTEND:" + formatICSDate(end) + "\r\n" +
+					"SUMMARY:" + evtName + "\r\n" +
+					"DESCRIPTION:" + desc + "\r\n" +
+					"END:VEVENT\r\n" +
+					"END:VCALENDAR";
+					
+				const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+				const link = document.createElement('a');
+				link.href = URL.createObjectURL(blob);
+				link.download = evtName.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.ics';
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
 			});
 
 			// 4. Progress Report
