@@ -236,11 +236,99 @@
 
 			<!-- Code & Skills -->
 			<article id="code">
+				<style>
+					/* ── Code Article Tab System ── */
+					.code-tab-bar {
+						display: flex;
+						gap: 0;
+						margin: 1.5rem 0 0 0;
+						border-radius: 12px 12px 0 0;
+						overflow: hidden;
+						background: rgba(15, 10, 30, 0.5);
+						border: 1px solid rgba(167, 139, 250, 0.15);
+						border-bottom: none;
+					}
+					.code-tab-btn {
+						flex: 1;
+						padding: 0.9rem 1.2rem;
+						font-size: 1rem;
+						font-weight: 600;
+						font-family: 'Inter', sans-serif;
+						letter-spacing: 0.03em;
+						border: none;
+						cursor: pointer;
+						color: rgba(255, 255, 255, 0.5);
+						background: transparent;
+						transition: all 0.3s cubic-bezier(.4,0,.2,1);
+						position: relative;
+						outline: none;
+					}
+					.code-tab-btn::after {
+						content: '';
+						position: absolute;
+						bottom: 0;
+						left: 15%;
+						width: 70%;
+						height: 2px;
+						background: transparent;
+						border-radius: 2px 2px 0 0;
+						transition: all 0.3s cubic-bezier(.4,0,.2,1);
+					}
+					.code-tab-btn:hover {
+						color: rgba(255, 255, 255, 0.75);
+						background: rgba(167, 139, 250, 0.06);
+					}
+					.code-tab-btn.active {
+						color: #ffffff;
+						background: rgba(167, 139, 250, 0.12);
+						text-shadow: 0 0 14px rgba(167, 139, 250, 0.5);
+					}
+					.code-tab-btn.active::after {
+						background: linear-gradient(90deg, #7b2fff, #a78bfa);
+						box-shadow: 0 0 10px rgba(123, 47, 255, 0.5);
+					}
+					.code-tab-divider {
+						width: 0;
+						height: auto;
+						border: none;
+						border-left: 1px solid rgba(167, 139, 250, 0.12);
+						margin: 0.6rem 0;
+						align-self: stretch;
+					}
+					.code-tab-panel {
+						display: none;
+						animation: codeTabFadeIn 0.35s ease;
+						padding-top: 0.5rem;
+						border: 1px solid rgba(167, 139, 250, 0.15);
+						border-top: none;
+						border-radius: 0 0 12px 12px;
+						padding: 1.5rem 1.2rem 0.5rem 1.2rem;
+						background: rgba(15, 10, 30, 0.25);
+						margin-bottom: 1rem;
+					}
+					.code-tab-panel.active {
+						display: block;
+					}
+					@keyframes codeTabFadeIn {
+						from { opacity: 0; transform: translateY(6px); }
+						to   { opacity: 1; transform: translateY(0); }
+					}
+				</style>
+
 				<h2 class="major">Code &amp; Skills</h2>
 				<span class="image main"><img src="image/code.jpeg" alt="Code" /></span>
 
-				<h3>🛠️ Featured Tools</h3>
-				<div class="tool-grid"
+				<!-- ── Tab Bar ── -->
+				<div class="code-tab-bar" role="tablist">
+					<button class="code-tab-btn active" data-code-tab="tools" role="tab" aria-selected="true" id="code-tab-btn-tools">🛠️ Tools</button>
+					<span class="code-tab-divider"></span>
+					<button class="code-tab-btn" data-code-tab="techstack" role="tab" aria-selected="false" id="code-tab-btn-techstack">🚀 Tech Stack</button>
+				</div>
+
+				<!-- ══ Tab 1 — Tools ══ -->
+				<div class="code-tab-panel active" id="code-panel-tools" role="tabpanel" aria-labelledby="code-tab-btn-tools">
+					<h3>🛠️ Featured Tools</h3>
+					<div class="tool-grid"
 					style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
 					<a href="#tool-progress" class="skill-card tool-card" style="text-decoration: none;">
 						<i class="fas fa-tasks"></i>
@@ -275,11 +363,12 @@
 						</p>
 					</a>
 				</div>
+				</div>
 
-				<hr>
-
-				<h3>🚀 Tech Stack</h3>
-				<div class="skill-grid">
+				<!-- ══ Tab 2 — Tech Stack ══ -->
+				<div class="code-tab-panel" id="code-panel-techstack" role="tabpanel" aria-labelledby="code-tab-btn-techstack">
+					<h3>🚀 Tech Stack</h3>
+					<div class="skill-grid">
 					<a href="javascript:void(0)"
 						onclick="document.getElementById('skill-python').scrollIntoView({behavior: 'smooth'})"
 						class="skill-card" style="text-decoration: none;">
@@ -497,9 +586,27 @@ def secure_hash_password(password: str) -> str:
 					<p>Applying mathematical and statistical methods to financial markets is a specialization of mine. I
 						build models for risk assessment, algorithmic trading, and portfolio optimization. Leveraging
 						real-time data ingestion and time-series analysis, I deliver insights that directly impact
-						financial decision-making.</p>
 				</div>
 
+				</div>
+
+				<!-- ── Tab Switching Script ── -->
+				<script>
+					(function() {
+						var btns = document.querySelectorAll('.code-tab-btn');
+						var panels = document.querySelectorAll('.code-tab-panel');
+						btns.forEach(function(btn) {
+							btn.addEventListener('click', function() {
+								var target = btn.getAttribute('data-code-tab');
+								btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+								panels.forEach(function(p) { p.classList.remove('active'); });
+								btn.classList.add('active');
+								btn.setAttribute('aria-selected', 'true');
+								document.getElementById('code-panel-' + target).classList.add('active');
+							});
+						});
+					})();
+				</script>
 			</article>
 
 			<!-- LuxAiOps -->
