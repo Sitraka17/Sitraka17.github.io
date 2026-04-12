@@ -387,6 +387,11 @@
 							</p>
 						</a>
 					</div>
+					<div style="margin-top: 1.5rem; text-align: center;">
+						<button id="reset-all-tools-btn" class="button" style="border-color: rgba(239,68,68,0.4); color: #ef4444; font-size: 0.85rem;">
+							<i class="fas fa-rotate-left" style="margin-right: 0.5rem;"></i>Reset All Tools
+						</button>
+					</div>
 				</div>
 
 				<!-- ══ Tab 2 — Tech Stack ══ -->
@@ -815,13 +820,14 @@ def secure_hash_password(password: str) -> str:
 						border: none;
 						color: rgba(239, 68, 68, 0.6);
 						cursor: pointer;
-						padding: 4px;
+						padding: 6px 8px;
 						box-shadow: none;
 						height: auto;
 						line-height: 1;
 						transition: color 0.2s ease;
 						flex-shrink: 0;
 					}
+					.todo-delete i { pointer-events: none; }
 
 					.todo-delete:hover {
 						color: #ef4444;
@@ -1439,9 +1445,13 @@ def secure_hash_password(password: str) -> str:
 				saveTodos(todos);
 				renderTodos();
 			});
-			$(document).on('click', '.todo-delete', function () {
+			$(document).on('click', '.todo-delete', function (e) {
+				e.stopPropagation();
+				const btn = $(this).closest('.todo-delete');
+				const idx = btn.data('idx');
 				const todos = getTodos();
-				todos.splice($(this).data('idx'), 1);
+				if (idx === undefined || idx < 0 || idx >= todos.length) return;
+				todos.splice(idx, 1);
 				saveTodos(todos);
 				renderTodos();
 			});
@@ -1514,6 +1524,37 @@ def secure_hash_password(password: str) -> str:
 				const btn = $(this);
 				const old = btn.html();
 				btn.html('<i class="fas fa-check" style="margin-right:0.5rem;"></i>Downloaded!');
+				setTimeout(() => btn.html(old), 2500);
+			});
+
+			// ── Reset All Tools ──
+			$('#reset-all-tools-btn').click(function () {
+				if (!confirm('Reset ALL tools to their initial state? This will clear your to-do list, stopwatch, laps, and name picker.')) return;
+				// Reset To-Do List
+				localStorage.removeItem('todoListItems');
+				renderTodos();
+				// Reset Pomodoro
+				clearInterval(pomoInterval);
+				pomoInterval = null;
+				isFocus = true;
+				timeLeft = 25 * 60;
+				$('#pomodoro-status').text('Focus Time');
+				updatePomoDisplay();
+				// Reset Stopwatch
+				clearInterval(swInterval);
+				swInterval = null;
+				swTime = 0;
+				swLapCount = 1;
+				$('#stopwatch-display').text('00:00:00.00');
+				$('#laps-list').empty();
+				$('#stopwatch-event-name').val('');
+				// Reset Name Picker
+				$('#name-picker-input').val('');
+				$('#name-picker-result').text('');
+				// Feedback
+				const btn = $(this);
+				const old = btn.html();
+				btn.html('<i class="fas fa-check" style="margin-right:0.5rem;"></i>All Reset!');
 				setTimeout(() => btn.html(old), 2500);
 			});
 
