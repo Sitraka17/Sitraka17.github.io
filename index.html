@@ -1390,10 +1390,11 @@ def secure_hash_password(password: str) -> str:
 			}
 			function renderTodos() {
 				const todos = getTodos();
-				const container = $('#todo-task-list');
-				container.empty();
+				const container = document.getElementById('todo-task-list');
+				if (!container) return;
+				container.innerHTML = '';
 				if (todos.length === 0) {
-					container.html('<div class="todo-empty"><i class="fas fa-clipboard-list" style="font-size:2rem; display:block; margin-bottom:0.8rem; opacity:0.3;"></i>No tasks yet — add one above!</div>');
+					container.innerHTML = '<div class="todo-empty"><i class="fas fa-clipboard-list" style="font-size:2rem; display:block; margin-bottom:0.8rem; opacity:0.3;"></i>No tasks yet — add one above!</div>';
 					updateTodoStats();
 					return;
 				}
@@ -1401,59 +1402,43 @@ def secure_hash_password(password: str) -> str:
 					let metaHtml = '';
 					if (t.date) metaHtml += `<span><i class="fas fa-calendar" style="margin-right:3px;"></i>${t.date}</span>`;
 					if (t.timeStart) metaHtml += `<span><i class="fas fa-clock" style="margin-right:3px;"></i>${t.timeStart}${t.timeEnd ? ' – ' + t.timeEnd : ''}</span>`;
-					container.append(`
-						<div class="todo-item${t.done ? ' checked' : ''}" data-idx="${i}">
-							<div class="todo-checkbox${t.done ? ' checked' : ''}" data-idx="${i}"></div>
-							<div style="flex:1; min-width:0;">
-								<div class="todo-text">${$('<span>').text(t.text).html()}</div>
-								${metaHtml ? '<div class="todo-meta">' + metaHtml + '</div>' : ''}
-							</div>
-							<button class="todo-delete" data-idx="${i}"><i class="fas fa-trash-alt"></i></button>
+					const safeText = document.createElement('span');
+					safeText.textContent = t.text;
+
+					const row = document.createElement('div');
+					row.className = 'todo-item' + (t.done ? ' checked' : '');
+					row.innerHTML = `
+						<div class="todo-checkbox${t.done ? ' checked' : ''}"></div>
+						<div style="flex:1; min-width:0;">
+							<div class="todo-text">${safeText.innerHTML}</div>
+							${metaHtml ? '<div class="todo-meta">' + metaHtml + '</div>' : ''}
 						</div>
-					`);
+						<button class="todo-delete" type="button"><i class="fas fa-trash-alt"></i></button>
+					`;
+					container.appendChild(row);
+
+					// Bind checkbox click directly
+					row.querySelector('.todo-checkbox').addEventListener('click', function (e) {
+						e.stopPropagation();
+						e.preventDefault();
+						const items = getTodos();
+						items[i].done = !items[i].done;
+						saveTodos(items);
+						renderTodos();
+					});
+
+					// Bind delete click directly
+					row.querySelector('.todo-delete').addEventListener('click', function (e) {
+						e.stopPropagation();
+						e.preventDefault();
+						const items = getTodos();
+						items.splice(i, 1);
+						saveTodos(items);
+						renderTodos();
+					});
 				});
 				updateTodoStats();
 			}
-
-			// Set default date to today
-			const todayStr = new Date().toISOString().split('T')[0];
-			$('#todo-date-input').val(todayStr);
-
-			if ($('#todo-task-list').length) renderTodos();
-
-			$('#todo-add-btn').click(function () {
-				const text = $('#todo-task-input').val().trim();
-				if (!text) return;
-				const todos = getTodos();
-				todos.push({
-					text: text,
-					date: $('#todo-date-input').val() || '',
-					timeStart: $('#todo-time-start').val() || '',
-					timeEnd: $('#todo-time-end').val() || '',
-					done: false
-				});
-				saveTodos(todos);
-				$('#todo-task-input').val('');
-				renderTodos();
-			});
-			$('#todo-task-input').keypress(function (e) { if (e.which === 13) $('#todo-add-btn').click(); });
-
-			$('#tool-progress').on('click', '.todo-checkbox', function () {
-				const idx = $(this).data('idx');
-				const todos = getTodos();
-				todos[idx].done = !todos[idx].done;
-				saveTodos(todos);
-				renderTodos();
-			});
-			$('#tool-progress').on('click', '.todo-delete', function (e) {
-				e.stopPropagation();
-				const idx = $(this).data('idx');
-				const todos = getTodos();
-				if (idx === undefined || idx < 0 || idx >= todos.length) return;
-				todos.splice(idx, 1);
-				saveTodos(todos);
-				renderTodos();
-			});
 			$('#todo-clear-btn').click(function () {
 				if (getTodos().length === 0) return;
 				if (!confirm('Clear all tasks?')) return;
