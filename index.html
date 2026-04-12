@@ -156,7 +156,8 @@
 						</ul>
 						<p
 							style="font-size: 0.85rem; color: rgba(196, 181, 253, 0.9); margin-top: 0.5rem; margin-bottom: 0;">
-							<strong>Skills:</strong> Python (Programming Language) · Docker · Pitching Ideas</p>
+							<strong>Skills:</strong> Python (Programming Language) · Docker · Pitching Ideas
+						</p>
 					</div>
 
 					<div class="timeline-item">
@@ -182,7 +183,8 @@
 						<p
 							style="font-size: 0.85rem; color: rgba(196, 181, 253, 0.9); margin-top: 0.5rem; margin-bottom: 0;">
 							<strong>Skills:</strong> Indicateurs clés de performance · Cybersécurité · R · Tableaux de
-							bord d’indicateurs clés de performance · Python · SQL · KPI</p>
+							bord d’indicateurs clés de performance · Python · SQL · KPI
+						</p>
 					</div>
 
 					<div class="timeline-item">
@@ -208,7 +210,8 @@
 						</ul>
 						<p
 							style="font-size: 0.85rem; color: rgba(196, 181, 253, 0.9); margin-top: 0.5rem; margin-bottom: 0;">
-							<strong>Skills:</strong> Microsoft Excel · Cybersécurité · Python · SQL</p>
+							<strong>Skills:</strong> Microsoft Excel · Cybersécurité · Python · SQL
+						</p>
 					</div>
 
 					<div class="timeline-item">
@@ -248,6 +251,7 @@
 						border: 1px solid rgba(167, 139, 250, 0.15);
 						border-bottom: none;
 					}
+
 					.code-tab-btn {
 						flex: 1;
 						padding: 0.9rem 1.2rem;
@@ -259,10 +263,11 @@
 						cursor: pointer;
 						color: rgba(255, 255, 255, 0.5);
 						background: transparent;
-						transition: all 0.3s cubic-bezier(.4,0,.2,1);
+						transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
 						position: relative;
 						outline: none;
 					}
+
 					.code-tab-btn::after {
 						content: '';
 						position: absolute;
@@ -272,21 +277,25 @@
 						height: 2px;
 						background: transparent;
 						border-radius: 2px 2px 0 0;
-						transition: all 0.3s cubic-bezier(.4,0,.2,1);
+						transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
 					}
+
 					.code-tab-btn:hover {
 						color: rgba(255, 255, 255, 0.75);
 						background: rgba(167, 139, 250, 0.06);
 					}
+
 					.code-tab-btn.active {
 						color: #ffffff;
 						background: rgba(167, 139, 250, 0.12);
 						text-shadow: 0 0 14px rgba(167, 139, 250, 0.5);
 					}
+
 					.code-tab-btn.active::after {
 						background: linear-gradient(90deg, #7b2fff, #a78bfa);
 						box-shadow: 0 0 10px rgba(123, 47, 255, 0.5);
 					}
+
 					.code-tab-divider {
 						width: 0;
 						height: auto;
@@ -295,6 +304,7 @@
 						margin: 0.6rem 0;
 						align-self: stretch;
 					}
+
 					.code-tab-panel {
 						display: none;
 						animation: codeTabFadeIn 0.35s ease;
@@ -306,12 +316,21 @@
 						background: rgba(15, 10, 30, 0.25);
 						margin-bottom: 1rem;
 					}
+
 					.code-tab-panel.active {
 						display: block;
 					}
+
 					@keyframes codeTabFadeIn {
-						from { opacity: 0; transform: translateY(6px); }
-						to   { opacity: 1; transform: translateY(0); }
+						from {
+							opacity: 0;
+							transform: translateY(6px);
+						}
+
+						to {
+							opacity: 1;
+							transform: translateY(0);
+						}
 					}
 				</style>
 
@@ -320,111 +339,118 @@
 
 				<!-- ── Tab Bar ── -->
 				<div class="code-tab-bar" role="tablist">
-					<button class="code-tab-btn active" data-code-tab="tools" role="tab" aria-selected="true" id="code-tab-btn-tools">🛠️ Tools</button>
+					<button class="code-tab-btn active" data-code-tab="tools" role="tab" aria-selected="true"
+						id="code-tab-btn-tools">🛠️ Tools</button>
 					<span class="code-tab-divider"></span>
-					<button class="code-tab-btn" data-code-tab="techstack" role="tab" aria-selected="false" id="code-tab-btn-techstack">🚀 Tech Stack</button>
+					<button class="code-tab-btn" data-code-tab="techstack" role="tab" aria-selected="false"
+						id="code-tab-btn-techstack">🚀 Tech Stack</button>
 				</div>
 
 				<!-- ══ Tab 1 — Tools ══ -->
-				<div class="code-tab-panel active" id="code-panel-tools" role="tabpanel" aria-labelledby="code-tab-btn-tools">
+				<div class="code-tab-panel active" id="code-panel-tools" role="tabpanel"
+					aria-labelledby="code-tab-btn-tools">
 					<h3>🛠️ Featured Tools</h3>
 					<div class="tool-grid"
-					style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-					<a href="#tool-progress" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-tasks"></i>
-						<span>Progress Report</span>
-						<p>Monitor your progress with a system to check and share your progress with others.</p>
-					</a>
+						style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+						<a href="#tool-progress" class="skill-card tool-card" style="text-decoration: none;">
+							<i class="fas fa-tasks"></i>
+							<span>Progress Report</span>
+							<p>Monitor your progress with a system to check and share your progress with others.</p>
+						</a>
 
-					<a href="#tool-pomodoro" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-stopwatch"></i>
-						<span>Pomodoro Timer</span>
-						<p>Make your workday more engaging and effective with the Pomodoro timer, break work into
-							25-minute focused intervals called "pomodoros".</p>
-					</a>
+						<a href="#tool-pomodoro" class="skill-card tool-card" style="text-decoration: none;">
+							<i class="fas fa-stopwatch"></i>
+							<span>Pomodoro Timer</span>
+							<p>Make your workday more engaging and effective with the Pomodoro timer, break work into
+								25-minute focused intervals called "pomodoros".</p>
+						</a>
 
-					<a href="#tool-random-name" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-random"></i>
-						<span>Random Name Picker</span>
-						<p>Effortlessly choose names for class participation or group activities.</p>
-					</a>
+						<a href="#tool-random-name" class="skill-card tool-card" style="text-decoration: none;">
+							<i class="fas fa-random"></i>
+							<span>Random Name Picker</span>
+							<p>Effortlessly choose names for class participation or group activities. Really usefull for
+								teachings.</p>
+						</a>
 
-					<a href="#tool-stopwatch" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-hourglass-half"></i>
-						<span>Activity Stopwatch</span>
-						<p>Stay on track and enhance productivity with our customizable stopwatch for timed tasks,
-							quizzes, and study sessions.</p>
-					</a>
+						<a href="#tool-stopwatch" class="skill-card tool-card" style="text-decoration: none;">
+							<i class="fas fa-hourglass-half"></i>
+							<span>Activity Stopwatch</span>
+							<p>Stay on track and enhance productivity with our customizable stopwatch for timed tasks,
+								quizzes, and study sessions.</p>
+						</a>
 
-					<a href="#tool-deep-search" class="skill-card tool-card" style="text-decoration: none;">
-						<i class="fas fa-search"></i>
-						<span>Deep Search</span>
-						<p>Perform deep, contextual searches to accurately uncover knowledge across extensive resources.
-						</p>
-					</a>
-				</div>
+						<a href="#tool-deep-search" class="skill-card tool-card" style="text-decoration: none;">
+							<i class="fas fa-search"></i>
+							<span>Deep Search</span>
+							<p>Perform deep, contextual searches to accurately uncover knowledge across extensive
+								resources.
+							</p>
+						</a>
+					</div>
 				</div>
 
 				<!-- ══ Tab 2 — Tech Stack ══ -->
-				<div class="code-tab-panel" id="code-panel-techstack" role="tabpanel" aria-labelledby="code-tab-btn-techstack">
+				<div class="code-tab-panel" id="code-panel-techstack" role="tabpanel"
+					aria-labelledby="code-tab-btn-techstack">
 					<h3>🚀 Tech Stack</h3>
 					<div class="skill-grid">
-					<a href="javascript:void(0)"
-						onclick="document.getElementById('skill-python').scrollIntoView({behavior: 'smooth'})"
-						class="skill-card" style="text-decoration: none;">
-						<i class="fab fa-python"></i>
-						<span>Python &amp; ML</span>
-					</a>
-					<a href="javascript:void(0)"
-						onclick="document.getElementById('skill-deep-learning').scrollIntoView({behavior: 'smooth'})"
-						class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-brain"></i>
-						<span>Deep Learning</span>
-					</a>
-					<a href="javascript:void(0)"
-						onclick="document.getElementById('skill-cloud').scrollIntoView({behavior: 'smooth'})"
-						class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-cloud"></i>
-						<span>Cloud Architect</span>
-					</a>
-					<a href="javascript:void(0)"
-						onclick="document.getElementById('skill-sql-nosql').scrollIntoView({behavior: 'smooth'})"
-						class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-database"></i>
-						<span>SQL &amp; NoSQL</span>
-					</a>
-					<a href="javascript:void(0)"
-						onclick="document.getElementById('skill-cybersecurity').scrollIntoView({behavior: 'smooth'})"
-						class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-shield-halved"></i>
-						<span>Cybersecurity</span>
-					</a>
-					<a href="javascript:void(0)"
-						onclick="document.getElementById('skill-fintech').scrollIntoView({behavior: 'smooth'})"
-						class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-chart-line"></i>
-						<span>FinTech</span>
-					</a>
-				</div>
+						<a href="javascript:void(0)"
+							onclick="document.getElementById('skill-python').scrollIntoView({behavior: 'smooth'})"
+							class="skill-card" style="text-decoration: none;">
+							<i class="fab fa-python"></i>
+							<span>Python &amp; ML</span>
+						</a>
+						<a href="javascript:void(0)"
+							onclick="document.getElementById('skill-deep-learning').scrollIntoView({behavior: 'smooth'})"
+							class="skill-card" style="text-decoration: none;">
+							<i class="fas fa-brain"></i>
+							<span>Deep Learning</span>
+						</a>
+						<a href="javascript:void(0)"
+							onclick="document.getElementById('skill-cloud').scrollIntoView({behavior: 'smooth'})"
+							class="skill-card" style="text-decoration: none;">
+							<i class="fas fa-cloud"></i>
+							<span>Cloud Architect</span>
+						</a>
+						<a href="javascript:void(0)"
+							onclick="document.getElementById('skill-sql-nosql').scrollIntoView({behavior: 'smooth'})"
+							class="skill-card" style="text-decoration: none;">
+							<i class="fas fa-database"></i>
+							<span>SQL &amp; NoSQL</span>
+						</a>
+						<a href="javascript:void(0)"
+							onclick="document.getElementById('skill-cybersecurity').scrollIntoView({behavior: 'smooth'})"
+							class="skill-card" style="text-decoration: none;">
+							<i class="fas fa-shield-halved"></i>
+							<span>Cybersecurity</span>
+						</a>
+						<a href="javascript:void(0)"
+							onclick="document.getElementById('skill-fintech').scrollIntoView({behavior: 'smooth'})"
+							class="skill-card" style="text-decoration: none;">
+							<i class="fas fa-chart-line"></i>
+							<span>FinTech</span>
+						</a>
+					</div>
 
-				<hr>
+					<hr>
 
-				<div id="skill-python" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>🐍 Python &amp; ML</h3>
-					<p>Python is the cornerstone of my data science and machine learning workflows. I specialize in
-						building end-to-end ML pipelines, from data wrangling with <strong>pandas</strong> and
-						<strong>NumPy</strong> to training predictive models. Using tools like
-						<strong>Scikit-Learn</strong> and <strong>XGBoost</strong>, I focus on delivering models that
-						bring actionable business value and optimize operations.
-					</p>
-					<div class="code-window">
-						<div class="code-window-header">
-							<div class="mac-dots">
-								<span></span><span></span><span></span>
+					<div id="skill-python" style="padding-top: 3rem; margin-top: -3rem;">
+						<h3>🐍 Python &amp; ML</h3>
+						<p>Python is the cornerstone of my data science and machine learning workflows. I specialize in
+							building end-to-end ML pipelines, from data wrangling with <strong>pandas</strong> and
+							<strong>NumPy</strong> to training predictive models. Using tools like
+							<strong>Scikit-Learn</strong> and <strong>XGBoost</strong>, I focus on delivering models
+							that
+							bring actionable business value and optimize operations.
+						</p>
+						<div class="code-window">
+							<div class="code-window-header">
+								<div class="mac-dots">
+									<span></span><span></span><span></span>
+								</div>
+								<div class="file-name">train_model.py</div>
 							</div>
-							<div class="file-name">train_model.py</div>
-						</div>
-						<pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
+							<pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import pandas as pd
@@ -440,26 +466,28 @@ model.fit(X_train, y_train)
 # Predict and evaluate
 predictions = model.predict(X_test)
 print(f"Model Accuracy on Test Set: {accuracy_score(y_test, predictions):.2%}")</code></pre>
-					</div>
-				</div>
-
-				<hr>
-
-				<div id="skill-deep-learning" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>🧠 Deep Learning</h3>
-					<p>Deep Learning allows me to solve complex perceptual problems such as NLP and Computer Vision. I
-						leverage <strong>PyTorch</strong>, <strong>TensorFlow</strong>, and <strong>Hugging
-							Face</strong> to develop, fine-tune, and deploy state-of-the-art neural networks. My recent
-						experience includes deploying large language models (LLMs) into production environments and
-						building retrieval-augmented generation (RAG) applications.</p>
-					<div class="code-window">
-						<div class="code-window-header">
-							<div class="mac-dots">
-								<span></span><span></span><span></span>
-							</div>
-							<div class="file-name">resnet_block.py</div>
 						</div>
-						<pre><code class="language-python">import torch
+					</div>
+
+					<hr>
+
+					<div id="skill-deep-learning" style="padding-top: 3rem; margin-top: -3rem;">
+						<h3>🧠 Deep Learning</h3>
+						<p>Deep Learning allows me to solve complex perceptual problems such as NLP and Computer Vision.
+							I
+							leverage <strong>PyTorch</strong>, <strong>TensorFlow</strong>, and <strong>Hugging
+								Face</strong> to develop, fine-tune, and deploy state-of-the-art neural networks. My
+							recent
+							experience includes deploying large language models (LLMs) into production environments and
+							building retrieval-augmented generation (RAG) applications.</p>
+						<div class="code-window">
+							<div class="code-window-header">
+								<div class="mac-dots">
+									<span></span><span></span><span></span>
+								</div>
+								<div class="file-name">resnet_block.py</div>
+							</div>
+							<pre><code class="language-python">import torch
 import torch.nn as nn
 
 class ResidualBlock(nn.Module):
@@ -476,26 +504,29 @@ class ResidualBlock(nn.Module):
 
 model = ResidualBlock(128, 128)
 print(model)</code></pre>
-					</div>
-				</div>
-
-				<hr>
-
-				<div id="skill-cloud" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>☁️ Cloud Architecture</h3>
-					<p>Building scalable and robust backend systems is critical for modern data solutions. I design and
-						implement cloud-native architectures on <strong>AWS</strong> and <strong>Azure</strong>,
-						employing Infrastructure as Code (IaC) to ensure reproducible and secure deployments. This
-						includes setting up CI/CD pipelines, container orchestration with <strong>Kubernetes</strong>,
-						and adopting serverless architectures.</p>
-					<div class="code-window">
-						<div class="code-window-header">
-							<div class="mac-dots">
-								<span></span><span></span><span></span>
-							</div>
-							<div class="file-name">ml_inference.tf</div>
 						</div>
-						<pre><code class="language-hcl">provider "aws" {
+					</div>
+
+					<hr>
+
+					<div id="skill-cloud" style="padding-top: 3rem; margin-top: -3rem;">
+						<h3>☁️ Cloud Architecture</h3>
+						<p>Building scalable and robust backend systems is critical for modern data solutions. I design
+							and
+							implement cloud-native architectures on <strong>AWS</strong> and <strong>Azure</strong>,
+							employing Infrastructure as Code (IaC) to ensure reproducible and secure deployments. This
+							includes setting up CI/CD pipelines, container orchestration with
+							<strong>Kubernetes</strong>,
+							and adopting serverless architectures.
+						</p>
+						<div class="code-window">
+							<div class="code-window-header">
+								<div class="mac-dots">
+									<span></span><span></span><span></span>
+								</div>
+								<div class="file-name">ml_inference.tf</div>
+							</div>
+							<pre><code class="language-hcl">provider "aws" {
   region = "eu-west-1"
 }
 
@@ -509,27 +540,28 @@ resource "aws_instance" "ml_inference_node" {
     ManagedBy   = "Terraform"
   }
 }</code></pre>
-					</div>
-				</div>
-
-				<hr>
-
-				<div id="skill-sql-nosql" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>🗄️ SQL &amp; NoSQL</h3>
-					<p>A solid data layer is the foundation of any application. I have extensive experience modeling
-						business requirements into both relational databases (like <strong>PostgreSQL</strong> and
-						<strong>MySQL</strong>) and NoSQL datastores (like <strong>MongoDB</strong> and
-						<strong>Cassandra</strong>). My expertise covers advanced querying, query optimization, dynamic
-						indexing, and designing scalable data warehouses.
-					</p>
-					<div class="code-window">
-						<div class="code-window-header">
-							<div class="mac-dots">
-								<span></span><span></span><span></span>
-							</div>
-							<div class="file-name">revenue_analysis.sql</div>
 						</div>
-						<pre><code class="language-sql">WITH MonthlyRevenue AS (
+					</div>
+
+					<hr>
+
+					<div id="skill-sql-nosql" style="padding-top: 3rem; margin-top: -3rem;">
+						<h3>🗄️ SQL &amp; NoSQL</h3>
+						<p>A solid data layer is the foundation of any application. I have extensive experience modeling
+							business requirements into both relational databases (like <strong>PostgreSQL</strong> and
+							<strong>MySQL</strong>) and NoSQL datastores (like <strong>MongoDB</strong> and
+							<strong>Cassandra</strong>). My expertise covers advanced querying, query optimization,
+							dynamic
+							indexing, and designing scalable data warehouses.
+						</p>
+						<div class="code-window">
+							<div class="code-window-header">
+								<div class="mac-dots">
+									<span></span><span></span><span></span>
+								</div>
+								<div class="file-name">revenue_analysis.sql</div>
+							</div>
+							<pre><code class="language-sql">WITH MonthlyRevenue AS (
     SELECT 
         DATE_TRUNC('month', transaction_date) AS month,
         SUM(amount) AS total_revenue
@@ -542,26 +574,27 @@ SELECT month, total_revenue,
        (total_revenue - LAG(total_revenue) OVER (ORDER BY month)) / LAG(total_revenue) OVER (ORDER BY month) * 100 AS mom_growth_pct
 FROM MonthlyRevenue
 ORDER BY month DESC;</code></pre>
-					</div>
-				</div>
-
-				<hr>
-
-				<div id="skill-cybersecurity" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>🔐 Cybersecurity</h3>
-					<p>Security must be integrated from the ground up. I have hands-on experience using tools like
-						<strong>Splunk</strong> and <strong>Venafi</strong> to implement proactive threat detection,
-						manage certificates, and secure data in transit. My focus is on embedding security within the
-						DevOps lifecycle (DecSecOps) to preempt vulnerabilities.
-					</p>
-					<div class="code-window">
-						<div class="code-window-header">
-							<div class="mac-dots">
-								<span></span><span></span><span></span>
-							</div>
-							<div class="file-name">auth_security.py</div>
 						</div>
-						<pre><code class="language-python">import hashlib
+					</div>
+
+					<hr>
+
+					<div id="skill-cybersecurity" style="padding-top: 3rem; margin-top: -3rem;">
+						<h3>🔐 Cybersecurity</h3>
+						<p>Security must be integrated from the ground up. I have hands-on experience using tools like
+							<strong>Splunk</strong> and <strong>Venafi</strong> to implement proactive threat detection,
+							manage certificates, and secure data in transit. My focus is on embedding security within
+							the
+							DevOps lifecycle (DecSecOps) to preempt vulnerabilities.
+						</p>
+						<div class="code-window">
+							<div class="code-window-header">
+								<div class="mac-dots">
+									<span></span><span></span><span></span>
+								</div>
+								<div class="file-name">auth_security.py</div>
+							</div>
+							<pre><code class="language-python">import hashlib
 import os
 
 def secure_hash_password(password: str) -> str:
@@ -576,30 +609,32 @@ def secure_hash_password(password: str) -> str:
         100000 # 100,000 iterations
     )
     return salt.hex() + ':' + key.hex()</code></pre>
+						</div>
 					</div>
-				</div>
 
-				<hr>
+					<hr>
 
-				<div id="skill-fintech" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>📈 FinTech &amp; Quant</h3>
-					<p>Applying mathematical and statistical methods to financial markets is a specialization of mine. I
-						build models for risk assessment, algorithmic trading, and portfolio optimization. Leveraging
-						real-time data ingestion and time-series analysis, I deliver insights that directly impact
-				</div>
+					<div id="skill-fintech" style="padding-top: 3rem; margin-top: -3rem;">
+						<h3>📈 FinTech &amp; Quant</h3>
+						<p>Applying mathematical and statistical methods to financial markets is a specialization of
+							mine. I
+							build models for risk assessment, algorithmic trading, and portfolio optimization.
+							Leveraging
+							real-time data ingestion and time-series analysis, I deliver insights that directly impact
+					</div>
 
 				</div>
 
 				<!-- ── Tab Switching Script ── -->
 				<script>
-					(function() {
+					(function () {
 						var btns = document.querySelectorAll('.code-tab-btn');
 						var panels = document.querySelectorAll('.code-tab-panel');
-						btns.forEach(function(btn) {
-							btn.addEventListener('click', function() {
+						btns.forEach(function (btn) {
+							btn.addEventListener('click', function () {
 								var target = btn.getAttribute('data-code-tab');
-								btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
-								panels.forEach(function(p) { p.classList.remove('active'); });
+								btns.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+								panels.forEach(function (p) { p.classList.remove('active'); });
 								btn.classList.add('active');
 								btn.setAttribute('aria-selected', 'true');
 								document.getElementById('code-panel-' + target).classList.add('active');
@@ -699,7 +734,8 @@ def secure_hash_password(password: str) -> str:
 			<article id="tool-stopwatch">
 				<h2 class="major">Activity Stopwatch</h2>
 				<div style="text-align: center; margin: 3rem 0;">
-					<input type="text" id="stopwatch-event-name" placeholder="Name your session (e.g. Study, Work...)" style="max-width: 400px; margin: 0 auto 2rem auto; text-align: center; font-size: 1.1rem; padding: 0.8rem;" />
+					<input type="text" id="stopwatch-event-name" placeholder="Name your session (e.g. Study, Work...)"
+						style="max-width: 400px; margin: 0 auto 2rem auto; text-align: center; font-size: 1.1rem; padding: 0.8rem;" />
 					<div id="stopwatch-display"
 						style="font-size: 4rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #ffffff; text-shadow: 0 0 20px rgba(16,185,129,0.5);">
 						00:00:00.00</div>
@@ -710,7 +746,9 @@ def secure_hash_password(password: str) -> str:
 						<li><button id="stopwatch-reset" class="button">Reset</button></li>
 					</ul>
 					<ul class="actions" style="justify-content: center; margin-top: 1rem;">
-						<li><button id="stopwatch-export-ics" class="button"><i class="fas fa-calendar-plus" style="margin-right:0.5rem; color:#60c3ff;"></i>Export to Calendar (.ics)</button></li>
+						<li><button id="stopwatch-export-ics" class="button"><i class="fas fa-calendar-plus"
+									style="margin-right:0.5rem; color:#60c3ff;"></i>Export to Calendar (.ics)</button>
+						</li>
 					</ul>
 					<div id="stopwatch-laps"
 						style="margin-top: 2rem; text-align: left; max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
@@ -1095,10 +1133,10 @@ def secure_hash_password(password: str) -> str:
 				const mins = Math.floor((swTime % 3600000) / 60000);
 				const secs = Math.floor((swTime % 60000) / 1000);
 				const timeStr = `${hrs}h ${mins}m ${secs}s`;
-				
+
 				const end = new Date();
 				const start = new Date(end.getTime() - swTime);
-				
+
 				const pad = n => String(n).padStart(2, '0');
 				const formatICSDate = d => {
 					return d.getUTCFullYear() +
@@ -1108,11 +1146,11 @@ def secure_hash_password(password: str) -> str:
 						pad(d.getUTCMinutes()) +
 						pad(d.getUTCSeconds()) + 'Z';
 				};
-				
+
 				let laps = [];
-				$('#laps-list li').each(function() { laps.push($(this).text()); });
+				$('#laps-list li').each(function () { laps.push($(this).text()); });
 				let desc = `Time recorded using Activity Stopwatch: ${timeStr}\\n` + (laps.length > 0 ? `\\nLaps:\\n${laps.join('\\n')}` : '');
-				
+
 				const icsContent = "BEGIN:VCALENDAR\r\n" +
 					"VERSION:2.0\r\n" +
 					"PRODID:-//Sitraka Portfolio//Activity Stopwatch//EN\r\n" +
@@ -1123,7 +1161,7 @@ def secure_hash_password(password: str) -> str:
 					"DESCRIPTION:" + desc + "\r\n" +
 					"END:VEVENT\r\n" +
 					"END:VCALENDAR";
-					
+
 				const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
 				const link = document.createElement('a');
 				link.href = URL.createObjectURL(blob);
