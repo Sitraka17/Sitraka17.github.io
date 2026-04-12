@@ -1438,17 +1438,16 @@ def secure_hash_password(password: str) -> str:
 			});
 			$('#todo-task-input').keypress(function (e) { if (e.which === 13) $('#todo-add-btn').click(); });
 
-			$(document).on('click', '.todo-checkbox', function () {
+			$('#tool-progress').on('click', '.todo-checkbox', function () {
 				const idx = $(this).data('idx');
 				const todos = getTodos();
 				todos[idx].done = !todos[idx].done;
 				saveTodos(todos);
 				renderTodos();
 			});
-			$(document).on('click', '.todo-delete', function (e) {
+			$('#tool-progress').on('click', '.todo-delete', function (e) {
 				e.stopPropagation();
-				const btn = $(this).closest('.todo-delete');
-				const idx = btn.data('idx');
+				const idx = $(this).data('idx');
 				const todos = getTodos();
 				if (idx === undefined || idx < 0 || idx >= todos.length) return;
 				todos.splice(idx, 1);
