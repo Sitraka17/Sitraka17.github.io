@@ -353,9 +353,9 @@
 					<div class="tool-grid"
 						style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
 						<a href="#tool-progress" class="skill-card tool-card" style="text-decoration: none;">
-							<i class="fas fa-tasks"></i>
-							<span>Progress Report</span>
-							<p>Monitor your progress with a system to check and share your progress with others.</p>
+							<i class="fas fa-list-check"></i>
+							<span>To-Do List Maker</span>
+							<p>Create, check off, and export your to-do list to Google Calendar.</p>
 						</a>
 
 						<a href="#tool-pomodoro" class="skill-card tool-card" style="text-decoration: none;">
@@ -685,20 +685,215 @@ def secure_hash_password(password: str) -> str:
 
 			<!-- Featured Tools Articles -->
 			<article id="tool-progress">
-				<h2 class="major">Daily Progress Report</h2>
-				<p>Log your completed tasks today and easily copy them for your standup or daily report.</p>
-				<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-					<input type="text" id="progress-task-input" placeholder="e.g. Deployed ML model to prod..."
-						style="flex: 1;" />
-					<button id="progress-add-btn" class="button primary">Add</button>
+				<h2 class="major">To-Do List Maker</h2>
+				<p style="margin-bottom: 1.5rem; color: rgba(255,255,255,0.7);">Create your task list, check items off,
+					and export everything to your Google Calendar.</p>
+
+				<style>
+					.todo-input-group {
+						display: flex;
+						flex-direction: column;
+						gap: 0.8rem;
+						background: rgba(255, 255, 255, 0.04);
+						border: 1px solid rgba(167, 139, 250, 0.15);
+						padding: 1.2rem;
+						border-radius: 14px;
+						margin-bottom: 1.5rem;
+						backdrop-filter: blur(8px);
+					}
+
+					.todo-input-group .todo-row {
+						display: flex;
+						gap: 0.8rem;
+						align-items: center;
+						flex-wrap: wrap;
+					}
+
+					.todo-input-group input[type="text"] {
+						flex: 1;
+						min-width: 180px;
+					}
+
+					.todo-input-group input[type="date"],
+					.todo-input-group input[type="time"] {
+						width: auto;
+						min-width: 130px;
+					}
+
+					.todo-item {
+						display: flex;
+						align-items: center;
+						gap: 0.8rem;
+						padding: 0.75rem 1rem;
+						background: rgba(255, 255, 255, 0.05);
+						border: 1px solid rgba(167, 139, 250, 0.1);
+						border-radius: 10px;
+						margin-bottom: 0.5rem;
+						transition: all 0.3s ease;
+						position: relative;
+						overflow: hidden;
+					}
+
+					.todo-item:hover {
+						background: rgba(167, 139, 250, 0.08);
+						border-color: rgba(167, 139, 250, 0.25);
+					}
+
+					.todo-item.checked {
+						opacity: 0.55;
+					}
+
+					.todo-item.checked .todo-text {
+						text-decoration: line-through;
+						color: rgba(255, 255, 255, 0.4);
+					}
+
+					.todo-checkbox {
+						width: 22px;
+						height: 22px;
+						border-radius: 6px;
+						border: 2px solid rgba(167, 139, 250, 0.5);
+						cursor: pointer;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						transition: all 0.25s ease;
+						flex-shrink: 0;
+						background: transparent;
+					}
+
+					.todo-checkbox:hover {
+						border-color: #a78bfa;
+						box-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
+					}
+
+					.todo-checkbox.checked {
+						background: linear-gradient(135deg, #7b2fff, #a78bfa);
+						border-color: transparent;
+						animation: todoCheckPop 0.3s ease;
+					}
+
+					.todo-checkbox.checked::after {
+						content: '\f00c';
+						font-family: 'Font Awesome 6 Free';
+						font-weight: 900;
+						color: #fff;
+						font-size: 0.7rem;
+					}
+
+					@keyframes todoCheckPop {
+						0% {
+							transform: scale(1)
+						}
+
+						50% {
+							transform: scale(1.25)
+						}
+
+						100% {
+							transform: scale(1)
+						}
+					}
+
+					.todo-text {
+						flex: 1;
+						font-size: 0.95rem;
+						color: #fff;
+						transition: all 0.3s ease;
+					}
+
+					.todo-meta {
+						font-size: 0.75rem;
+						color: rgba(167, 139, 250, 0.7);
+						display: flex;
+						gap: 0.6rem;
+						flex-shrink: 0;
+					}
+
+					.todo-delete {
+						background: none;
+						border: none;
+						color: rgba(239, 68, 68, 0.6);
+						cursor: pointer;
+						padding: 4px;
+						box-shadow: none;
+						height: auto;
+						line-height: 1;
+						transition: color 0.2s ease;
+						flex-shrink: 0;
+					}
+
+					.todo-delete:hover {
+						color: #ef4444;
+					}
+
+					.todo-empty {
+						text-align: center;
+						padding: 2.5rem 1rem;
+						color: rgba(255, 255, 255, 0.25);
+						font-size: 0.95rem;
+					}
+
+					.todo-stats {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						padding: 0.6rem 0;
+						margin-bottom: 0.5rem;
+						font-size: 0.8rem;
+						color: rgba(255, 255, 255, 0.4);
+					}
+
+					.todo-progress-bar {
+						height: 4px;
+						background: rgba(167, 139, 250, 0.15);
+						border-radius: 4px;
+						overflow: hidden;
+						margin-bottom: 1rem;
+					}
+
+					.todo-progress-fill {
+						height: 100%;
+						background: linear-gradient(90deg, #7b2fff, #a78bfa);
+						border-radius: 4px;
+						transition: width 0.4s cubic-bezier(.4, 0, .2, 1);
+					}
+				</style>
+
+				<!-- Input area -->
+				<div class="todo-input-group">
+					<div class="todo-row">
+						<input type="text" id="todo-task-input" placeholder="What do you need to do?" />
+						<button id="todo-add-btn" class="button primary"><i class="fas fa-plus"
+								style="margin-right:0.4rem;"></i>Add</button>
+					</div>
+					<div class="todo-row">
+						<input type="date" id="todo-date-input" />
+						<input type="time" id="todo-time-start" placeholder="Start" />
+						<input type="time" id="todo-time-end" placeholder="End" />
+					</div>
 				</div>
-				<ul id="progress-task-list" style="list-style: none; padding: 0; margin-bottom: 2rem;">
-				</ul>
-				<ul class="actions">
-					<li><button id="progress-copy-btn" class="button"><i class="fas fa-copy"
-								style="margin-right:0.5rem;"></i>Copy Report</button></li>
-					<li><button id="progress-clear-btn" class="button"
-							style="border-color: rgba(239, 68, 68, 0.5); color: #ef4444;">Clear</button></li>
+
+				<!-- Progress bar -->
+				<div class="todo-stats">
+					<span id="todo-stats-text">0 of 0 tasks completed</span>
+					<span id="todo-stats-pct">0%</span>
+				</div>
+				<div class="todo-progress-bar">
+					<div class="todo-progress-fill" id="todo-progress-fill" style="width: 0%;"></div>
+				</div>
+
+				<!-- Task list -->
+				<div id="todo-task-list"></div>
+
+				<!-- Actions -->
+				<ul class="actions" style="margin-top: 1.5rem;">
+					<li><button id="todo-export-ics" class="button primary"><i class="fas fa-calendar-plus"
+								style="margin-right:0.5rem;"></i>Export to Google Calendar (.ics)</button></li>
+					<li><button id="todo-copy-btn" class="button"><i class="fas fa-copy"
+								style="margin-right:0.5rem;"></i>Copy List</button></li>
+					<li><button id="todo-clear-btn" class="button"
+							style="border-color: rgba(239,68,68,0.5); color: #ef4444;">Clear All</button></li>
 				</ul>
 			</article>
 
@@ -1171,52 +1366,155 @@ def secure_hash_password(password: str) -> str:
 				document.body.removeChild(link);
 			});
 
-			// 4. Progress Report
-			function loadTasks() {
-				let tasks = JSON.parse(localStorage.getItem('progressTasks') || '[]');
-				$('#progress-task-list').empty();
-				tasks.forEach((t, i) => {
-					$('#progress-task-list').append(`
-						<li style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; background:rgba(255,255,255,0.05); padding:0.5rem 1rem; border-radius:8px;">
-							<span><i class="fas fa-check-circle" style="color:#10b981; margin-right:0.5rem;"></i>${t}</span>
-							<button class="remove-task" data-idx="${i}" style="background:none; box-shadow:none; padding:0; height:auto; line-height:1; border:none; color:#ef4444;"><i class="fas fa-times"></i></button>
-						</li>
+			// 4. To-Do List Maker
+			function getTodos() {
+				return JSON.parse(localStorage.getItem('todoListItems') || '[]');
+			}
+			function saveTodos(todos) {
+				localStorage.setItem('todoListItems', JSON.stringify(todos));
+			}
+			function updateTodoStats() {
+				const todos = getTodos();
+				const total = todos.length;
+				const done = todos.filter(t => t.done).length;
+				const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+				$('#todo-stats-text').text(`${done} of ${total} tasks completed`);
+				$('#todo-stats-pct').text(`${pct}%`);
+				$('#todo-progress-fill').css('width', pct + '%');
+			}
+			function renderTodos() {
+				const todos = getTodos();
+				const container = $('#todo-task-list');
+				container.empty();
+				if (todos.length === 0) {
+					container.html('<div class="todo-empty"><i class="fas fa-clipboard-list" style="font-size:2rem; display:block; margin-bottom:0.8rem; opacity:0.3;"></i>No tasks yet — add one above!</div>');
+					updateTodoStats();
+					return;
+				}
+				todos.forEach((t, i) => {
+					let metaHtml = '';
+					if (t.date) metaHtml += `<span><i class="fas fa-calendar" style="margin-right:3px;"></i>${t.date}</span>`;
+					if (t.timeStart) metaHtml += `<span><i class="fas fa-clock" style="margin-right:3px;"></i>${t.timeStart}${t.timeEnd ? ' – ' + t.timeEnd : ''}</span>`;
+					container.append(`
+						<div class="todo-item${t.done ? ' checked' : ''}" data-idx="${i}">
+							<div class="todo-checkbox${t.done ? ' checked' : ''}" data-idx="${i}"></div>
+							<div style="flex:1; min-width:0;">
+								<div class="todo-text">${$('<span>').text(t.text).html()}</div>
+								${metaHtml ? '<div class="todo-meta">' + metaHtml + '</div>' : ''}
+							</div>
+							<button class="todo-delete" data-idx="${i}"><i class="fas fa-trash-alt"></i></button>
+						</div>
 					`);
 				});
+				updateTodoStats();
 			}
-			if ($('#progress-task-list').length) {
-				loadTasks();
-			}
-			$('#progress-add-btn').click(function () {
-				let t = $('#progress-task-input').val().trim();
-				if (t) {
-					let tasks = JSON.parse(localStorage.getItem('progressTasks') || '[]');
-					tasks.push(t);
-					localStorage.setItem('progressTasks', JSON.stringify(tasks));
-					$('#progress-task-input').val('');
-					loadTasks();
-				}
-			});
-			$('#progress-task-input').keypress(function (e) { if (e.which == 13) $('#progress-add-btn').click(); });
-			$(document).on('click', '.remove-task', function () {
-				let tasks = JSON.parse(localStorage.getItem('progressTasks') || '[]');
-				tasks.splice($(this).data('idx'), 1);
-				localStorage.setItem('progressTasks', JSON.stringify(tasks));
-				loadTasks();
-			});
-			$('#progress-clear-btn').click(function () {
-				localStorage.removeItem('progressTasks');
-				loadTasks();
-			});
-			$('#progress-copy-btn').click(function () {
-				let tasks = JSON.parse(localStorage.getItem('progressTasks') || '[]');
-				if (tasks.length === 0) return alert("No tasks to copy!");
-				let text = "Daily Progress Report:\n" + tasks.map(t => "- " + t).join("\n");
-				navigator.clipboard.writeText(text).then(() => {
-					let oldHtml = $(this).html();
-					$(this).html('<i class="fas fa-check" style="margin-right:0.5rem;"></i>Copied!');
-					setTimeout(() => $(this).html(oldHtml), 2000);
+
+			// Set default date to today
+			const todayStr = new Date().toISOString().split('T')[0];
+			$('#todo-date-input').val(todayStr);
+
+			if ($('#todo-task-list').length) renderTodos();
+
+			$('#todo-add-btn').click(function () {
+				const text = $('#todo-task-input').val().trim();
+				if (!text) return;
+				const todos = getTodos();
+				todos.push({
+					text: text,
+					date: $('#todo-date-input').val() || '',
+					timeStart: $('#todo-time-start').val() || '',
+					timeEnd: $('#todo-time-end').val() || '',
+					done: false
 				});
+				saveTodos(todos);
+				$('#todo-task-input').val('');
+				renderTodos();
+			});
+			$('#todo-task-input').keypress(function (e) { if (e.which === 13) $('#todo-add-btn').click(); });
+
+			$(document).on('click', '.todo-checkbox', function () {
+				const idx = $(this).data('idx');
+				const todos = getTodos();
+				todos[idx].done = !todos[idx].done;
+				saveTodos(todos);
+				renderTodos();
+			});
+			$(document).on('click', '.todo-delete', function () {
+				const todos = getTodos();
+				todos.splice($(this).data('idx'), 1);
+				saveTodos(todos);
+				renderTodos();
+			});
+			$('#todo-clear-btn').click(function () {
+				if (getTodos().length === 0) return;
+				if (!confirm('Clear all tasks?')) return;
+				localStorage.removeItem('todoListItems');
+				renderTodos();
+			});
+			$('#todo-copy-btn').click(function () {
+				const todos = getTodos();
+				if (todos.length === 0) return alert('No tasks to copy!');
+				const lines = todos.map(t => {
+					let line = (t.done ? '☑' : '☐') + ' ' + t.text;
+					if (t.date) line += ` (${t.date}${t.timeStart ? ' ' + t.timeStart : ''}${t.timeEnd ? '-' + t.timeEnd : ''})`;
+					return line;
+				});
+				const text = 'To-Do List:\n' + lines.join('\n');
+				navigator.clipboard.writeText(text).then(() => {
+					const btn = $(this);
+					const old = btn.html();
+					btn.html('<i class="fas fa-check" style="margin-right:0.5rem;"></i>Copied!');
+					setTimeout(() => btn.html(old), 2000);
+				});
+			});
+
+			// Export to .ics for Google Calendar
+			$('#todo-export-ics').click(function () {
+				const todos = getTodos();
+				if (todos.length === 0) return alert('Add some tasks first!');
+
+				const pad = n => String(n).padStart(2, '0');
+				const fmtICS = d => d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+				const uid = () => 'todo-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+
+				let events = '';
+				todos.forEach(t => {
+					const dateStr = t.date || new Date().toISOString().split('T')[0];
+					const startTime = t.timeStart || '09:00';
+					const endTime = t.timeEnd || (function () {
+						const [h, m] = startTime.split(':').map(Number);
+						return pad(Math.min(h + 1, 23)) + ':' + pad(m);
+					})();
+
+					const dtStart = new Date(dateStr + 'T' + startTime + ':00');
+					const dtEnd = new Date(dateStr + 'T' + endTime + ':00');
+					const status = t.done ? 'COMPLETED' : 'NEEDS-ACTION';
+
+					events += 'BEGIN:VEVENT\r\n' +
+						'UID:' + uid() + '@sitraka-todo\r\n' +
+						'DTSTAMP:' + fmtICS(new Date()) + '\r\n' +
+						'DTSTART:' + fmtICS(dtStart) + '\r\n' +
+						'DTEND:' + fmtICS(dtEnd) + '\r\n' +
+						'SUMMARY:' + (t.done ? '✅ ' : '') + t.text + '\r\n' +
+						'DESCRIPTION:Status: ' + (t.done ? 'Done' : 'Pending') + '\r\n' +
+						'STATUS:' + (t.done ? 'CONFIRMED' : 'TENTATIVE') + '\r\n' +
+						'END:VEVENT\r\n';
+				});
+
+				const ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Sitraka Portfolio//To-Do List//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n' + events + 'END:VCALENDAR';
+
+				const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+				const link = document.createElement('a');
+				link.href = URL.createObjectURL(blob);
+				link.download = 'todo_list_' + new Date().toISOString().split('T')[0] + '.ics';
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+
+				const btn = $(this);
+				const old = btn.html();
+				btn.html('<i class="fas fa-check" style="margin-right:0.5rem;"></i>Downloaded!');
+				setTimeout(() => btn.html(old), 2500);
 			});
 
 			// 5. Deep Search
