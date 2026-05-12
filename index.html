@@ -820,7 +820,19 @@ def secure_hash_password(password: str) -> str:
 				<div class="pomo-card" id="pomo-goal-card" style="padding:0.9rem 1.2rem;">
 					<label style="display:block;font-size:0.72rem;color:rgba(167,139,250,0.65);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.5rem;">🎯 What do you want to achieve this session?</label>
 					<input type="text" id="pomo-goal-input" placeholder="e.g. Finish chapter 3, review PRs, write intro…"
-						style="width:100%;box-sizing:border-box;font-size:0.88rem;padding:0.5rem 0.8rem;border-radius:8px;"/>
+						style="width:100%;box-sizing:border-box;font-size:0.88rem;padding:0.5rem 0.8rem;border-radius:8px;margin-bottom:0.6rem;"/>
+					<div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+						<select id="pomo-label-select" style="flex:1;min-width:140px;font-size:0.82rem;padding:0.3rem 0.5rem;border-radius:8px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);border:1px solid rgba(167,139,250,0.2);">
+							<option value="">🏷️ No label</option>
+							<option value="💻 Coding">💻 Coding</option>
+							<option value="📚 Study">📚 Study</option>
+							<option value="💼 Work">💼 Work</option>
+							<option value="📖 Reading">📖 Reading</option>
+							<option value="✍️ Writing">✍️ Writing</option>
+							<option value="🎨 Creative">🎨 Creative</option>
+							<option value="🏋️ Exercise">🏋️ Exercise</option>
+						</select>
+					</div>
 				</div>
 
 				<!-- Ring + display -->
@@ -878,6 +890,15 @@ def secure_hash_password(password: str) -> str:
 					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.65);cursor:pointer;">
 						<input type="checkbox" id="pomo-sound-toggle" checked style="width:14px;height:14px;cursor:pointer;"> 🔊
 					</label>
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.65);">
+						🎵
+						<select id="pomo-ambient-select" style="font-size:0.8rem;padding:0.25rem 0.4rem;border-radius:6px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);border:1px solid rgba(167,139,250,0.2);">
+							<option value="none">None</option>
+							<option value="rain">🌧️ Rain</option>
+							<option value="white">🌊 White</option>
+							<option value="brown">🌿 Brown</option>
+						</select>
+					</label>
 				</div>
 
 				<!-- Controls -->
@@ -887,6 +908,25 @@ def secure_hash_password(password: str) -> str:
 					<li><button id="pomodoro-reset" class="button" style="min-width:90px;"><i class="fas fa-rotate-left" style="margin-right:0.4rem;"></i>Reset</button></li>
 				</ul>
 				<p style="text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:-0.5rem;">Press <kbd style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:0.1rem 0.4rem;font-family:'JetBrains Mono',monospace;">Space</kbd> to start / pause</p>
+
+				<!-- Stats Panel -->
+				<div class="pomo-card" style="margin-top:1.5rem;padding:1rem 1.2rem;">
+					<div style="font-size:0.72rem;color:rgba(167,139,250,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.8rem;">📊 Your Stats</div>
+					<div style="display:flex;gap:0;">
+						<div style="flex:1;text-align:center;border-right:1px solid rgba(167,139,250,0.12);padding-right:0.5rem;">
+							<div id="pomo-stat-streak" style="font-size:1.5rem;font-weight:700;color:#fff;line-height:1;">0🔥</div>
+							<div style="font-size:0.68rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;">Day Streak</div>
+						</div>
+						<div style="flex:1;text-align:center;border-right:1px solid rgba(167,139,250,0.12);padding:0 0.5rem;">
+							<div id="pomo-stat-today" style="font-size:1rem;font-weight:700;color:#a78bfa;line-height:1;">0</div>
+							<div style="font-size:0.68rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;">Today's Sessions</div>
+						</div>
+						<div style="flex:1;text-align:center;padding-left:0.5rem;">
+							<div id="pomo-stat-total" style="font-size:1rem;font-weight:700;color:#6ee7b7;line-height:1;">0h 0m</div>
+							<div style="font-size:0.68rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;">Total Focus</div>
+						</div>
+					</div>
+				</div>
 
 				<!-- Session Log -->
 				<div id="pomo-log-section" style="display:none;margin-top:1.5rem;">
