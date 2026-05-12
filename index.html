@@ -68,7 +68,7 @@
 				<ul>
 					<li><a href="#intro">Intro</a></li>
 					<li><a href="#work">Work</a></li>
-					<li><a href="#code">Code</a></li>
+					<li><a href="#code">Tools</a></li>
 					<li><a href="#luxaiops">LuxAiOps</a></li>
 					<li><a href="#contact">Contact</a></li>
 				</ul>
@@ -760,20 +760,65 @@ def secure_hash_password(password: str) -> str:
 			</article>
 
 			<article id="tool-pomodoro">
-				<h2 class="major">Pomodoro Timer</h2>
-				<div style="text-align: center; margin: 3rem 0;">
-					<div id="pomodoro-display"
-						style="font-size: 5rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #ffffff; text-shadow: 0 0 20px rgba(123,47,255,0.5);">
-						25:00</div>
-					<div id="pomodoro-status"
-						style="margin-bottom: 2rem; color: #a78bfa; letter-spacing: 0.2rem; text-transform: uppercase;">
-						Focus Time</div>
-					<ul class="actions" style="justify-content: center;">
-						<li><button id="pomodoro-start" class="button primary">Start</button></li>
-						<li><button id="pomodoro-pause" class="button">Pause</button></li>
-						<li><button id="pomodoro-reset" class="button">Reset</button></li>
-					</ul>
+				<h2 class="major">🍅 Pomodoro Timer</h2>
+
+				<!-- Notification Banner -->
+				<div id="pomo-notif-banner" style="display:flex; align-items:center; gap:1rem; background:rgba(167,139,250,0.08); border:1px solid rgba(167,139,250,0.25); border-radius:10px; padding:1rem 1.2rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+					<i class="fas fa-bell" style="color:#a78bfa; font-size:1.2rem;"></i>
+					<span style="flex:1; font-size:0.88rem; color:rgba(255,255,255,0.7);">Enable browser notifications to get alerted when your session ends — even if you switch tabs!</span>
+					<button id="pomo-notif-btn" class="button" style="font-size:0.82rem; padding:0.45rem 1rem; white-space:nowrap;">🔔 Enable Notifications</button>
 				</div>
+
+				<!-- Session Counter -->
+				<div style="text-align:center; margin-bottom:0.5rem;">
+					<span style="color:#a78bfa; font-size:0.95rem; letter-spacing:0.08em;">
+						🍅 Sessions completed: <strong id="pomo-session-count" style="color:#fff; font-size:1.1rem;">0</strong>
+					</span>
+				</div>
+
+				<!-- SVG Ring + Display -->
+				<div style="text-align:center; margin:1.2rem 0;">
+					<div style="position:relative; display:inline-block;">
+						<svg width="220" height="220" style="transform:rotate(-90deg);">
+							<defs>
+								<linearGradient id="pomoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+									<stop offset="0%" style="stop-color:#7b2fff"/>
+									<stop offset="100%" style="stop-color:#a78bfa"/>
+								</linearGradient>
+							</defs>
+							<circle cx="110" cy="110" r="96" fill="none" stroke="rgba(167,139,250,0.12)" stroke-width="10"/>
+							<circle id="pomo-ring-fill" cx="110" cy="110" r="96" fill="none"
+								stroke="#a78bfa" stroke-width="10" stroke-linecap="round"
+								stroke-dasharray="603.2" stroke-dashoffset="0"
+								style="transition: stroke-dashoffset 1s linear;"/>
+						</svg>
+						<div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; width:160px;">
+							<div id="pomodoro-display" style="font-size:3rem; font-family:'JetBrains Mono',monospace; font-weight:700; color:#fff; text-shadow:0 0 20px rgba(123,47,255,0.5); line-height:1;">25:00</div>
+							<div id="pomodoro-status" style="margin-top:0.4rem; color:#a78bfa; letter-spacing:0.12rem; text-transform:uppercase; font-size:0.75rem;">Focus Time</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Custom Durations -->
+				<div style="display:flex; justify-content:center; gap:2.5rem; margin:1rem 0; flex-wrap:wrap;">
+					<label style="color:rgba(255,255,255,0.65); font-size:0.88rem; display:flex; align-items:center; gap:0.5rem;">
+						🎯 Focus
+						<input type="number" id="pomo-focus-min" value="25" min="1" max="99"
+							style="width:54px; text-align:center; font-family:'JetBrains Mono',monospace; padding:0.3rem; font-size:0.95rem;"> min
+					</label>
+					<label style="color:rgba(255,255,255,0.65); font-size:0.88rem; display:flex; align-items:center; gap:0.5rem;">
+						☕ Break
+						<input type="number" id="pomo-break-min" value="5" min="1" max="99"
+							style="width:54px; text-align:center; font-family:'JetBrains Mono',monospace; padding:0.3rem; font-size:0.95rem;"> min
+					</label>
+				</div>
+
+				<!-- Controls -->
+				<ul class="actions" style="justify-content:center; margin-top:1.2rem;">
+					<li><button id="pomodoro-start" class="button primary"><i class="fas fa-play" style="margin-right:0.4rem;"></i>Start</button></li>
+					<li><button id="pomodoro-pause" class="button"><i class="fas fa-pause" style="margin-right:0.4rem;"></i>Pause</button></li>
+					<li><button id="pomodoro-reset" class="button"><i class="fas fa-rotate-left" style="margin-right:0.4rem;"></i>Reset</button></li>
+				</ul>
 			</article>
 
 			<article id="tool-random-name">
