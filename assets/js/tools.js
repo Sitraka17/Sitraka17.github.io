@@ -33,44 +33,141 @@ function showToast(message, type = 'info') {
 /* ---- Featured Tools Logic ---- */
 $(document).ready(function () {
     // 1. Pomodoro Timer
-    let pomoInterval;
+    const POMO_CIRC = 2 * Math.PI * 96; // 603.19
+    let pomoInterval = null;
     let isFocus = true;
-    let timeLeft = 25 * 60;
+    let pomoSessionCount = 0;
+    let pomoTotalTime = 25 * 60;
+    let pomoTimeLeft  = 25 * 60;
+    let pomoOrigTitle = document.title;
+
+    function getPomoDurations() {
+        const f = parseInt($('#pomo-focus-min').val(), 10);
+        const b = parseInt($('#pomo-break-min').val(), 10);
+        return { focus: (isNaN(f) || f < 1 ? 25 : f) * 60,
+                 breakT: (isNaN(b) || b < 1 ? 5  : b) * 60 };
+    }
 
     function updatePomoDisplay() {
-        let m = Math.floor(timeLeft / 60);
-        let s = timeLeft % 60;
-        $('#pomodoro-display').text((m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s);
+        const m = Math.floor(pomoTimeLeft / 60);
+        const s = pomoTimeLeft % 60;
+        const txt = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        $('#pomodoro-display').text(txt);
+        // tab title
+        document.title = txt + ' | ' + (isFocus ? '🎯 Focus' : '☕ Break');
+        // ring
+        const ring = document.getElementById('pomo-ring-fill');
+        if (ring && pomoTotalTime > 0) {
+            const offset = POMO_CIRC * (1 - pomoTimeLeft / pomoTotalTime);
+            ring.style.strokeDashoffset = offset;
+        }
     }
-    $('#pomodoro-start').click(function () {
-        if (pomoInterval) return;
-        pomoInterval = setInterval(() => {
-            if (timeLeft > 0) {
-                timeLeft--;
-                updatePomoDisplay();
-            } else {
-                clearInterval(pomoInterval);
-                pomoInterval = null;
-                isFocus = !isFocus;
-                timeLeft = isFocus ? 25 * 60 : 5 * 60;
-                $('#pomodoro-status').text(isFocus ? 'Focus Time' : 'Break Time');
-                updatePomoDisplay();
-                showToast(isFocus ? "Break's over! Back to work!" : "Pomodoro finished! Take a 5 min break.", isFocus ? 'info' : 'success');
-            }
-        }, 1000);
-    });
-    $('#pomodoro-pause').click(function () {
+
+    function pomoSendNotification(title, body) {
+        if ('Notification' in window && Notification.permission === 'granted') {
+            new Notification(title, { body: body, tag: 'pomodoro', renotify: true });
+        }
+    }
+
+    function pomoRingColor(focus) {
+        const ring = document.getElementById('pomo-ring-fill');
+        if (ring) ring.setAttribute('stroke', focus ? '#a78bfa' : '#10b981');
+    }
+
+    function pomoPhaseEnd() {
         clearInterval(pomoInterval);
         pomoInterval = null;
+        isFocus = !isFocus;
+        const d = getPomoDurations();
+        if (!isFocus) {
+            // just finished focus → increment session
+            pomoSessionCount++;
+            $('#pomo-session-count').text(pomoSessionCount);
+        }
+        pomoTotalTime = isFocus ? d.focus : d.breakT;
+        pomoTimeLeft  = pomoTotalTime;
+        $('#pomodoro-status').text(isFocus ? 'Focus Time' : 'Break Time');
+        pomoRingColor(isFocus);
+        updatePomoDisplay();
+        const toastMsg  = isFocus ? "Break's over! Back to work! 🎯" : '🍅 Pomodoro done! Take a break ☕';
+        const notifTitle = isFocus ? "⏰ Break's Over!" : '🍅 Pomodoro Complete!';
+        const notifBody  = isFocus ? 'Time to focus again!' : 'Great work! Take a break.';
+        showToast(toastMsg, isFocus ? 'info' : 'success');
+        pomoSendNotification(notifTitle, notifBody);
+        // auto-start next phase
+        startPomoInterval();
+    }
+
+    function startPomoInterval() {
+        if (pomoInterval) return;
+        pomoInterval = setInterval(function () {
+            if (pomoTimeLeft > 0) {
+                pomoTimeLeft--;
+                updatePomoDisplay();
+            } else {
+                pomoPhaseEnd();
+            }
+        }, 1000);
+    }
+
+    // Notification permission button
+    if ('Notification' in window && Notification.permission === 'granted') {
+        $('#pomo-notif-banner').hide();
+    }
+    $('#pomo-notif-btn').on('click', function () {
+        if (!('Notification' in window)) {
+            showToast('Your browser does not support notifications.', 'error');
+            return;
+        }
+        Notification.requestPermission().then(function (perm) {
+            if (perm === 'granted') {
+                $('#pomo-notif-banner').slideUp(300);
+                showToast('🔔 Notifications enabled!', 'success');
+                new Notification('Pomodoro Timer', { body: 'You will now be alerted at the end of each session!', tag: 'pomodoro' });
+            } else {
+                showToast('Notifications blocked — allow them in your browser settings.', 'warning');
+            }
+        });
     });
-    $('#pomodoro-reset').click(function () {
+
+    $('#pomodoro-start').on('click', function () {
+        if (pomoInterval) return;
+        // if at start of phase, apply current input values
+        if (pomoTimeLeft === pomoTotalTime) {
+            const d = getPomoDurations();
+            pomoTotalTime = isFocus ? d.focus : d.breakT;
+            pomoTimeLeft  = pomoTotalTime;
+            updatePomoDisplay();
+        }
+        startPomoInterval();
+    });
+    $('#pomodoro-pause').on('click', function () {
+        clearInterval(pomoInterval);
+        pomoInterval = null;
+        document.title = pomoOrigTitle;
+    });
+    $('#pomodoro-reset').on('click', function () {
         clearInterval(pomoInterval);
         pomoInterval = null;
         isFocus = true;
-        timeLeft = 25 * 60;
+        const d = getPomoDurations();
+        pomoTotalTime = d.focus;
+        pomoTimeLeft  = pomoTotalTime;
         $('#pomodoro-status').text('Focus Time');
+        pomoRingColor(true);
+        document.title = pomoOrigTitle;
         updatePomoDisplay();
     });
+    // update display when user changes duration inputs (only when stopped)
+    $('#pomo-focus-min, #pomo-break-min').on('change', function () {
+        if (!pomoInterval) {
+            const d = getPomoDurations();
+            pomoTotalTime = isFocus ? d.focus : d.breakT;
+            pomoTimeLeft  = pomoTotalTime;
+            updatePomoDisplay();
+        }
+    });
+    updatePomoDisplay(); // init ring at 0 offset
 
     // 2. Random Name Picker
     $('#name-picker-btn').click(function () {
@@ -366,8 +463,14 @@ $(document).ready(function () {
         clearInterval(pomoInterval);
         pomoInterval = null;
         isFocus = true;
-        timeLeft = 25 * 60;
+        pomoSessionCount = 0;
+        $('#pomo-session-count').text(0);
+        const _d = getPomoDurations();
+        pomoTotalTime = _d.focus;
+        pomoTimeLeft  = pomoTotalTime;
         $('#pomodoro-status').text('Focus Time');
+        pomoRingColor(true);
+        document.title = pomoOrigTitle;
         updatePomoDisplay();
         // Reset Stopwatch
         clearInterval(swInterval);
