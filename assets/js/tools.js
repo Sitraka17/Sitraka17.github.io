@@ -71,10 +71,13 @@ function pomoShowFloatingAlert(title, msg, type) {
 /* ---- Featured Tools Logic ---- */
 $(document).ready(function () {
     // 1. Pomodoro Timer
-    const POMO_CIRC = 2 * Math.PI * 100; // 628.32 (r=100)
+    const POMO_CIRC = 2 * Math.PI * 100;
     let pomoInterval = null;
     let isFocus = true;
+    let isLongBreak = false;
     let pomoSessionCount = 0;
+    let pomoSessionLog = [];
+    let pomoCurrentGoal = '';
     let pomoTotalTime = 25 * 60;
     let pomoTimeLeft  = 25 * 60;
     let pomoOrigTitle = document.title;
@@ -102,21 +105,30 @@ $(document).ready(function () {
         });
     }
 
-    // Toggle ring colour + glow class
-    function applyPomoMode(focus) {
+    function applyPomoMode(focus, lb) {
         var ring = document.getElementById('pomo-ring-fill');
         var wrap = document.getElementById('pomo-ring-wrap');
-        if (ring) ring.setAttribute('stroke', focus ? 'url(#pgFocus)' : 'url(#pgBreak)');
-        if (wrap) { wrap.classList.toggle('pulsing', focus); wrap.classList.toggle('break-pulse', !focus); }
+        if (ring) ring.setAttribute('stroke', focus ? 'url(#pgFocus)' : (lb ? '#f59e0b' : 'url(#pgBreak)'));
+        if (wrap) {
+            wrap.classList.toggle('pulsing',       focus && !lb);
+            wrap.classList.toggle('break-pulse',   !focus && !lb);
+            wrap.classList.toggle('longbreak-pulse', !!lb);
+        }
         var badge = document.getElementById('pomodoro-status');
-        if (badge) { badge.classList.toggle('focus', focus); badge.classList.toggle('break', !focus); }
+        if (badge) {
+            badge.classList.toggle('focus',     focus);
+            badge.classList.toggle('break',     !focus && !lb);
+            badge.classList.toggle('longbreak', !!lb);
+        }
     }
 
     function getPomoDurations() {
-        const f = parseInt($('#pomo-focus-min').val(), 10);
-        const b = parseInt($('#pomo-break-min').val(), 10);
-        return { focus: (isNaN(f) || f < 1 ? 25 : f) * 60,
-                 breakT: (isNaN(b) || b < 1 ? 5  : b) * 60 };
+        var f  = parseInt($('#pomo-focus-min').val(), 10);
+        var b  = parseInt($('#pomo-break-min').val(), 10);
+        var lb = parseInt($('#pomo-long-break-min').val(), 10);
+        return { focus:     (isNaN(f)  || f  < 1 ? 25 : f)  * 60,
+                 breakT:    (isNaN(b)  || b  < 1 ? 5  : b)  * 60,
+                 longBreak: (isNaN(lb) || lb < 5 ? 15 : lb) * 60 };
     }
 
     function updatePomoDisplay() {
@@ -139,34 +151,127 @@ $(document).ready(function () {
         }
     }
 
-    function pomoRingColor(focus) { applyPomoMode(focus); }
+    function pomoRingColor(focus) { applyPomoMode(focus, isLongBreak); }
+
+    // Render session log
+    function renderPomoLog() {
+        var section = document.getElementById('pomo-log-section');
+        var list    = document.getElementById('pomo-log-list');
+        if (!section || !list) return;
+        if (pomoSessionLog.length === 0) { section.style.display = 'none'; return; }
+        section.style.display = 'block';
+        list.innerHTML = '';
+        pomoSessionLog.slice().reverse().forEach(function(e) {
+            var el = document.createElement('div');
+            el.className = 'pomo-log-entry';
+            el.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:0.4rem;">'
+                + '<strong style="color:#a78bfa;">Session #' + e.num + '</strong>'
+                + '<span style="color:rgba(255,255,255,0.3);font-size:0.72rem;">' + e.ts + '</span></div>'
+                + (e.goal     ? '<div class="log-goal">🎯 ' + e.goal + '</div>' : '')
+                + (e.achieved ? '<div class="log-achieved">✨ ' + e.achieved + '</div>'
+                              : '<div style="color:rgba(255,255,255,0.25);font-style:italic;">No notes</div>');
+            list.appendChild(el);
+        });
+    }
+
+    // Export session log as CSV
+    function exportPomoLog() {
+        if (pomoSessionLog.length === 0) { showToast('No sessions to export yet!', 'warning'); return; }
+        var rows = ['Session,Date/Time,Goal,Achieved,Focus (min)'];
+        pomoSessionLog.forEach(function(e) {
+            rows.push([e.num,
+                '"' + e.ts + '"',
+                '"' + (e.goal     || '').replace(/"/g, '""') + '"',
+                '"' + (e.achieved || '').replace(/"/g, '""') + '"',
+                e.focusMins].join(','));
+        });
+        var blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8' });
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'pomodoro_' + new Date().toISOString().split('T')[0] + '.csv';
+        document.body.appendChild(link); link.click(); document.body.removeChild(link);
+        showToast('Sessions exported!', 'success');
+    }
+
+    // Achievement modal (shown when focus session ends)
+    function showAchievementModal() {
+        var existing = document.getElementById('pomo-ach-modal');
+        if (existing) existing.remove();
+        var goal = pomoCurrentGoal || 'No goal set';
+        var sNum = pomoSessionCount;
+        var lb   = isLongBreak;
+        var bMin = Math.round(pomoTotalTime / 60);
+        var overlay = document.createElement('div');
+        overlay.id = 'pomo-ach-modal';
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1rem;';
+        overlay.innerHTML = '<div style="background:rgba(12,6,30,0.98);border:1px solid rgba(167,139,250,0.3);border-radius:20px;padding:2rem;max-width:450px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.7);">'
+            + '<div style="text-align:center;margin-bottom:1.4rem;"><div style="font-size:2.4rem;">' + (lb ? '🌙' : '🍅') + '</div>'
+            + '<h3 style="color:#c4b5fd;margin:0.4rem 0 0.2rem;font-size:1.1rem;">Session ' + sNum + ' Complete!</h3>'
+            + '<p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">' + (lb ? 'Long Break' : 'Break') + ' — ' + bMin + ' minutes</p></div>'
+            + '<div style="background:rgba(123,47,255,0.08);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:0.85rem 1rem;margin-bottom:1.1rem;">'
+            + '<div style="font-size:0.7rem;color:rgba(167,139,250,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.35rem;">🎯 You planned to</div>'
+            + '<div style="color:rgba(255,255,255,0.85);font-size:0.9rem;">' + goal + '</div></div>'
+            + '<label style="display:block;font-size:0.7rem;color:rgba(167,139,250,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;">✨ What did you actually achieve?</label>'
+            + '<textarea id="pomo-ach-input" rows="3" placeholder="Describe what you accomplished…" style="width:100%;box-sizing:border-box;font-size:0.88rem;padding:0.6rem 0.8rem;border-radius:8px;resize:vertical;margin-bottom:1.2rem;"></textarea>'
+            + '<div style="display:flex;gap:0.8rem;justify-content:flex-end;">'
+            + '<button id="pomo-ach-skip" class="button" style="font-size:0.85rem;">Skip</button>'
+            + '<button id="pomo-ach-save" class="button primary" style="font-size:0.85rem;">💾 Save &amp; Start Break</button></div></div>';
+        document.body.appendChild(overlay);
+        setTimeout(function() { var t = document.getElementById('pomo-ach-input'); if(t) t.focus(); }, 80);
+        function saveAndClose() {
+            var achieved = (document.getElementById('pomo-ach-input').value || '').trim();
+            pomoSessionLog.push({ num: sNum, goal: pomoCurrentGoal, achieved: achieved,
+                ts: new Date().toLocaleString(), focusMins: Math.round(getPomoDurations().focus / 60) });
+            renderPomoLog();
+            overlay.remove();
+            startPomoInterval();
+        }
+        document.getElementById('pomo-ach-skip').addEventListener('click', function() { overlay.remove(); startPomoInterval(); });
+        document.getElementById('pomo-ach-save').addEventListener('click', saveAndClose);
+        document.getElementById('pomo-ach-input').addEventListener('keydown', function(e) { if (e.ctrlKey && e.key === 'Enter') saveAndClose(); });
+    }
 
     function pomoPhaseEnd() {
         clearInterval(pomoInterval);
         pomoInterval = null;
-        isFocus = !isFocus;
-        const d = getPomoDurations();
-        if (!isFocus) {
-            // just finished focus → increment session
+        var d = getPomoDurations();
+        if (isFocus) {
+            // Focus session just ended
+            isFocus = false;
             pomoSessionCount++;
             $('#pomo-session-count').text(pomoSessionCount);
+            updatePomoDots();
+            isLongBreak = (pomoSessionCount % 4 === 0);
+            pomoTotalTime = isLongBreak ? d.longBreak : d.breakT;
+            pomoTimeLeft  = pomoTotalTime;
+            var label = isLongBreak ? '🌙 Long Break' : 'Break Time';
+            $('#pomodoro-status').text(label).removeClass('focus break longbreak').addClass(isLongBreak ? 'longbreak' : 'break');
+            applyPomoMode(false, isLongBreak);
+            updatePomoDisplay();
+            pomoBeep(880, 0.3); setTimeout(function(){ pomoBeep(660, 0.4); }, 320);
+            if (isLongBreak) setTimeout(function(){ pomoBeep(440, 0.5); }, 700);
+            var nTitle = isLongBreak ? '🌙 Long Break! You earned it!' : '🍅 Pomodoro Complete!';
+            var nBody  = isLongBreak ? 'Session ' + pomoSessionCount + ' done! Enjoy your ' + Math.round(d.longBreak/60) + '-min break.' : 'Take a ' + Math.round(d.breakT/60) + '-min break.';
+            showToast(nTitle, 'success');
+            pomoSendNotification(nTitle, nBody);
+            if (!isPomodoroVisible()) pomoShowFloatingAlert(nTitle, nBody, 'green');
+            // Show achievement modal (it will call startPomoInterval when closed)
+            showAchievementModal();
+        } else {
+            // Break just ended → switch back to focus
+            isFocus = true;
+            isLongBreak = false;
+            pomoTotalTime = d.focus;
+            pomoTimeLeft  = pomoTotalTime;
+            $('#pomodoro-status').text('Focus Time').removeClass('break longbreak').addClass('focus');
+            applyPomoMode(true, false);
+            updatePomoDisplay();
+            pomoBeep(440, 0.5);
+            showToast("Break's over! Back to work! 🎯", 'info');
+            pomoSendNotification("⏰ Break's Over!", 'Time to focus again!');
+            if (!isPomodoroVisible()) pomoShowFloatingAlert("⏰ Break's Over!", 'Time to focus again!', 'purple');
+            startPomoInterval();
         }
-        pomoTotalTime = isFocus ? d.focus : d.breakT;
-        pomoTimeLeft  = pomoTotalTime;
-        $('#pomodoro-status').text(isFocus ? 'Focus Time' : 'Break Time');
-        pomoRingColor(isFocus);
-        updatePomoDisplay();
-        const toastMsg  = isFocus ? "Break's over! Back to work! 🎯" : '🍅 Pomodoro done! Take a break ☕';
-        const notifTitle = isFocus ? "⏰ Break's Over!" : '🍅 Pomodoro Complete!';
-        const notifBody  = isFocus ? 'Time to focus again!' : 'Great work! Take a break.';
-        // beep pattern: 2 tones for focus end, 1 soft for break end
-        if (isFocus) { pomoBeep(880, 0.3); setTimeout(function(){ pomoBeep(660, 0.4); }, 320); }
-        else         { pomoBeep(440, 0.5); }
-        updatePomoDots();
-        showToast(toastMsg, isFocus ? 'info' : 'success');
-        pomoSendNotification(notifTitle, notifBody);
-        if (!isPomodoroVisible()) pomoShowFloatingAlert(notifTitle, notifBody, isFocus ? 'purple' : 'green');
-        startPomoInterval();
     }
 
     function startPomoInterval() {
@@ -207,10 +312,16 @@ $(document).ready(function () {
 
     $('#pomodoro-start').on('click', function () {
         if (pomoInterval) return;
-        // if at start of phase, apply current input values
-        if (pomoTimeLeft === pomoTotalTime) {
-            const d = getPomoDurations();
-            pomoTotalTime = isFocus ? d.focus : d.breakT;
+        if (isFocus && pomoTimeLeft === pomoTotalTime) {
+            // Fresh focus session — capture goal
+            pomoCurrentGoal = $('#pomo-goal-input').val().trim();
+            var d = getPomoDurations();
+            pomoTotalTime = d.focus;
+            pomoTimeLeft  = pomoTotalTime;
+            updatePomoDisplay();
+        } else if (pomoTimeLeft === pomoTotalTime) {
+            var d2 = getPomoDurations();
+            pomoTotalTime = isLongBreak ? d2.longBreak : (isFocus ? d2.focus : d2.breakT);
             pomoTimeLeft  = pomoTotalTime;
             updatePomoDisplay();
         }
@@ -224,15 +335,17 @@ $(document).ready(function () {
     $('#pomodoro-reset').on('click', function () {
         clearInterval(pomoInterval);
         pomoInterval = null;
-        isFocus = true;
-        const d = getPomoDurations();
+        isFocus = true; isLongBreak = false;
+        var d = getPomoDurations();
         pomoTotalTime = d.focus;
         pomoTimeLeft  = pomoTotalTime;
-        $('#pomodoro-status').text('Focus Time').removeClass('break').addClass('focus');
-        applyPomoMode(true);
+        $('#pomodoro-status').text('Focus Time').removeClass('break longbreak').addClass('focus');
+        applyPomoMode(true, false);
         document.title = pomoOrigTitle;
         updatePomoDisplay();
     });
+    // Export button
+    $('#pomo-export-btn').on('click', exportPomoLog);
     // update display when user changes duration inputs (only when stopped)
     $('#pomo-focus-min, #pomo-break-min').on('change', function () {
         if (!pomoInterval) {
@@ -242,8 +355,8 @@ $(document).ready(function () {
             updatePomoDisplay();
         }
     });
-    updatePomoDisplay(); // init ring
-    applyPomoMode(true); // init colours
+    updatePomoDisplay();
+    applyPomoMode(true, false);
 
     // Space key shortcut
     $(document).on('keydown', function(e) {
