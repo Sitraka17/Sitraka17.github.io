@@ -30,16 +30,87 @@ function showToast(message, type = 'info') {
     }, 3000);
 }
 
+/* ---- Pomodoro Floating Popup ---- */
+function isPomodoroVisible() {
+    var el = document.getElementById('tool-pomodoro');
+    if (!el) return false;
+    var s = window.getComputedStyle(el);
+    return s.display !== 'none' && s.visibility !== 'hidden' && el.offsetHeight > 0;
+}
+function pomoShowFloatingAlert(title, msg, type) {
+    var existing = document.getElementById('pomo-float-alert');
+    if (existing) existing.remove();
+    var isBreak = (type === 'green');
+    var accent  = isBreak ? '#10b981' : '#a78bfa';
+    var emoji   = isBreak ? '\u2615' : '\ud83c\udf45';
+    var el = document.createElement('div');
+    el.id = 'pomo-float-alert';
+    el.innerHTML = '<div style="display:flex;align-items:flex-start;gap:0.9rem;">'
+        + '<span style="font-size:1.8rem;line-height:1;">' + emoji + '</span>'
+        + '<div style="flex:1;"><div style="font-weight:700;font-size:0.97rem;color:#fff;margin-bottom:0.25rem;">' + title + '</div>'
+        + '<div style="font-size:0.82rem;color:rgba(255,255,255,0.72);">' + msg + '</div></div>'
+        + '<button id="pomo-float-close" style="background:none;border:none;color:rgba(255,255,255,0.45);cursor:pointer;font-size:1.4rem;line-height:1;padding:0;">&times;</button></div>'
+        + '<div style="margin-top:0.7rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:0.6rem;">'
+        + '<a href="#tool-pomodoro" id="pomo-float-link" style="font-size:0.8rem;color:' + accent + ';text-decoration:none;font-weight:600;">\u25b6 Go to Timer</a></div>';
+    el.style.cssText = 'position:fixed;bottom:1.8rem;right:1.8rem;z-index:99999;'
+        + 'background:rgba(12,8,30,0.97);border:1px solid ' + accent + ';border-radius:14px;'
+        + 'padding:1.1rem 1.3rem;width:290px;box-shadow:0 10px 40px rgba(0,0,0,0.6);'
+        + 'backdrop-filter:blur(14px);font-family:Inter,sans-serif;'
+        + 'transform:translateX(130%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);';
+    document.body.appendChild(el);
+    setTimeout(function() { el.style.transform = 'translateX(0)'; }, 30);
+    function dismiss() {
+        el.style.transform = 'translateX(130%)';
+        setTimeout(function() { if (el.parentNode) el.remove(); }, 420);
+    }
+    document.getElementById('pomo-float-close').addEventListener('click', dismiss);
+    document.getElementById('pomo-float-link').addEventListener('click', dismiss);
+    setTimeout(dismiss, 14000);
+}
+
 /* ---- Featured Tools Logic ---- */
 $(document).ready(function () {
     // 1. Pomodoro Timer
-    const POMO_CIRC = 2 * Math.PI * 96; // 603.19
+    const POMO_CIRC = 2 * Math.PI * 100; // 628.32 (r=100)
     let pomoInterval = null;
     let isFocus = true;
     let pomoSessionCount = 0;
     let pomoTotalTime = 25 * 60;
     let pomoTimeLeft  = 25 * 60;
     let pomoOrigTitle = document.title;
+
+    // Web Audio beep (no external files needed)
+    function pomoBeep(freq, dur) {
+        if (!$('#pomo-sound-toggle').prop('checked')) return;
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.type = 'sine'; osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.4, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+            osc.start(); osc.stop(ctx.currentTime + dur);
+        } catch(e) {}
+    }
+
+    // Update session dots
+    function updatePomoDots() {
+        var dots = document.querySelectorAll('#pomo-dots .pomo-dot');
+        dots.forEach(function(d, i) {
+            d.classList.toggle('done', i < (pomoSessionCount % 8));
+        });
+    }
+
+    // Toggle ring colour + glow class
+    function applyPomoMode(focus) {
+        var ring = document.getElementById('pomo-ring-fill');
+        var wrap = document.getElementById('pomo-ring-wrap');
+        if (ring) ring.setAttribute('stroke', focus ? 'url(#pgFocus)' : 'url(#pgBreak)');
+        if (wrap) { wrap.classList.toggle('pulsing', focus); wrap.classList.toggle('break-pulse', !focus); }
+        var badge = document.getElementById('pomodoro-status');
+        if (badge) { badge.classList.toggle('focus', focus); badge.classList.toggle('break', !focus); }
+    }
 
     function getPomoDurations() {
         const f = parseInt($('#pomo-focus-min').val(), 10);
@@ -58,21 +129,17 @@ $(document).ready(function () {
         // ring
         const ring = document.getElementById('pomo-ring-fill');
         if (ring && pomoTotalTime > 0) {
-            const offset = POMO_CIRC * (1 - pomoTimeLeft / pomoTotalTime);
-            ring.style.strokeDashoffset = offset;
+            ring.style.strokeDashoffset = POMO_CIRC * (1 - pomoTimeLeft / pomoTotalTime);
         }
     }
 
     function pomoSendNotification(title, body) {
         if ('Notification' in window && Notification.permission === 'granted') {
-            new Notification(title, { body: body, tag: 'pomodoro', renotify: true });
+            try { new Notification(title, { body: body, tag: 'pomodoro', renotify: true }); } catch(e) {}
         }
     }
 
-    function pomoRingColor(focus) {
-        const ring = document.getElementById('pomo-ring-fill');
-        if (ring) ring.setAttribute('stroke', focus ? '#a78bfa' : '#10b981');
-    }
+    function pomoRingColor(focus) { applyPomoMode(focus); }
 
     function pomoPhaseEnd() {
         clearInterval(pomoInterval);
@@ -92,9 +159,13 @@ $(document).ready(function () {
         const toastMsg  = isFocus ? "Break's over! Back to work! 🎯" : '🍅 Pomodoro done! Take a break ☕';
         const notifTitle = isFocus ? "⏰ Break's Over!" : '🍅 Pomodoro Complete!';
         const notifBody  = isFocus ? 'Time to focus again!' : 'Great work! Take a break.';
+        // beep pattern: 2 tones for focus end, 1 soft for break end
+        if (isFocus) { pomoBeep(880, 0.3); setTimeout(function(){ pomoBeep(660, 0.4); }, 320); }
+        else         { pomoBeep(440, 0.5); }
+        updatePomoDots();
         showToast(toastMsg, isFocus ? 'info' : 'success');
         pomoSendNotification(notifTitle, notifBody);
-        // auto-start next phase
+        if (!isPomodoroVisible()) pomoShowFloatingAlert(notifTitle, notifBody, isFocus ? 'purple' : 'green');
         startPomoInterval();
     }
 
@@ -119,15 +190,19 @@ $(document).ready(function () {
             showToast('Your browser does not support notifications.', 'error');
             return;
         }
-        Notification.requestPermission().then(function (perm) {
+        var handled = false;
+        function onPerm(perm) {
+            if (handled) return; handled = true;
             if (perm === 'granted') {
                 $('#pomo-notif-banner').slideUp(300);
-                showToast('🔔 Notifications enabled!', 'success');
-                new Notification('Pomodoro Timer', { body: 'You will now be alerted at the end of each session!', tag: 'pomodoro' });
+                showToast('\ud83d\udd14 Notifications enabled!', 'success');
+                try { new Notification('Pomodoro Timer', { body: "You'll be alerted when sessions end!" }); } catch(e) {}
             } else {
-                showToast('Notifications blocked — allow them in your browser settings.', 'warning');
+                showToast('Notifications blocked \u2014 allow them in browser settings.', 'warning');
             }
-        });
+        }
+        var result = Notification.requestPermission(onPerm);
+        if (result && typeof result.then === 'function') result.then(onPerm);
     });
 
     $('#pomodoro-start').on('click', function () {
@@ -153,8 +228,8 @@ $(document).ready(function () {
         const d = getPomoDurations();
         pomoTotalTime = d.focus;
         pomoTimeLeft  = pomoTotalTime;
-        $('#pomodoro-status').text('Focus Time');
-        pomoRingColor(true);
+        $('#pomodoro-status').text('Focus Time').removeClass('break').addClass('focus');
+        applyPomoMode(true);
         document.title = pomoOrigTitle;
         updatePomoDisplay();
     });
@@ -167,7 +242,19 @@ $(document).ready(function () {
             updatePomoDisplay();
         }
     });
-    updatePomoDisplay(); // init ring at 0 offset
+    updatePomoDisplay(); // init ring
+    applyPomoMode(true); // init colours
+
+    // Space key shortcut
+    $(document).on('keydown', function(e) {
+        var active = document.getElementById('tool-pomodoro');
+        if (!active || window.getComputedStyle(active).display === 'none') return;
+        if (e.code === 'Space' && !$(e.target).is('input,textarea,button')) {
+            e.preventDefault();
+            if (pomoInterval) { $('#pomodoro-pause').trigger('click'); }
+            else              { $('#pomodoro-start').trigger('click'); }
+        }
+    });
 
     // 2. Random Name Picker
     $('#name-picker-btn').click(function () {

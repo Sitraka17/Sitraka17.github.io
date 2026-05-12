@@ -761,64 +761,118 @@ def secure_hash_password(password: str) -> str:
 
 			<article id="tool-pomodoro">
 				<h2 class="major">🍅 Pomodoro Timer</h2>
+				<style>
+					#tool-pomodoro .pomo-card {
+						background: rgba(15,10,35,0.6);
+						border: 1px solid rgba(167,139,250,0.18);
+						border-radius: 16px;
+						padding: 1.4rem 1.6rem;
+						margin-bottom: 1.2rem;
+						backdrop-filter: blur(8px);
+					}
+					#pomo-ring-fill { transition: stroke-dashoffset 1s linear, stroke 0.6s ease; }
+					#pomo-ring-bg   { transition: stroke 0.6s ease; }
+					.pomo-mode-badge {
+						display: inline-block;
+						padding: 0.25rem 0.9rem;
+						border-radius: 999px;
+						font-size: 0.72rem;
+						font-weight: 700;
+						letter-spacing: 0.14em;
+						text-transform: uppercase;
+						margin-top: 0.5rem;
+						transition: background 0.5s, color 0.5s;
+					}
+					.pomo-mode-badge.focus { background: rgba(123,47,255,0.25); color: #c4b5fd; border: 1px solid rgba(123,47,255,0.4); }
+					.pomo-mode-badge.break { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.35); }
+					.pomo-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(167,139,250,0.2); border: 1px solid rgba(167,139,250,0.3); display: inline-block; margin: 0 3px; transition: background 0.4s, box-shadow 0.4s; }
+					.pomo-dot.done { background: #a78bfa; box-shadow: 0 0 6px rgba(167,139,250,0.7); }
+					#pomo-ring-wrap { position: relative; display: inline-block; }
+					#pomo-ring-wrap.pulsing svg { animation: pomoGlow 2s ease-in-out infinite; }
+					@keyframes pomoGlow {
+						0%,100% { filter: drop-shadow(0 0 6px rgba(123,47,255,0.4)); }
+						50%      { filter: drop-shadow(0 0 18px rgba(123,47,255,0.75)); }
+					}
+					#pomo-ring-wrap.break-pulse svg { animation: pomoBreakGlow 2s ease-in-out infinite; }
+					@keyframes pomoBreakGlow {
+						0%,100% { filter: drop-shadow(0 0 6px rgba(16,185,129,0.35)); }
+						50%      { filter: drop-shadow(0 0 18px rgba(16,185,129,0.7)); }
+					}
+				</style>
 
-				<!-- Notification Banner -->
-				<div id="pomo-notif-banner" style="display:flex; align-items:center; gap:1rem; background:rgba(167,139,250,0.08); border:1px solid rgba(167,139,250,0.25); border-radius:10px; padding:1rem 1.2rem; margin-bottom:1.5rem; flex-wrap:wrap;">
-					<i class="fas fa-bell" style="color:#a78bfa; font-size:1.2rem;"></i>
-					<span style="flex:1; font-size:0.88rem; color:rgba(255,255,255,0.7);">Enable browser notifications to get alerted when your session ends — even if you switch tabs!</span>
-					<button id="pomo-notif-btn" class="button" style="font-size:0.82rem; padding:0.45rem 1rem; white-space:nowrap;">🔔 Enable Notifications</button>
+				<!-- Notification banner -->
+				<div id="pomo-notif-banner" class="pomo-card" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:0.9rem 1.2rem;">
+					<i class="fas fa-bell" style="color:#a78bfa;font-size:1.1rem;"></i>
+					<span style="flex:1;font-size:0.85rem;color:rgba(255,255,255,0.65);">Get alerted when sessions end — even when you switch tabs!</span>
+					<button id="pomo-notif-btn" class="button" style="font-size:0.8rem;padding:0.4rem 0.9rem;white-space:nowrap;">🔔 Enable Alerts</button>
 				</div>
 
-				<!-- Session Counter -->
-				<div style="text-align:center; margin-bottom:0.5rem;">
-					<span style="color:#a78bfa; font-size:0.95rem; letter-spacing:0.08em;">
-						🍅 Sessions completed: <strong id="pomo-session-count" style="color:#fff; font-size:1.1rem;">0</strong>
-					</span>
-				</div>
-
-				<!-- SVG Ring + Display -->
-				<div style="text-align:center; margin:1.2rem 0;">
-					<div style="position:relative; display:inline-block;">
-						<svg width="220" height="220" style="transform:rotate(-90deg);">
+				<!-- Ring + display -->
+				<div style="text-align:center;margin:0.5rem 0 1rem;">
+					<div id="pomo-ring-wrap" class="pulsing">
+						<svg width="230" height="230" style="transform:rotate(-90deg);">
 							<defs>
-								<linearGradient id="pomoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+								<linearGradient id="pgFocus" x1="0%" y1="0%" x2="100%" y2="0%">
 									<stop offset="0%" style="stop-color:#7b2fff"/>
-									<stop offset="100%" style="stop-color:#a78bfa"/>
+									<stop offset="100%" style="stop-color:#c4b5fd"/>
+								</linearGradient>
+								<linearGradient id="pgBreak" x1="0%" y1="0%" x2="100%" y2="0%">
+									<stop offset="0%" style="stop-color:#059669"/>
+									<stop offset="100%" style="stop-color:#6ee7b7"/>
 								</linearGradient>
 							</defs>
-							<circle cx="110" cy="110" r="96" fill="none" stroke="rgba(167,139,250,0.12)" stroke-width="10"/>
-							<circle id="pomo-ring-fill" cx="110" cy="110" r="96" fill="none"
-								stroke="#a78bfa" stroke-width="10" stroke-linecap="round"
-								stroke-dasharray="603.2" stroke-dashoffset="0"
-								style="transition: stroke-dashoffset 1s linear;"/>
+							<!-- track -->
+							<circle id="pomo-ring-bg" cx="115" cy="115" r="100" fill="none" stroke="rgba(167,139,250,0.1)" stroke-width="12"/>
+							<!-- fill -->
+							<circle id="pomo-ring-fill" cx="115" cy="115" r="100" fill="none"
+								stroke="url(#pgFocus)" stroke-width="12" stroke-linecap="round"
+								stroke-dasharray="628.3" stroke-dashoffset="0"/>
 						</svg>
-						<div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; width:160px;">
-							<div id="pomodoro-display" style="font-size:3rem; font-family:'JetBrains Mono',monospace; font-weight:700; color:#fff; text-shadow:0 0 20px rgba(123,47,255,0.5); line-height:1;">25:00</div>
-							<div id="pomodoro-status" style="margin-top:0.4rem; color:#a78bfa; letter-spacing:0.12rem; text-transform:uppercase; font-size:0.75rem;">Focus Time</div>
+						<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:170px;">
+							<div id="pomodoro-display" style="font-size:3.2rem;font-family:'JetBrains Mono',monospace;font-weight:700;color:#fff;line-height:1;letter-spacing:-0.02em;">25:00</div>
+							<div id="pomodoro-status" class="pomo-mode-badge focus">Focus Time</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- Custom Durations -->
-				<div style="display:flex; justify-content:center; gap:2.5rem; margin:1rem 0; flex-wrap:wrap;">
-					<label style="color:rgba(255,255,255,0.65); font-size:0.88rem; display:flex; align-items:center; gap:0.5rem;">
+				<!-- Session dots (up to 8) -->
+				<div style="text-align:center;margin-bottom:1rem;">
+					<div id="pomo-dots" style="display:inline-flex;gap:6px;align-items:center;">
+						<span class="pomo-dot"></span><span class="pomo-dot"></span>
+						<span class="pomo-dot"></span><span class="pomo-dot"></span>
+						<span class="pomo-dot"></span><span class="pomo-dot"></span>
+						<span class="pomo-dot"></span><span class="pomo-dot"></span>
+					</div>
+					<div style="font-size:0.78rem;color:rgba(167,139,250,0.65);margin-top:0.35rem;">
+						<span id="pomo-session-count">0</span> sessions completed
+					</div>
+				</div>
+
+				<!-- Settings row -->
+				<div class="pomo-card" style="display:flex;justify-content:center;align-items:center;gap:2.5rem;flex-wrap:wrap;padding:0.9rem 1.2rem;">
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.88rem;color:rgba(255,255,255,0.65);">
 						🎯 Focus
 						<input type="number" id="pomo-focus-min" value="25" min="1" max="99"
-							style="width:54px; text-align:center; font-family:'JetBrains Mono',monospace; padding:0.3rem; font-size:0.95rem;"> min
+							style="width:52px;text-align:center;font-family:'JetBrains Mono',monospace;padding:0.25rem;font-size:0.95rem;"> min
 					</label>
-					<label style="color:rgba(255,255,255,0.65); font-size:0.88rem; display:flex; align-items:center; gap:0.5rem;">
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.88rem;color:rgba(255,255,255,0.65);">
 						☕ Break
 						<input type="number" id="pomo-break-min" value="5" min="1" max="99"
-							style="width:54px; text-align:center; font-family:'JetBrains Mono',monospace; padding:0.3rem; font-size:0.95rem;"> min
+							style="width:52px;text-align:center;font-family:'JetBrains Mono',monospace;padding:0.25rem;font-size:0.95rem;"> min
+					</label>
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.88rem;color:rgba(255,255,255,0.65);cursor:pointer;">
+						<input type="checkbox" id="pomo-sound-toggle" checked style="width:14px;height:14px;cursor:pointer;">
+						🔊 Sound
 					</label>
 				</div>
 
 				<!-- Controls -->
-				<ul class="actions" style="justify-content:center; margin-top:1.2rem;">
-					<li><button id="pomodoro-start" class="button primary"><i class="fas fa-play" style="margin-right:0.4rem;"></i>Start</button></li>
-					<li><button id="pomodoro-pause" class="button"><i class="fas fa-pause" style="margin-right:0.4rem;"></i>Pause</button></li>
-					<li><button id="pomodoro-reset" class="button"><i class="fas fa-rotate-left" style="margin-right:0.4rem;"></i>Reset</button></li>
+				<ul class="actions" style="justify-content:center;margin-top:1.2rem;">
+					<li><button id="pomodoro-start" class="button primary" style="min-width:90px;"><i class="fas fa-play" style="margin-right:0.4rem;"></i>Start</button></li>
+					<li><button id="pomodoro-pause" class="button" style="min-width:90px;"><i class="fas fa-pause" style="margin-right:0.4rem;"></i>Pause</button></li>
+					<li><button id="pomodoro-reset" class="button" style="min-width:90px;"><i class="fas fa-rotate-left" style="margin-right:0.4rem;"></i>Reset</button></li>
 				</ul>
+				<p style="text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:-0.5rem;">Press <kbd style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:0.1rem 0.4rem;font-family:'JetBrains Mono',monospace;">Space</kbd> to start / pause</p>
 			</article>
 
 			<article id="tool-random-name">
