@@ -398,4 +398,10 @@
 						$main._show(location.hash.substr(1), true);
 					});
 
+
+	// Footer Year.
+		var $currentYear = $('#current-year');
+		if ($currentYear.length > 0)
+			$currentYear.text(new Date().getFullYear());
+
 })(jQuery);
