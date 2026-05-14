@@ -15,6 +15,11 @@
 	<meta name="theme-color" content="#0f0a1e" />
 
 	<!-- ═══════════════════════════════════════════
+	     PERFORMANCE (LCP)
+	═══════════════════════════════════════════ -->
+	<link rel="preload" as="image" href="images/pic01.jpg" fetchpriority="high">
+
+	<!-- ═══════════════════════════════════════════
 	     CANONICAL & GEO
 	═══════════════════════════════════════════ -->
 	<link rel="canonical" href="https://sitraka17.github.io/" />
@@ -148,7 +153,7 @@
 			<!-- Intro -->
 			<article id="intro">
 				<h2 class="major">About Me</h2>
-				<span class="image main"><img src="images/pic01.jpg" alt="Sitraka Forler" loading="lazy" /></span>
+				<span class="image main"><img src="images/pic01.jpg" alt="Sitraka Forler" fetchpriority="high" /></span>
 				<p>Hello! I'm <strong>Sitraka FORLER</strong>, a French Data &amp; IT professional passionate about
 					building intelligent systems that create real-world impact. With expertise spanning Data Science,
 					Machine Learning, Cloud, and Cybersecurity, I help organizations unlock the value hidden in their
@@ -1060,7 +1065,7 @@ def secure_hash_password(password: str) -> str:
 			<article id="contact">
 				<h2 class="major">Contact</h2>
 
-				<form method="POST" action="https://formspree.io/f/sitrakaforler@gmail.com">
+				<form method="POST" action="https://formspree.io/sitraka.forler@gmail.com">
 
 					<div class="fields">
 						<div class="field half">

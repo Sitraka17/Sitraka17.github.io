@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sitraka17.github.io/sitemap.xml
