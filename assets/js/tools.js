@@ -59,6 +59,9 @@ function pomoShowFloatingAlert(title, msg, type) {
         + 'transform:translateX(130%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);';
     document.body.appendChild(el);
     setTimeout(function() { el.style.transform = 'translateX(0)'; }, 30);
+    el.addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
     function dismiss() {
         el.style.transform = 'translateX(130%)';
         setTimeout(function() { if (el.parentNode) el.remove(); }, 420);
@@ -217,6 +220,9 @@ $(document).ready(function () {
             + '<button id="pomo-ach-skip" class="button" style="font-size:0.85rem;">Skip</button>'
             + '<button id="pomo-ach-save" class="button primary" style="font-size:0.85rem;">💾 Save &amp; Start Break</button></div></div>';
         document.body.appendChild(overlay);
+        overlay.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
         setTimeout(function() { var t = document.getElementById('pomo-ach-input'); if(t) t.focus(); }, 80);
         function saveAndClose() {
             var achieved = (document.getElementById('pomo-ach-input').value || '').trim();
