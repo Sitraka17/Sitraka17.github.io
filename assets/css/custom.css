@@ -985,3 +985,141 @@ article a:hover {
 }
 
 .toast-warning i { color: #f59e0b; }
+/* ── Code Article Tab System ── */
+.code-tab-bar {
+	display: flex;
+	gap: 0;
+	margin: 1.5rem 0 0 0;
+	border-radius: 12px 12px 0 0;
+	overflow: hidden;
+	background: rgba(15, 10, 30, 0.5);
+	border: 1px solid rgba(167, 139, 250, 0.15);
+	border-bottom: none;
+}
+
+.code-tab-btn {
+	flex: 1;
+	padding: 0.9rem 1.2rem;
+	font-size: 1rem;
+	font-weight: 600;
+	font-family: 'Inter', sans-serif;
+	letter-spacing: 0.03em;
+	border: none;
+	cursor: pointer;
+	color: rgba(255, 255, 255, 0.5);
+	background: transparent;
+	transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
+	position: relative;
+	outline: none;
+}
+
+.code-tab-btn::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 15%;
+	width: 70%;
+	height: 2px;
+	background: transparent;
+	border-radius: 2px 2px 0 0;
+	transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
+}
+
+.code-tab-btn:hover {
+	color: rgba(255, 255, 255, 0.75);
+	background: rgba(167, 139, 250, 0.06);
+}
+
+.code-tab-btn.active {
+	color: #ffffff;
+	background: rgba(167, 139, 250, 0.12);
+	text-shadow: 0 0 14px rgba(167, 139, 250, 0.5);
+}
+
+.code-tab-btn.active::after {
+	background: linear-gradient(90deg, #7b2fff, #a78bfa);
+	box-shadow: 0 0 10px rgba(123, 47, 255, 0.5);
+}
+
+.code-tab-divider {
+	width: 0;
+	height: auto;
+	border: none;
+	border-left: 1px solid rgba(167, 139, 250, 0.12);
+	margin: 0.6rem 0;
+	align-self: stretch;
+}
+
+.code-tab-panel {
+	display: none;
+	animation: codeTabFadeIn 0.35s ease;
+	padding-top: 0.5rem;
+	border: 1px solid rgba(167, 139, 250, 0.15);
+	border-top: none;
+	border-radius: 0 0 12px 12px;
+	padding: 1.5rem 1.2rem 0.5rem 1.2rem;
+	background: rgba(15, 10, 30, 0.25);
+	margin-bottom: 1rem;
+}
+
+.code-tab-panel.active {
+	display: block;
+}
+
+@keyframes codeTabFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+#tool-pomodoro .pomo-card {
+	background: rgba(15,10,35,0.6);
+	border: 1px solid rgba(167,139,250,0.18);
+	border-radius: 16px;
+	padding: 1.4rem 1.6rem;
+	margin-bottom: 1.2rem;
+	backdrop-filter: blur(8px);
+}
+#pomo-ring-fill { transition: stroke-dashoffset 1s linear, stroke 0.6s ease; }
+#pomo-ring-bg   { transition: stroke 0.6s ease; }
+.pomo-mode-badge {
+	display: inline-block;
+	padding: 0.25rem 0.9rem;
+	border-radius: 999px;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	margin-top: 0.5rem;
+	transition: background 0.5s, color 0.5s;
+}
+.pomo-mode-badge.focus { background: rgba(123,47,255,0.25); color: #c4b5fd; border: 1px solid rgba(123,47,255,0.4); }
+.pomo-mode-badge.break { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.35); }
+.pomo-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(167,139,250,0.2); border: 1px solid rgba(167,139,250,0.3); display: inline-block; margin: 0 3px; transition: background 0.4s, box-shadow 0.4s; }
+.pomo-dot.done { background: #a78bfa; box-shadow: 0 0 6px rgba(167,139,250,0.7); }
+#pomo-ring-wrap { position: relative; display: inline-block; }
+#pomo-ring-wrap.pulsing svg { animation: pomoGlow 2s ease-in-out infinite; }
+@keyframes pomoGlow {
+	0%,100% { filter: drop-shadow(0 0 6px rgba(123,47,255,0.4)); }
+	50%      { filter: drop-shadow(0 0 18px rgba(123,47,255,0.75)); }
+}
+#pomo-ring-wrap.break-pulse svg { animation: pomoBreakGlow 2s ease-in-out infinite; }
+@keyframes pomoBreakGlow {
+	0%,100% { filter: drop-shadow(0 0 6px rgba(16,185,129,0.35)); }
+	50%      { filter: drop-shadow(0 0 18px rgba(16,185,129,0.7)); }
+}
+#pomo-ring-wrap.longbreak-pulse svg { animation: pomoLBGlow 2s ease-in-out infinite; }
+@keyframes pomoLBGlow {
+	0%,100% { filter: drop-shadow(0 0 6px rgba(245,158,11,0.35)); }
+	50%      { filter: drop-shadow(0 0 20px rgba(245,158,11,0.75)); }
+}
+.pomo-mode-badge.longbreak { background:rgba(245,158,11,0.2); color:#fbbf24; border:1px solid rgba(245,158,11,0.4); }
+.pomo-log-entry { background:rgba(15,10,35,0.5); border:1px solid rgba(167,139,250,0.12); border-radius:10px; padding:0.75rem 1rem; font-size:0.82rem; }
+.pomo-log-entry .log-goal { color:rgba(255,255,255,0.5); margin-bottom:0.3rem; font-style:italic; }
+.pomo-log-entry .log-achieved { color:#c4b5fd; }
