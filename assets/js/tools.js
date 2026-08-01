@@ -721,11 +721,10 @@ $(document).ready(function () {
     setTimeout(() => {
         $('#main article').each(function () {
             const id = $(this).attr('id');
-            if (['intro', 'work', 'code', 'luxaiops'].includes(id)) {
-                const title = $(this).find('h2.major').text();
-                let content = $(this).text().replace(/\\s+/g, ' ').trim();
-                searchData.push({ id, title, content });
-            }
+            if (!id) return;
+            const title = $(this).find('h2.major').text() || id;
+            let content = $(this).text().replace(/\s+/g, ' ').trim();
+            searchData.push({ id, title, content });
         });
     }, 500);
 
