@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Tools | Sitraka Forler Portfolio</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="Interactive productivity tools and demos by Sitraka Forler." />
+	<link rel="canonical" href="https://sitraka17.github.io/tools.html" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="assets/css/custom.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="is-preload">
+	<div id="cursor-glow"></div>
+	<div id="luxaiops-active-glow"></div>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="logo">
+				<span class="icon fa-gem"></span>
+			</div>
+			<div class="content">
+				<div class="inner">
+					<h1>Tools &amp; Demos</h1>
+					<p id="typed-subtitle">Productivity Widgets &amp; Interactive Prototypes</p>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html#code">Code</a></li>
+					<li><a href="tools.html" aria-current="page">Tools</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+					<li><a href="https://sitraka.lu/">sitraka.lu&nbsp;&#8599;</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<article id="tools">
+				<h2 class="major">Tools</h2>
+				<span class="image main"><img src="images/code.jpeg" alt="Interactive tools" loading="lazy" /></span>
+				<p>These interactive demos showcase front-end engineering, UX, and productivity tooling built for real-world workflows. Use the table of contents or jump directly to any tool below.</p>
+			</article>
+
+			<article id="tool-progress">
+				<h2 class="major">To-Do List Maker</h2>
+				<p style="margin-bottom: 1.5rem; color: rgba(255,255,255,0.7);">Create your task list, check items off, and export everything to your Google Calendar.</p>
+
+				<div class="todo-input-group">
+					<div class="todo-row">
+						<input type="text" id="todo-task-input" placeholder="What do you need to do?" />
+						<button type="button" id="todo-add-btn" class="button primary"><i class="fas fa-plus" style="margin-right:0.4rem;"></i>Add</button>
+					</div>
+					<div class="todo-row">
+						<input type="date" id="todo-date-input" />
+						<input type="time" id="todo-time-start" placeholder="Start" />
+						<input type="time" id="todo-time-end" placeholder="End" />
+					</div>
+				</div>
+
+				<div class="todo-stats">
+					<span id="todo-stats-text">0 of 0 tasks completed</span>
+					<span id="todo-stats-pct">0%</span>
+				</div>
+				<div class="todo-progress-bar">
+					<div class="todo-progress-fill" id="todo-progress-fill" style="width: 0%;"></div>
+				</div>
+
+				<div id="todo-task-list"></div>
+
+				<ul class="actions" style="margin-top: 1.5rem;">
+					<li><button type="button" id="todo-export-ics" class="button primary"><i class="fas fa-calendar-plus" style="margin-right:0.5rem;"></i>Export Google Calendar</button></li>
+					<li><button type="button" id="todo-copy-btn" class="button"><i class="fas fa-copy" style="margin-right:0.5rem;"></i>Copy List</button></li>
+					<li><button type="button" id="todo-clear-btn" class="button" style="border-color: rgba(239,68,68,0.5); color: #ef4444;">Clear All</button></li>
+				</ul>
+			</article>
+
+			<article id="tool-pomodoro">
+				<h2 class="major">🍅 Pomodoro Timer</h2>
+
+				<div id="pomo-notif-banner" class="pomo-card" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:0.9rem 1.2rem;">
+					<i class="fas fa-bell" style="color:#a78bfa;font-size:1.1rem;"></i>
+					<span style="flex:1;font-size:0.85rem;color:rgba(255,255,255,0.65);">Get alerted when sessions end — even when you switch tabs!</span>
+					<button type="button" id="pomo-notif-btn" class="button" style="font-size:0.8rem;padding:0.4rem 0.9rem;white-space:nowrap;">🔔 Enable Alerts</button>
+				</div>
+
+				<div class="pomo-card" id="pomo-goal-card" style="padding:0.9rem 1.2rem;">
+					<label style="display:block;font-size:0.72rem;color:rgba(167,139,250,0.65);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.5rem;">🎯 What do you want to achieve this session?</label>
+					<input type="text" id="pomo-goal-input" placeholder="e.g. Finish chapter 3, review PRs, write intro…" style="width:100%;box-sizing:border-box;font-size:0.88rem;padding:0.5rem 0.8rem;border-radius:8px;margin-bottom:0.6rem;" />
+					<div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+						<select id="pomo-label-select" style="flex:1;min-width:140px;font-size:0.82rem;padding:0.3rem 0.5rem;border-radius:8px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);border:1px solid rgba(167,139,250,0.2);">
+							<option value="">🏷️ No label</option>
+							<option value="💻 Coding">💻 Coding</option>
+							<option value="📚 Study">📚 Study</option>
+							<option value="💼 Work">💼 Work</option>
+							<option value="📖 Reading">📖 Reading</option>
+							<option value="✍️ Writing">✍️ Writing</option>
+							<option value="🎨 Creative">🎨 Creative</option>
+							<option value="🏋️ Exercise">🏋️ Exercise</option>
+						</select>
+					</div>
+				</div>
+
+				<div style="text-align:center;margin:0.5rem 0 1rem;">
+					<div id="pomo-ring-wrap" class="pulsing">
+						<svg width="230" height="230" style="transform:rotate(-90deg);">
+							<defs>
+								<linearGradient id="pgFocus" x1="0%" y1="0%" x2="100%" y2="0%">
+									<stop offset="0%" style="stop-color:#7b2fff"/>
+									<stop offset="100%" style="stop-color:#c4b5fd"/>
+								</linearGradient>
+								<linearGradient id="pgBreak" x1="0%" y1="0%" x2="100%" y2="0%">
+									<stop offset="0%" style="stop-color:#059669"/>
+									<stop offset="100%" style="stop-color:#6ee7b7"/>
+								</linearGradient>
+							</defs>
+							<circle id="pomo-ring-bg" cx="115" cy="115" r="100" fill="none" stroke="rgba(167,139,250,0.1)" stroke-width="12"/>
+							<circle id="pomo-ring-fill" cx="115" cy="115" r="100" fill="none" stroke="url(#pgFocus)" stroke-width="12" stroke-linecap="round" stroke-dasharray="628.3" stroke-dashoffset="0"/>
+						</svg>
+						<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:170px;">
+							<div id="pomodoro-display" style="font-size:3.2rem;font-family:'JetBrains Mono',monospace;font-weight:700;color:#fff;line-height:1;letter-spacing:-0.02em;">25:00</div>
+							<div id="pomodoro-status" class="pomo-mode-badge focus">Focus Time</div>
+						</div>
+					</div>
+				</div>
+
+				<div style="text-align:center;margin-bottom:1rem;">
+					<div id="pomo-dots" style="display:inline-flex;gap:6px;align-items:center;">
+						<span class="pomo-dot"></span><span class="pomo-dot"></span>
+						<span class="pomo-dot"></span><span class="pomo-dot"></span>
+						<span class="pomo-dot"></span><span class="pomo-dot"></span>
+						<span class="pomo-dot"></span><span class="pomo-dot"></span>
+					</div>
+					<div style="font-size:0.78rem;color:rgba(167,139,250,0.65);margin-top:0.35rem;">
+						<span id="pomo-session-count">0</span> sessions completed
+					</div>
+				</div>
+
+				<div class="pomo-card" style="display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap;padding:0.9rem 1.2rem;">
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.65);">
+						🎯 Focus <input type="number" id="pomo-focus-min" value="25" min="1" max="99" style="width:48px;text-align:center;font-family:'JetBrains Mono',monospace;padding:0.25rem;font-size:0.9rem;"> min
+					</label>
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.65);">
+						☕ Break <input type="number" id="pomo-break-min" value="5" min="1" max="60" style="width:48px;text-align:center;font-family:'JetBrains Mono',monospace;padding:0.25rem;font-size:0.9rem;"> min
+					</label>
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:rgba(245,158,11,0.8);">
+						🌙 Long Break <input type="number" id="pomo-long-break-min" value="15" min="5" max="60" style="width:48px;text-align:center;font-family:'JetBrains Mono',monospace;padding:0.25rem;font-size:0.9rem;"> min
+					</label>
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.65);cursor:pointer;">
+						<input type="checkbox" id="pomo-sound-toggle" checked style="width:14px;height:14px;cursor:pointer;"> 🔊
+					</label>
+					<label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.65);">
+						🎵
+						<select id="pomo-ambient-select" style="font-size:0.8rem;padding:0.25rem 0.4rem;border-radius:6px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);border:1px solid rgba(167,139,250,0.2);">
+							<option value="none">None</option>
+							<option value="rain">🌧️ Rain</option>
+							<option value="white">🌊 White</option>
+							<option value="brown">🌿 Brown</option>
+						</select>
+					</label>
+				</div>
+
+				<ul class="actions" style="justify-content:center;margin-top:1.2rem;">
+					<li><button type="button" id="pomodoro-start" class="button primary" style="min-width:90px;"><i class="fas fa-play" style="margin-right:0.4rem;"></i>Start</button></li>
+					<li><button type="button" id="pomodoro-pause" class="button" style="min-width:90px;"><i class="fas fa-pause" style="margin-right:0.4rem;"></i>Pause</button></li>
+					<li><button type="button" id="pomodoro-reset" class="button" style="min-width:90px;"><i class="fas fa-rotate-left" style="margin-right:0.4rem;"></i>Reset</button></li>
+				</ul>
+				<p style="text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:-0.5rem;">Press <kbd style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:0.1rem 0.4rem;font-family:'JetBrains Mono',monospace;">Space</kbd> to start / pause</p>
+
+				<div class="pomo-card" style="margin-top:1.5rem;padding:1rem 1.2rem;">
+					<div style="font-size:0.72rem;color:rgba(167,139,250,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.8rem;">📊 Your Stats</div>
+					<div style="display:flex;gap:0;">
+						<div style="flex:1;text-align:center;border-right:1px solid rgba(167,139,250,0.12);padding-right:0.5rem;">
+							<div id="pomo-stat-streak" style="font-size:1.5rem;font-weight:700;color:#fff;line-height:1;">0🔥</div>
+							<div style="font-size:0.68rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;">Day Streak</div>
+						</div>
+						<div style="flex:1;text-align:center;border-right:1px solid rgba(167,139,250,0.12);padding:0 0.5rem;">
+							<div id="pomo-stat-today" style="font-size:1rem;font-weight:700;color:#a78bfa;line-height:1;">0</div>
+							<div style="font-size:0.68rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;">Today's Sessions</div>
+						</div>
+						<div style="flex:1;text-align:center;padding-left:0.5rem;">
+							<div id="pomo-stat-total" style="font-size:1rem;font-weight:700;color:#6ee7b7;line-height:1;">0h 0m</div>
+							<div style="font-size:0.68rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;">Total Focus</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="pomo-log-section" style="display:none;margin-top:1.5rem;">
+					<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;">
+						<h4 style="margin:0;color:#a78bfa;font-size:0.88rem;letter-spacing:0.05em;">📋 Session Log</h4>
+						<button type="button" id="pomo-export-btn" class="button" style="font-size:0.75rem;padding:0.3rem 0.8rem;"><i class="fas fa-download" style="margin-right:0.3rem;"></i>Export CSV</button>
+					</div>
+					<div id="pomo-log-list" style="max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:0.6rem;"></div>
+				</div>
+			</article>
+
+			<article id="tool-random-name">
+				<h2 class="major">Random Name Picker</h2>
+				<p>Enter names separated by commas or newlines.</p>
+				<textarea id="name-picker-input" rows="5" placeholder="Alice, Bob, Charlie..."></textarea>
+				<ul class="actions" style="margin-top: 1.5rem;">
+					<li><button type="button" id="name-picker-btn" class="button primary">Pick a Random Name!</button></li>
+				</ul>
+				<div id="name-picker-result" style="margin-top: 2rem; font-size: 2rem; font-weight: 700; text-align: center; color: #00c9ff; min-height: 3rem; text-shadow: 0 0 15px rgba(0,201,255,0.4);"></div>
+			</article>
+
+			<article id="tool-stopwatch">
+				<h2 class="major">Activity Stopwatch</h2>
+				<div style="text-align: center; margin: 3rem 0;">
+					<input type="text" id="stopwatch-event-name" placeholder="Name your session (e.g. Study, Work...)" style="max-width: 400px; margin: 0 auto 2rem auto; text-align: center; font-size: 1.1rem; padding: 0.8rem;" />
+					<div id="stopwatch-display" style="font-size: 4rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #ffffff; text-shadow: 0 0 20px rgba(16,185,129,0.5);">00:00:00.00</div>
+					<ul class="actions" style="justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+						<li><button type="button" id="stopwatch-start" class="button primary">Start</button></li>
+						<li><button type="button" id="stopwatch-stop" class="button">Stop</button></li>
+						<li><button type="button" id="stopwatch-lap" class="button">Lap</button></li>
+						<li><button type="button" id="stopwatch-reset" class="button">Reset</button></li>
+					</ul>
+					<ul class="actions" style="justify-content: center; margin-top: 1rem;">
+						<li><button type="button" id="stopwatch-export-ics" class="button"><i class="fas fa-calendar-plus" style="margin-right:0.5rem; color:#60c3ff;"></i>Export to Calendar (.ics)</button></li>
+					</ul>
+					<div id="stopwatch-laps" style="margin-top: 2rem; text-align: left; max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+						<ul id="laps-list" style="list-style: none; padding: 0; margin: 0; color: #a7f3d0; font-family: 'JetBrains Mono', monospace;"></ul>
+					</div>
+				</div>
+			</article>
+
+			<article id="tool-deep-search">
+				<h2 class="major">Deep Search</h2>
+				<div style="margin-bottom: 2rem;">
+					<input type="text" id="deep-search-input" placeholder="Search skills, experience, tech stack..." style="width: 100%; padding: 1rem; font-size: 1.2rem; border-radius: 12px;" />
+				</div>
+				<div id="deep-search-results" style="display: flex; flex-direction: column; gap: 1rem;">
+					<p style="text-align:center; color: #a78bfa;">Start typing to search...</p>
+				</div>
+			</article>
+
+		</div>
+
+		<footer id="footer">
+			<p class="copyright">&copy; <span id="current-year"></span> Sitraka Forler. Built with Passion &amp; AI.</p>
+		</footer>
+
+	</div>
+
+	<div id="bg"></div>
+	<canvas id="particles-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+
+	<script src="assets/js/jquery.min.js" defer></script>
+	<script src="assets/js/browser.min.js" defer></script>
+	<script src="assets/js/breakpoints.min.js" defer></script>
+	<script src="assets/js/util.js" defer></script>
+	<script src="assets/js/main.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="sha512-rdhY3cbXURo13l/WU9VlaRyaIYeJ/KBakckXIvJNAQde8DgpOmE+eZf7ha4vdqVjTtwQt69bD2wH2LXob/LB7Q==" crossorigin="anonymous" defer></script>
+	<script src="assets/js/main-effects.js" defer></script>
+	<script src="assets/js/tools.js" defer></script>
+	<script src="assets/js/inline-scripts.js" defer></script>
+
+</body>
+
+</html>
