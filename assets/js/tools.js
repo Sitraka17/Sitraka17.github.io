@@ -146,14 +146,14 @@ $(document).ready(function () {
         try {
             var display = document.getElementById('pomodoro-display');
             if (display) display.setAttribute('aria-label', txt + (isFocus ? ' — Focus time' : ' — Break time'));
-            var ring = document.getElementById('pomo-ring-fill');
-            if (ring && pomoTotalTime > 0) {
+            var ringEl = document.getElementById('pomo-ring-fill');
+            if (ringEl && pomoTotalTime > 0) {
                 var pct = Math.round((pomoTotalTime - pomoTimeLeft) / pomoTotalTime * 100);
-                ring.setAttribute('role', 'progressbar');
-                ring.setAttribute('aria-valuemin', '0');
-                ring.setAttribute('aria-valuemax', '100');
-                ring.setAttribute('aria-valuenow', String(pct));
-                ring.setAttribute('aria-valuetext', txt + ' remaining');
+                ringEl.setAttribute('role', 'progressbar');
+                ringEl.setAttribute('aria-valuemin', '0');
+                ringEl.setAttribute('aria-valuemax', '100');
+                ringEl.setAttribute('aria-valuenow', String(pct));
+                ringEl.setAttribute('aria-valuetext', txt + ' remaining');
             }
         } catch(e) {}
         // tab title
