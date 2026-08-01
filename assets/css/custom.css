@@ -3,6 +3,58 @@
    Loaded AFTER main.css to cleanly override styles
    =================================================== */
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@supports (content-visibility: auto) {
+  #main article,
+  .skill-card,
+  .tool-card,
+  .timeline-item,
+  .code-window,
+  .pomo-card,
+  .todo-input-group,
+  .code-tab-bar {
+    content-visibility: auto;
+    contain-intrinsic-size: 700px 1200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* ---------- 0. CRITICAL FIX: BG Z-INDEX ---------- */
 /* The original template's #bg sits at z-index:1 and covers
    the entire viewport. We need to push it behind everything. */

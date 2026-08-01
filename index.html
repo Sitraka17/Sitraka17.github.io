@@ -107,6 +107,9 @@
 	═══════════════════════════════════════════ -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+	<link rel="preload" href="assets/css/main.css" as="style" />
+	<link rel="preload" href="assets/css/custom.css" as="style" />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap"
 		rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -976,14 +979,14 @@ def secure_hash_password(password: str) -> str:
 		style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
 
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="sha512-rdhY3cbXURo13l/WU9VlaRyaIYeJ/KBakckXIvJNAQde8DgpOmE+eZf7ha4vdqVjTtwQt69bD2wH2LXob/LB7Q==" crossorigin="anonymous"></script>
-	<script src="assets/js/main-effects.js"></script>
-	<script src="assets/js/tools.js"></script>
+	<script src="assets/js/jquery.min.js" defer></script>
+	<script src="assets/js/browser.min.js" defer></script>
+	<script src="assets/js/breakpoints.min.js" defer></script>
+	<script src="assets/js/util.js" defer></script>
+	<script src="assets/js/main.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="sha512-rdhY3cbXURo13l/WU9VlaRyaIYeJ/KBakckXIvJNAQde8DgpOmE+eZf7ha4vdqVjTtwQt69bD2wH2LXob/LB7Q==" crossorigin="anonymous" defer></script>
+	<script src="assets/js/main-effects.js" defer></script>
+	<script src="assets/js/tools.js" defer></script>
 	<script src="assets/js/inline-scripts.js" defer></script>
 
 </body>

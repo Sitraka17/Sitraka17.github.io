@@ -89,9 +89,11 @@ hljs.highlightAll();
 (function () {
     var canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 768 || 'ontouchstart' in window) return;
+
     var ctx = canvas.getContext('2d');
     var W, H, particles = [];
-    var NUM = 65;
+    var NUM = Math.max(24, Math.min(42, Math.floor(window.innerWidth / 45)));
     var mouse = { x: -1000, y: -1000 };
 
     function resize() {
@@ -186,7 +188,11 @@ hljs.highlightAll();
         requestAnimationFrame(loop);
     }
 
-    window.addEventListener('resize', init);
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 120);
+    });
     init();
     loop();
 })();
