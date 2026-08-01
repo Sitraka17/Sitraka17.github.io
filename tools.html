@@ -114,7 +114,7 @@
 				</div>
 
 				<div style="text-align:center;margin:0.5rem 0 1rem;">
-					<div id="pomo-ring-wrap" class="pulsing">
+					<div id="pomo-ring-wrap" class="pulsing" aria-hidden="false">
 						<svg width="230" height="230" style="transform:rotate(-90deg);">
 							<defs>
 								<linearGradient id="pgFocus" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -130,8 +130,8 @@
 							<circle id="pomo-ring-fill" cx="115" cy="115" r="100" fill="none" stroke="url(#pgFocus)" stroke-width="12" stroke-linecap="round" stroke-dasharray="628.3" stroke-dashoffset="0"/>
 						</svg>
 						<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:170px;">
-							<div id="pomodoro-display" style="font-size:3.2rem;font-family:'JetBrains Mono',monospace;font-weight:700;color:#fff;line-height:1;letter-spacing:-0.02em;">25:00</div>
-							<div id="pomodoro-status" class="pomo-mode-badge focus">Focus Time</div>
+							<div id="pomodoro-display" role="status" aria-live="polite" aria-atomic="true" style="font-size:3.2rem;font-family:'JetBrains Mono',monospace;font-weight:700;color:#fff;line-height:1;letter-spacing:-0.02em;">25:00</div>
+							<div id="pomodoro-status" class="pomo-mode-badge focus" role="status" aria-live="polite">Focus Time</div>
 						</div>
 					</div>
 				</div>
@@ -173,9 +173,9 @@
 				</div>
 
 				<ul class="actions" style="justify-content:center;margin-top:1.2rem;">
-					<li><button type="button" id="pomodoro-start" class="button primary" style="min-width:90px;"><i class="fas fa-play" style="margin-right:0.4rem;"></i>Start</button></li>
-					<li><button type="button" id="pomodoro-pause" class="button" style="min-width:90px;"><i class="fas fa-pause" style="margin-right:0.4rem;"></i>Pause</button></li>
-					<li><button type="button" id="pomodoro-reset" class="button" style="min-width:90px;"><i class="fas fa-rotate-left" style="margin-right:0.4rem;"></i>Reset</button></li>
+					<li><button type="button" id="pomodoro-start" class="button primary" style="min-width:90px;" aria-label="Start pomodoro timer"><i class="fas fa-play" style="margin-right:0.4rem;"></i>Start</button></li>
+					<li><button type="button" id="pomodoro-pause" class="button" style="min-width:90px;" aria-label="Pause pomodoro timer"><i class="fas fa-pause" style="margin-right:0.4rem;"></i>Pause</button></li>
+					<li><button type="button" id="pomodoro-reset" class="button" style="min-width:90px;" aria-label="Reset pomodoro timer"><i class="fas fa-rotate-left" style="margin-right:0.4rem;"></i>Reset</button></li>
 				</ul>
 				<p style="text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:-0.5rem;">Press <kbd style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:0.1rem 0.4rem;font-family:'JetBrains Mono',monospace;">Space</kbd> to start / pause</p>
 
@@ -255,7 +255,7 @@
 	</div>
 
 	<div id="bg"></div>
-	<canvas id="particles-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+	<canvas id="particles-canvas" aria-hidden="true" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
 
 	<script src="assets/js/jquery.min.js" defer></script>
 	<script src="assets/js/browser.min.js" defer></script>

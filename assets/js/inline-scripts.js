@@ -34,4 +34,39 @@
             document.getElementById('code-panel-' + target).classList.add('active');
         });
     });
+
+    // ---- Contact form client-side monitoring & simple rate-limit ----
+    try {
+        var contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                try {
+                    var now = Date.now();
+                    var raw = localStorage.getItem('contact_submits') || '[]';
+                    var arr = JSON.parse(raw);
+                    // Keep only last 30 minutes for tracking
+                    var windowMs = 30 * 60 * 1000;
+                    arr = arr.filter(ts => (now - ts) < windowMs);
+                    if (arr.length >= 5) {
+                        // Rate limit exceeded — block and inform user
+                        e.preventDefault();
+                        var msg = 'Too many contact attempts. Please wait a while before retrying.';
+                        if (typeof showToast === 'function') showToast(msg, 'warning'); else alert(msg);
+                        return false;
+                    }
+                    // accept and record (timestamp stored before actual network send)
+                    arr.push(now);
+                    localStorage.setItem('contact_submits', JSON.stringify(arr));
+                    // Also store last submit summary for quick monitoring (keep last 20)
+                    var meta = JSON.parse(localStorage.getItem('contact_submit_meta') || '[]');
+                    meta.push({ ts: now, url: window.location.pathname });
+                    if (meta.length > 20) meta = meta.slice(-20);
+                    localStorage.setItem('contact_submit_meta', JSON.stringify(meta));
+                    return true;
+                } catch (err) {
+                    return true;
+                }
+            });
+        }
+    } catch (err) {}
 })();

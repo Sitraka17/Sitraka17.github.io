@@ -57,6 +57,9 @@ function pomoShowFloatingAlert(title, msg, type) {
         + 'padding:1.1rem 1.3rem;width:290px;box-shadow:0 10px 40px rgba(0,0,0,0.6);'
         + 'backdrop-filter:blur(14px);font-family:Inter,sans-serif;'
         + 'transform:translateX(130%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);';
+    // Accessibility: announce toast and mark as status
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
     document.body.appendChild(el);
     setTimeout(function() { el.style.transform = 'translateX(0)'; }, 30);
     el.addEventListener('click', function (event) {
@@ -139,6 +142,20 @@ $(document).ready(function () {
         const s = pomoTimeLeft % 60;
         const txt = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
         $('#pomodoro-display').text(txt);
+        // Accessibility: update live region text and progress attributes
+        try {
+            var display = document.getElementById('pomodoro-display');
+            if (display) display.setAttribute('aria-label', txt + (isFocus ? ' — Focus time' : ' — Break time'));
+            var ring = document.getElementById('pomo-ring-fill');
+            if (ring && pomoTotalTime > 0) {
+                var pct = Math.round((pomoTotalTime - pomoTimeLeft) / pomoTotalTime * 100);
+                ring.setAttribute('role', 'progressbar');
+                ring.setAttribute('aria-valuemin', '0');
+                ring.setAttribute('aria-valuemax', '100');
+                ring.setAttribute('aria-valuenow', String(pct));
+                ring.setAttribute('aria-valuetext', txt + ' remaining');
+            }
+        } catch(e) {}
         // tab title
         document.title = txt + ' | ' + (isFocus ? '🎯 Focus' : '☕ Break');
         // ring
@@ -206,6 +223,8 @@ $(document).ready(function () {
         var bMin = Math.round(pomoTotalTime / 60);
         var overlay = document.createElement('div');
         overlay.id = 'pomo-ach-modal';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
         overlay.style.cssText = 'position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1rem;';
         overlay.innerHTML = '<div style="background:rgba(12,6,30,0.98);border:1px solid rgba(167,139,250,0.3);border-radius:20px;padding:2rem;max-width:450px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.7);">'
             + '<div style="text-align:center;margin-bottom:1.4rem;"><div style="font-size:2.4rem;">' + (lb ? '🌙' : '🍅') + '</div>'
