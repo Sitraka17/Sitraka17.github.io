@@ -1,1 +1,9 @@
 theme: jekyll-theme-slate
+
+# Internal notes / working files that should not be published as pages
+exclude:
+  - README.md
+  - AUDIT.md
+  - CoffreFort/orders.md
+  - images/Descriptions.md
+  - assets/sass
