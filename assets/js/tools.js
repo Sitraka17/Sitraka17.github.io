@@ -537,7 +537,8 @@ $(document).ready(function () {
             return;
         }
         todos.forEach((t, i) => {
-            const esc = (v) => $('<div>').text(String(v)).html();
+            // Escape quotes too: the task text also goes into aria-label attributes.
+            const esc = (v) => $('<div>').text(String(v)).html().replace(/"/g, '&quot;').replace(/'/g, '&#39;');
             let metaHtml = '';
             if (t.date) metaHtml += `<span>${esc(t.date)}</span>`;
             if (t.timeStart) metaHtml += `<span>${esc(t.timeStart)}${t.timeEnd ? ' – ' + esc(t.timeEnd) : ''}</span>`;
@@ -564,6 +565,9 @@ $(document).ready(function () {
                 items[i].done = !items[i].done;
                 saveTodos(items);
                 renderTodos();
+                // Keep keyboard focus on the same checkbox after the list is redrawn.
+                const again = container.querySelectorAll('.todo-checkbox')[i];
+                if (again) again.focus();
             });
 
             // Bind delete click directly
@@ -574,6 +578,10 @@ $(document).ready(function () {
                 items.splice(i, 1);
                 saveTodos(items);
                 renderTodos();
+                // Move focus to the next task, or back to the input when the list is empty.
+                const rest = container.querySelectorAll('.todo-checkbox');
+                const next = rest[Math.min(i, rest.length - 1)] || document.getElementById('todo-task-input');
+                if (next) next.focus();
             });
         });
         updateTodoStats();
