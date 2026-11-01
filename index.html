@@ -1,555 +1,466 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<!-- ═══════════════════════════════════════════
-	     PRIMARY META
-	═══════════════════════════════════════════ -->
-	<title>Sitraka Forler | Data Scientist & MLOps Engineer in Luxembourg</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="Sitraka Forler is a Data Scientist and MLOps Engineer based in Luxembourg, helping organisations design AI, cloud, cybersecurity and data platforms with business impact." />
-	<meta name="keywords" content="Sitraka Forler, Data Scientist Luxembourg, MLOps Engineer Luxembourg, AI Consultant Luxembourg, Machine Learning, LuxAIOps, AIOps, Python, Deep Learning, Cloud Architect, Cybersecurity, FinTech, Data Engineer, IT Consultant Luxembourg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Sitraka Forler · Systems Architect, AIOps · Portfolio</title>
+	<meta name="description" content="Portfolio of Sitraka Forler, Systems Architect (observability, AIOps) at POST Luxembourg, co-founder of LuxAIOps and lecturer. Main site: sitraka.lu." />
 	<meta name="author" content="Sitraka Forler" />
 	<meta name="google-site-verification" content="HcdSFfGMTy_sUlMGdaEjCHuz7FOLhBuJbtduS7JNOtk" />
-	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-	<meta name="theme-color" content="#0f0a1e" />
-	<link rel="alternate" hreflang="en" href="https://sitraka17.github.io/" />
-	<link rel="alternate" hreflang="x-default" href="https://sitraka17.github.io/" />
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
-
-	<!-- ═══════════════════════════════════════════
-	     PERFORMANCE (LCP)
-	═══════════════════════════════════════════ -->
-	<link rel="preload" as="image" href="images/pic01.jpg" fetchpriority="high">
-
-	<!-- ═══════════════════════════════════════════
-	     CANONICAL & GEO
-	═══════════════════════════════════════════ -->
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+	<meta name="theme-color" content="#1f3864" />
 	<link rel="canonical" href="https://sitraka17.github.io/" />
-	<meta name="geo.region" content="LU" />
-	<meta name="geo.placename" content="Luxembourg" />
-	<meta name="language" content="English" />
+	<link rel="me" href="https://sitraka.lu/" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231f3864'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='%23fff' text-anchor='middle'%3ESF%3C/text%3E%3C/svg%3E" />
 
-	<!-- ═══════════════════════════════════════════
-	     OPEN GRAPH (Facebook / LinkedIn)
-	═══════════════════════════════════════════ -->
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="Sitraka Forler Portfolio" />
-	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="profile" />
+	<meta property="og:site_name" content="Sitraka Forler, portfolio" />
+	<meta property="og:locale" content="en_GB" />
 	<meta property="og:url" content="https://sitraka17.github.io/" />
-	<meta property="og:title" content="Sitraka Forler | Data Scientist & MLOps Engineer — Luxembourg" />
-	<meta property="og:description" content="Portfolio of Sitraka Forler — Data Scientist, MLOps Engineer & Co-founder of LuxAIOps. Expert in ML, AI Ops, Cloud, Cybersecurity and FinTech based in Luxembourg." />
-	<meta property="og:image" content="https://sitraka17.github.io/images/og-image.jpg" />
-	<meta property="og:image:alt" content="Sitraka Forler — Data Scientist and MLOps Engineer" />
+	<meta property="og:title" content="Sitraka Forler · Systems Architect, AIOps · Portfolio" />
+	<meta property="og:description" content="Systems Architect (observability, AIOps) at POST Luxembourg, co-founder of LuxAIOps, lecturer. Main site: sitraka.lu." />
+	<meta property="og:image" content="https://sitraka17.github.io/images/og-portfolio.jpg" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
-
-	<!-- ═══════════════════════════════════════════
-	     TWITTER CARD
-	═══════════════════════════════════════════ -->
+	<meta property="og:image:alt" content="Sitraka Forler, Systems Architect, observability and AIOps, Luxembourg" />
+	<meta property="profile:first_name" content="Sitraka" />
+	<meta property="profile:last_name" content="Forler" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@ForlerSitraka" />
-	<meta name="twitter:creator" content="@ForlerSitraka" />
-	<meta name="twitter:title" content="Sitraka Forler | Data Scientist & MLOps Engineer" />
-	<meta name="twitter:description" content="Portfolio of Sitraka Forler — ML, AI Ops, Cloud & Cybersecurity expert. Co-founder of LuxAIOps in Luxembourg." />
-	<meta name="twitter:image" content="https://sitraka17.github.io/images/og-image.jpg" />
-	<meta name="twitter:image:alt" content="Sitraka Forler — Data Scientist and MLOps Engineer" />
+	<meta name="twitter:title" content="Sitraka Forler · Systems Architect, AIOps · Portfolio" />
+	<meta name="twitter:description" content="Systems Architect (observability, AIOps) at POST Luxembourg, co-founder of LuxAIOps, lecturer. Main site: sitraka.lu." />
+	<meta name="twitter:image" content="https://sitraka17.github.io/images/og-portfolio.jpg" />
+	<meta name="twitter:image:alt" content="Sitraka Forler, Systems Architect, observability and AIOps, Luxembourg" />
 
-	<!-- ═══════════════════════════════════════════
-	     JSON-LD STRUCTURED DATA
-	═══════════════════════════════════════════ -->
 	<script type="application/ld+json">
-	{
-	  "@context": "https://schema.org",
-	  "@type": "Person",
-	  "@id": "https://sitraka17.github.io/#person",
-	  "name": "Sitraka Forler",
-	  "givenName": "Sitraka",
-	  "familyName": "Forler",
-	  "jobTitle": "Data Scientist & MLOps Engineer",
-	  "description": "Data Scientist, MLOps Engineer and IT Consultant based in Luxembourg. Co-founder of LuxAIOps, specialising in AI, Machine Learning, Cloud Architecture and Cybersecurity.",
-	  "url": "https://sitraka17.github.io/",
-	  "image": "https://sitraka17.github.io/images/pic01.jpg",
-	  "email": "mailto:sitraka.forler@gmail.com",
-	  "address": {
-	    "@type": "PostalAddress",
-	    "addressLocality": "Luxembourg",
-	    "addressCountry": "LU"
+	[
+	  {
+	    "@context": "https://schema.org",
+	    "@type": "ProfilePage",
+	    "@id": "https://sitraka17.github.io/#profile",
+	    "url": "https://sitraka17.github.io/",
+	    "name": "Sitraka Forler · Systems Architect, AIOps · Portfolio",
+	    "inLanguage": "en",
+	    "dateModified": "2026-11-01",
+	    "mainEntity": { "@id": "https://sitraka.lu/#person" },
+	    "isPartOf": { "@id": "https://sitraka17.github.io/#website" }
 	  },
-	  "worksFor": {
-	    "@type": "Organization",
-	    "name": "POST Luxembourg",
-	    "url": "https://www.post.lu/"
+	  {
+	    "@context": "https://schema.org",
+	    "@type": "WebSite",
+	    "@id": "https://sitraka17.github.io/#website",
+	    "url": "https://sitraka17.github.io/",
+	    "name": "Sitraka Forler, portfolio",
+	    "inLanguage": "en",
+	    "publisher": { "@id": "https://sitraka.lu/#person" }
 	  },
-	  "founder": {
+	  {
+	    "@context": "https://schema.org",
+	    "@type": "Person",
+	    "@id": "https://sitraka.lu/#person",
+	    "name": "Sitraka Forler",
+	    "givenName": "Sitraka",
+	    "familyName": "Forler",
+	    "alternateName": "Sitraka Matthieu Forler",
+	    "url": "https://sitraka.lu/",
+	    "jobTitle": "Systems Architect",
+	    "description": "Systems architect in Luxembourg City (observability, AIOps), co-founder of LuxAIOps and lecturer in data science.",
+	    "worksFor": {
+	      "@type": "Organization",
+	      "name": "POST Luxembourg",
+	      "url": "https://www.post.lu"
+	    },
+	    "alumniOf": {
+	      "@type": "CollegeOrUniversity",
+	      "name": "Aix-Marseille School of Economics",
+	      "alternateName": "AMSE",
+	      "url": "https://www.amse-aixmarseille.fr/"
+	    },
+	    "address": {
+	      "@type": "PostalAddress",
+	      "addressLocality": "Luxembourg City",
+	      "addressCountry": "LU"
+	    },
+	    "knowsAbout": ["observability", "systems architecture", "AIOps", "data engineering", "machine learning", "Python", "SQL"],
+	    "sameAs": [
+	      "https://www.linkedin.com/in/sitraka-matthieu-forler/",
+	      "https://github.com/Sitraka17",
+	      "https://sitraka.lu/",
+	      "https://medium.com/@sitrakaforler",
+	      "https://scholar.google.com/citations?user=OLiHYHIAAAAJ",
+	      "https://www.youtube.com/@sitrakaforler1896"
+	    ]
+	  },
+	  {
+	    "@context": "https://schema.org",
 	    "@type": "Organization",
+	    "@id": "https://lux-aiops.com/#organization",
 	    "name": "LuxAIOps",
-	    "description": "AIOps startup pioneering AI-driven IT Operations in Luxembourg and Europe"
-	  },
-	  "alumniOf": [
-	    { "@type": "EducationalOrganization", "name": "Aix-Marseille School of Economics" },
-	    { "@type": "EducationalOrganization", "name": "Centrale Méditerranée" }
-	  ],
-	  "knowsAbout": [
-	    "Machine Learning", "MLOps", "Deep Learning", "Python", "Data Science",
-	    "Cloud Architecture", "AWS", "Azure", "Cybersecurity", "AIOps",
-	    "FinTech", "SQL", "NoSQL", "Splunk", "Kubernetes", "Terraform",
-	    "Natural Language Processing", "Large Language Models"
-	  ],
-	  "sameAs": [
-	    "https://www.linkedin.com/in/sitraka-matthieu-forler/",
-	    "https://github.com/Sitraka17",
-	    "https://twitter.com/ForlerSitraka",
-	    "https://sitraka.lu/"
-	  ]
-	}
-	</script>
-	<script type="application/ld+json">
-	{
-	  "@context": "https://schema.org",
-	  "@type": "WebSite",
-	  "name": "Sitraka Forler Portfolio",
-	  "url": "https://sitraka17.github.io/",
-	  "description": "Portfolio of Sitraka Forler, Data Scientist and MLOps Engineer based in Luxembourg.",
-	  "publisher": { "@id": "https://sitraka17.github.io/#person" },
-	  "inLanguage": "en"
-	}
+	    "url": "https://lux-aiops.com",
+	    "founder": { "@id": "https://sitraka.lu/#person" }
+	  }
+	]
 	</script>
 
-	<!-- ═══════════════════════════════════════════
-	     FONTS & STYLES
-	═══════════════════════════════════════════ -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-	<link rel="preload" href="assets/css/main.css" as="style" />
-	<link rel="preload" href="assets/css/custom.css" as="style" />
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/custom.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-
-	<!-- ═══════════════════════════════════════════
-	     PRINT STYLESHEET (CV Mode)
-	═══════════════════════════════════════════ -->
-	<style media="print">
-		@page { margin: 1cm; }
-		body { background: #fff !important; color: #000 !important; font-family: 'Inter', sans-serif !important; }
-		#wrapper, #header, #footer, #bg, #particles-canvas, .close, .icons, .actions { display: none !important; }
-		#main { display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
-		#main article { display: block !important; opacity: 1 !important; visibility: visible !important; width: 100% !important; background: transparent !important; color: #000 !important; border: none !important; padding: 0 0 2rem 0 !important; page-break-inside: avoid; }
-		#main article .major { border-bottom: solid 2px #000 !important; color: #000 !important; margin-bottom: 1rem !important; }
-		#main article .image.main { display: none !important; }
-		a { color: #000 !important; text-decoration: underline !important; }
-		h1, h2, h3, h4 { color: #000 !important; }
-		.field, input, textarea, button { display: none !important; }
-		#intro, #code, #luxaiops { display: block !important; }
-	</style>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+	<link rel="stylesheet" href="assets/css/portfolio.css" />
 </head>
 
-<body class="is-preload">
-	<div id="cursor-glow"></div>
-	<div id="luxaiops-active-glow"></div>
+<body>
+	<a class="skip-link" href="#content">Skip to content</a>
 
-	<!-- Wrapper -->
-	<div id="wrapper">
-
-		<!-- Header -->
-		<header id="header">
-			<div class="logo">
-				<span class="icon fa-gem"></span>
-			</div>
-			<div class="content">
-				<div class="inner">
-					<h1>Sitraka Forler</h1>
-					<p id="typed-subtitle">Data Scientist &amp; ML Engineer<span id="typed-cursor">|</span></p>
-				</div>
-			</div>
-			<nav>
+	<header class="masthead">
+		<div class="wrap">
+			<a class="mast-id" href="./" aria-label="Sitraka Forler, portfolio home">
+				<span class="mast-mark" aria-hidden="true">SF</span>
+				<span class="mast-name">Sitraka Forler<span class="mast-role">Systems Architect · observability, AIOps</span></span>
+			</a>
+			<nav class="mast-nav" aria-label="Site">
 				<ul>
-					<li><a href="#intro">Intro</a></li>
-					<li><a href="#work">Work</a></li>
+					<li><a href="./" aria-current="page">Portfolio</a></li>
+					<li><a href="teachings.html">Teaching modules</a></li>
 					<li><a href="tools.html">Tools</a></li>
-					<li><a href="#luxaiops">LuxAIOps</a></li>
-					<li><a href="#contact">Contact</a></li>
-					<li><a href="https://sitraka.lu/">sitraka.lu&nbsp;&#8599;</a></li>
+					<li><a href="https://sitraka.lu/">sitraka.lu (main site)</a></li>
 				</ul>
 			</nav>
-		</header>
+		</div>
+	</header>
+	<div class="mast-rule" aria-hidden="true"></div>
 
-		<!-- Main -->
-		<main id="main">
+	<div class="wrap layout">
+		<nav class="toc" aria-label="Contents">
+			<p class="toc-title">Contents</p>
+			<ol>
+				<li><a href="#profile">Profile</a></li>
+				<li><a href="#experience">Experience</a></li>
+				<li><a href="#teaching">Teaching</a></li>
+				<li><a href="#research">Research and writing</a></li>
+				<li><a href="#talks">Talks</a></li>
+				<li><a href="#luxaiops">LuxAIOps</a></li>
+				<li><a href="#skills">Code and skills</a></li>
+				<li><a href="#education">Education</a></li>
+				<li><a href="#contact">Contact and profiles</a></li>
+			</ol>
+			<p class="toc-ext">Main site and full biography: <a href="https://sitraka.lu/about/">sitraka.lu/about</a></p>
+		</nav>
 
-			<!-- Intro -->
-			<article id="intro">
-				<h2 class="major">About Me</h2>
-				<span class="image main"><img src="images/pic01.jpg" alt="Sitraka Forler" fetchpriority="high" /></span>
-				<p>Hello! I'm <strong>Sitraka FORLER</strong>, a French Data &amp; IT professional passionate about
-					building intelligent systems that create real-world impact. With expertise spanning Data Science,
-					Machine Learning, Cloud, and Cybersecurity, I help organizations unlock the value hidden in their
-					data.</p>
-				<p>Alongside my consulting career, I am the Co-Founder of <strong>LuxAIOps</strong>, a startup dedicated
-					to bringing intelligent IT Operations and automation to Luxembourg and Europe. I also take on
-					freelance projects — delivering tailored, production-ready solutions to clients.</p>
-				<p>Feel free to explore my <a href="#work">professional experience</a>, browse my <a
-					 href="tools.html">interactive tools</a>, learn about <a href="#luxaiops">LuxAIOps</a>, or <a
-						href="#contact">get in touch</a>. You can also visit my main website at <a
-						href="https://sitraka.lu/">sitraka.lu</a>.</p>
-			</article>
-			<!-- Work -->
-			<article id="work">
-				<h2 class="major">Experience</h2>
-				<span class="image main"><img src="images/Engineering.jpg" alt="Sitraka Forler working on engineering and data projects" loading="lazy" /></span>
+		<main id="content">
+			<header class="titleblock">
+				<h1>Sitraka Forler</h1>
+				<p class="subtitle">Systems Architect, observability and AIOps, POST Luxembourg</p>
+				<p class="metaline">Luxembourg City · portfolio · updated 1 November 2026</p>
+				<p class="abstract"><span class="abstract-label">Abstract.</span> I design the architecture that lets operations teams see and run their systems: monitoring and observability platforms, service models in the CMDB, automated incident response and machine-learning anomaly detection. I co-founded LuxAIOps, and I teach data projects, machine learning and corporate strategy in French higher education as an industry practitioner.</p>
+			</header>
 
-				<div class="timeline">
-					<div class="timeline-item">
-						<span class="timeline-date">June 2025 — Present | Luxembourg</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">☁️ Systems Architect &amp; Ai Ops</h3>
-							<span class="timeline-subtitle">POST Luxembourg</span>
-						</div>
-						<ul>
-							<li>Designing and leading AIOps architecture to bridge observability, automation, and
-								data-driven decision-making.</li>
-							<li>Evolving observability architecture leveraging Splunk, Zabbix, Grafana, Prometheus, and
-								ELK.</li>
-							<li>Modeling business and technical services in BMC Discovery (CMDB).</li>
-							<li>Automating incident response workflows with ServiceNow and intelligent alerting.</li>
-							<li>Driving AIOps strategy using machine learning and anomaly detection.</li>
-						</ul>
-					</div>
-
-					<div class="timeline-item">
-						<span class="timeline-date">March 2023 — Present | France &amp; Luxembourg</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">🎓 Visiting Professor &amp; Lecturer</h3>
-							<span class="timeline-subtitle">IAE Metz, Centrale Méditerranée &amp; AMSE</span>
-						</div>
-						<ul>
-							<li>Teaching Data Science for Finance, Machine Learning, Deep Learning, and Transformers.
-							</li>
-							<li>Lecturing on corporate strategy, Agile/Scrum, and corporate finance.</li>
-						</ul>
-					</div>
-
-					<div class="timeline-item">
-						<span class="timeline-date">October 2023 — June 2025 | Luxembourg</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">🧠 Senior Data Scientist</h3>
-							<span class="timeline-subtitle">REVEALS SA</span>
-						</div>
-						<ul>
-							<li>Designing and deploying LLMs from POC to Production.</li>
-							<li>Managing Data Engineering and Architecture for finance departments.</li>
-							<li>Executing large-scale data migration projects.</li>
-						</ul>
-					</div>
-
-					<div class="timeline-item">
-						<span class="timeline-date">Sept 2022 — Oct 2023 | Luxembourg</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">🏢 Consultant in Data &amp; Digital Transformation</h3>
-							<span class="timeline-subtitle">Square Management</span>
-						</div>
-						<ul>
-							<li>Automated workflows with RPA (Python) for Avaloq core-banking.</li>
-							<li>Designed data warehouses using AWS, Airflow, and Talend.</li>
-							<li>Automated financial/regulatory reporting (AIFM, FGDL, IFRS 9).</li>
-						</ul>
-					</div>
-
-					<div class="timeline-item">
-						<span class="timeline-date">March 2021 — Sept 2022 | France</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">📊 Data Scientist / Web Analyst</h3>
-							<span class="timeline-subtitle">VirtualExpo Group</span>
-						</div>
-						<ul>
-							<li>Applied NLP (Hugging Face, Keras) to product descriptions.</li>
-							<li>Built predictive models and web traffic KPI dashboards.</li>
-						</ul>
-					</div>
-
-					<div class="timeline-item">
-						<span class="timeline-date">Dec 2020 — Dec 2020 | France</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">👨‍💻 Ethical Hacker</h3>
-							<span class="timeline-subtitle">Hack the Crisis France</span>
-						</div>
-						<ul>
-							<li><strong>Hackathon!</strong> 1 full week, non stop, during the Covid Crisis. Ideation,
-								Business Plan, Prototypying, Pitching and team working. 5th on 34 participating groups.
-							</li>
-						</ul>
-						<p
-							style="font-size: 0.85rem; color: rgba(196, 181, 253, 0.9); margin-top: 0.5rem; margin-bottom: 0;">
-							<strong>Skills:</strong> Python (Programming Language) · Docker · Pitching Ideas
-						</p>
-					</div>
-
-					<div class="timeline-item">
-						<span class="timeline-date">Jun 2020 — Nov 2020 | Near Aix-en-Provence</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">📊 Industrial Engineer - Data Analyst</h3>
-							<span class="timeline-subtitle">STMicroelectronics · Internship</span>
-						</div>
-						<ul>
-							<li><strong>Engineered KPI Dashboards:</strong> Designed and deployed two interactive
-								TIBCO-Spotfire dashboards to monitor real-time production line performance indicators.
-								Scripted complex data processing logic using R, customized backend functionalities with
-								.NET, and structured the frontend user interface utilizing HTML.</li>
-							<li><strong>Automated Reporting Pipelines:</strong> Developed an automated distribution
-								system to route critical service documents and KPIs directly to Industrial Engineers and
-								Plant Managers, streamlining communication and eliminating manual reporting overhead.
-							</li>
-							<li><strong>Predictive Maintenance Modeling:</strong> Spearheaded a data-driven project to
-								forecast production tool breakdowns. Leveraged Python and SQL to extract and analyze
-								historical machine data, identifying early indicators of equipment failure to optimize
-								production uptime.</li>
-						</ul>
-						<p
-							style="font-size: 0.85rem; color: rgba(196, 181, 253, 0.9); margin-top: 0.5rem; margin-bottom: 0;">
-							<strong>Skills:</strong> Indicateurs clés de performance · Cybersécurité · R · Tableaux de
-							bord d’indicateurs clés de performance · Python · SQL · KPI
-						</p>
-					</div>
-
-					<div class="timeline-item">
-						<span class="timeline-date">Oct 2018 — Jun 2020 | Greater Marseille Metropolitan Area</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">💼 Consultant / Junior Data Analyst</h3>
-							<span class="timeline-subtitle">Aix Marseille Strategy Consulting Group (AMS CG)</span>
-						</div>
-						<ul>
-							<li>Implementation of data projects for clients: Data cleansing (Corsica Ferries, Nexity)
-								and Customer feedback analysis (PSA Group).</li>
-							<li>Implementation of a Gantt chart for a team of 20 stakeholders.</li>
-							<li>Performing analysis to assess quality and meaning of data.</li>
-							<li>Filter Data by reviewing reports and key performance indicators (KPI) to identify and
-								correct trends and threats.</li>
-							<li>Using statistical tools to identify, analyze, and interpret patterns and trends in
-								complex data sets that could be helpful for the diagnosis and prediction.</li>
-							<li>Preparing annual, quarterly and monthly financial projections for designated client
-								groups, explaining variances with the budget and financial forecasts.</li>
-							<li>Conduct business meetings with customers to determine requirements and milestones.</li>
-							<li>Ensure the quality of the delivery by conducting tests (including performance test),
-								troubleshooting and integrating new elements.</li>
-						</ul>
-						<p
-							style="font-size: 0.85rem; color: rgba(196, 181, 253, 0.9); margin-top: 0.5rem; margin-bottom: 0;">
-							<strong>Skills:</strong> Microsoft Excel · Cybersécurité · Python · SQL
-						</p>
-					</div>
-
-					<div class="timeline-item">
-						<span class="timeline-date">May 2019 — Jul 2019 | Région de Marseille, France</span>
-						<div class="timeline-header">
-							<h3 class="timeline-title">🔬 Research Assistant</h3>
-							<span class="timeline-subtitle">Aix-Marseille School of Economics · Internship</span>
-						</div>
-						<ul>
-							<li><em>The para-demographic productivity gap in the developing world: an international
-									comparison</em></li>
-							<li>During that internship I was under the supervision of Pr. Gilles Dufrenot at the
-								Aix-Marseille School of economics. We had to analyse the previous and actual point of
-								view of existing scientific papers, then we worked on the econometrics regressions and
-								interpretations.</li>
-							<li>Our paper investigates the heterogeneous productivity gaps by panel stochastic frontier
-								models to confirm a para demographic “burden” through inefficiencies in the labor
-								productivity in the developing countries. As a result, in terms of productivity,
-								Sub-Saharan Africa does not benefit from a demographic dividend.</li>
-							<li><strong>Order of Authors:</strong> Kimiko Sugimoto; Gilles Dufrénot; Sitraka Forler</li>
-						</ul>
-					</div>
+			<aside class="block" aria-labelledby="mainsite-title">
+				<h2 class="block-title" id="mainsite-title">Main website: sitraka.lu</h2>
+				<div class="block-body">
+					<p>This GitHub page is my portfolio. My main website is <a href="https://sitraka.lu/"><strong>sitraka.lu</strong></a>, with my biography in <a href="https://sitraka.lu/about/" hreflang="en">English</a>, <a href="https://sitraka.lu/fr/about/" hreflang="fr">French</a> and <a href="https://sitraka.lu/de/about/" hreflang="de">German</a>, my <a href="https://sitraka.lu/teaching/">teaching page</a> and how to <a href="https://sitraka.lu/work/">work with me</a>.</p>
 				</div>
-			</article>
+			</aside>
 
-			<!-- Code & Skills -->
-			<article id="code">
+			<!-- 1 Profile -->
+			<section id="profile" aria-labelledby="profile-title">
+				<h2 id="profile-title">Profile</h2>
+				<p>I am a systems architect at <strong>POST Luxembourg</strong>, where I have worked on observability and AIOps since 2025: Splunk, Zabbix, Grafana, Prometheus and ELK, service modelling in the CMDB, incident-response automation and anomaly detection. Before that I worked in data science, data engineering and consulting for finance and industry, in Luxembourg and in France.</p>
+				<p>Separately from my job, I am co-founder of <a href="https://lux-aiops.com">LuxAIOps</a>, and I teach as an industry practitioner at Centrale Méditerranée, AMSE (Aix-Marseille School of Economics), IAE Metz and the Université Catholique de Lille.</p>
 
-				<h2 class="major">Code &amp; Skills</h2>
-				<span class="image main"><img src="images/code.jpeg" alt="Code" loading="lazy" /></span>
-
-				<p>Explore my technical stack below. For interactive productivity demos, visit the dedicated <a href="tools.html">Tools page</a>.</p>
-
-				<h3>🚀 Tech Stack</h3>
-				<div class="skill-grid">
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-python').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
-						<i class="fab fa-python"></i>
-						<span>Python &amp; ML</span>
-					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-deep-learning').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-brain"></i>
-						<span>Deep Learning</span>
-					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-cloud').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-cloud"></i>
-						<span>Cloud Architect</span>
-					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-sql-nosql').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-database"></i>
-						<span>SQL &amp; NoSQL</span>
-					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-cybersecurity').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-shield-halved"></i>
-						<span>Cybersecurity</span>
-					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-fintech').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-chart-line"></i>
-						<span>FinTech</span>
-					</a>
+				<div class="table-wrap">
+					<table class="stack">
+						<caption><b>Table 1.</b> At a glance.</caption>
+						<tbody>
+							<tr><th scope="row">Current role</th><td>Systems Architect &amp; AIOps, POST Luxembourg, since 2025</td></tr>
+							<tr><th scope="row">Venture</th><td>Co-founder, <a href="https://lux-aiops.com">LuxAIOps</a> (a separate company, not my employer)</td></tr>
+							<tr><th scope="row">Teaching</th><td>Industry practitioner: Centrale Méditerranée, AMSE, IAE Metz, Université Catholique de Lille</td></tr>
+							<tr><th scope="row">Education</th><td>Master in economics, AMSE (Aix-Marseille School of Economics)</td></tr>
+							<tr><th scope="row">Based in</th><td>Luxembourg City</td></tr>
+						</tbody>
+					</table>
 				</div>
+			</section>
 
-				<hr>
+			<!-- 2 Experience -->
+			<section id="experience" aria-labelledby="experience-title">
+				<h2 id="experience-title">Experience</h2>
+				<p>Employer by employer, most recent first. The dated track record is also on <a href="https://sitraka.lu/work/">sitraka.lu/work</a>.</p>
 
-				<div id="skill-python" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>🐍 Python &amp; ML</h3>
-					<p>Python is the cornerstone of my data science and machine learning workflows. I specialize in building end-to-end ML pipelines, from data wrangling with <strong>pandas</strong> and <strong>NumPy</strong> to training predictive models. Using tools like <strong>Scikit-Learn</strong> and <strong>XGBoost</strong>, I focus on delivering models that bring actionable business value and optimize operations.</p>
-				</div>
-
-				<hr>
-
-				<div id="skill-deep-learning" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>🧠 Deep Learning</h3>
-					<p>Deep Learning allows me to solve complex perceptual problems such as NLP and Computer Vision. I leverage <strong>PyTorch</strong>, <strong>TensorFlow</strong>, and <strong>Hugging Face</strong> to develop, fine-tune, and deploy state-of-the-art neural networks. My recent experience includes deploying large language models (LLMs) into production environments and building retrieval-augmented generation (RAG) applications.</p>
-				</div>
-
-				<hr>
-
-				<div id="skill-cloud" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>☁️ Cloud Architecture</h3>
-					<p>Building scalable and robust backend systems is critical for modern data solutions. I design and implement cloud-native architectures on <strong>AWS</strong> and <strong>Azure</strong>, employing Infrastructure as Code (IaC) to ensure reproducible and secure deployments. This includes setting up CI/CD pipelines, container orchestration with <strong>Kubernetes</strong>, and adopting serverless architectures.</p>
-				</div>
-
-				<hr>
-
-				<div id="skill-sql-nosql" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>🗄️ SQL &amp; NoSQL</h3>
-					<p>A solid data layer is the foundation of any application. I have extensive experience modeling business requirements into both relational databases (like <strong>PostgreSQL</strong> and <strong>MySQL</strong>) and NoSQL datastores (like <strong>MongoDB</strong> and <strong>Cassandra</strong>). My expertise covers advanced querying, query optimization, dynamic indexing, and designing scalable data warehouses.</p>
-				</div>
-
-				<hr>
-
-				<div id="skill-cybersecurity" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>🔐 Cybersecurity</h3>
-					<p>Security must be integrated from the ground up. I have hands-on experience using tools like <strong>Splunk</strong> and <strong>Venafi</strong> to implement proactive threat detection, manage certificates, and secure data in transit. My focus is on embedding security within the DevOps lifecycle (DecSecOps) to preempt vulnerabilities.</p>
-				</div>
-
-				<hr>
-
-				<div id="skill-fintech" style="padding-top: 3rem; margin-top: -3rem;">
-					<h3>📈 FinTech &amp; Quant</h3>
-					<p>Applying mathematical and statistical methods to financial markets is a specialization of mine. I build models for risk assessment, algorithmic trading, and portfolio optimization. Leveraging real-time data ingestion and time-series analysis, I deliver insights that directly impact business strategy and financial outcomes.</p>
-				</div>
-			</article>
-<!-- LuxAIOps -->
-			<article id="luxaiops">
-				<h2 class="major">LuxAIOps</h2>
-				<span class="image main"><img src="images/code.jpeg" alt="LuxAIOps" loading="lazy"
-						style="filter: hue-rotate(180deg);" /></span>
-
-				<div
-					style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; backdrop-filter: blur(5px);">
-					<p style="margin: 0; font-size: 1.1rem; line-height: 1.6; font-weight: 500;">Pioneering AIOps
-						(Artificial Intelligence for IT Operations) in Luxembourg and across Europe.</p>
-				</div>
-
-				<h3>🚀 Our Vision</h3>
-				<p>Modern IT infrastructure is becoming increasingly complex. At <strong>LuxAIOps</strong>, we believe
-					the solution is leveraging AI/ML to automate monitoring, detect anomalies before they cause
-					downtime, and streamline IT operations. We are building the next generation of intelligent tools for
-					enterprise resilience.</p>
-
-				<hr>
-
-				<h3>🛠️ Core Offerings</h3>
-				<ul>
-					<li><strong>Predictive Analytics:</strong> Forecasting system failures and resource bottlenecks
-						before they impact the business.</li>
-					<li><strong>Intelligent Automation:</strong> Automated root-cause analysis and self-healing systems.
+				<ol class="entries">
+					<li class="entry">
+						<p class="entry-when"><span>Jun 2025 – present</span><span>Luxembourg</span></p>
+						<div>
+							<h3>Systems Architect &amp; AIOps</h3>
+							<p class="entry-org">POST Luxembourg</p>
+							<ul>
+								<li>Designing and leading AIOps architecture to bridge observability, automation and data-driven decision-making.</li>
+								<li>Evolving the observability architecture with Splunk, Zabbix, Grafana, Prometheus and ELK.</li>
+								<li>Modelling business and technical services in BMC Discovery (CMDB).</li>
+								<li>Automating incident-response workflows with ServiceNow and intelligent alerting.</li>
+								<li>Driving the AIOps strategy with machine learning and anomaly detection.</li>
+							</ul>
+						</div>
 					</li>
-					<li><strong>Secure &amp; Compliant AI:</strong> Solutions tailored to the strict regulatory
-						requirements of the European market (GDPR, DORA).</li>
-					<li><strong>MLOps Consulting:</strong> Helping companies deploy and scale their own machine learning
-						models reliably.</li>
-				</ul>
 
-				<ul class="actions">
-					<li><a href="#contact" class="button primary"
-							style="background: linear-gradient(135deg, #10b981, #059669);">Contact Us</a></li>
-				</ul>
-			</article>
+					<li class="entry">
+						<p class="entry-when"><span>Mar 2023 – present</span><span>France &amp; Luxembourg</span></p>
+						<div>
+							<h3>Lecturer (industry practitioner)</h3>
+							<p class="entry-org">Centrale Méditerranée, AMSE, IAE Metz; Université Catholique de Lille from December 2026</p>
+							<ul>
+								<li>Teaching data science for finance, machine learning, deep learning and transformers.</li>
+								<li>Lecturing on corporate strategy, Agile/Scrum and corporate finance.</li>
+							</ul>
+							<p class="small">Details by school in <a href="#teaching">section 3</a>.</p>
+						</div>
+					</li>
 
+					<li class="entry">
+						<p class="entry-when"><span>Oct 2023 – Jun 2025</span><span>Luxembourg</span></p>
+						<div>
+							<h3>Senior Data Scientist</h3>
+							<p class="entry-org">REVEALS SA</p>
+							<ul>
+								<li>Designing and deploying LLMs from POC to production.</li>
+								<li>Managing data engineering and architecture for finance departments.</li>
+								<li>Executing large-scale data migration projects.</li>
+							</ul>
+						</div>
+					</li>
 
-			<!-- Contact -->
-			<article id="contact">
-				<h2 class="major">Contact</h2>
+					<li class="entry">
+						<p class="entry-when"><span>Sep 2022 – Oct 2023</span><span>Luxembourg</span></p>
+						<div>
+							<h3>Consultant in Data &amp; Digital Transformation</h3>
+							<p class="entry-org">Square Management</p>
+							<ul>
+								<li>Automated workflows with RPA (Python) for Avaloq core banking.</li>
+								<li>Designed data warehouses with AWS, Airflow and Talend.</li>
+								<li>Automated financial and regulatory reporting (AIFM, FGDL, IFRS 9).</li>
+							</ul>
+						</div>
+					</li>
 
-				<form method="POST" action="https://formspree.io/sitraka.forler@gmail.com" id="contact-form">
-					<input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
-					<div class="fields">
-						<div class="field half">
-							<label for="name">Name</label>
-							<input type="text" name="name" id="name" autocomplete="name" required />
+					<li class="entry">
+						<p class="entry-when"><span>Mar 2021 – Sep 2022</span><span>France</span></p>
+						<div>
+							<h3>Data Scientist / Web Analyst</h3>
+							<p class="entry-org">VirtualExpo Group</p>
+							<ul>
+								<li>Applied NLP (Hugging Face, Keras) to product descriptions.</li>
+								<li>Built predictive models and web-traffic KPI dashboards.</li>
+							</ul>
 						</div>
-						<div class="field half">
-							<label for="email">Email</label>
-							<input type="email" name="email" id="email" autocomplete="email" required />
+					</li>
+
+					<li class="entry">
+						<p class="entry-when"><span>Dec 2020</span><span>France</span></p>
+						<div>
+							<h3>Ethical Hacker</h3>
+							<p class="entry-org">Hack the Crisis France</p>
+							<ul>
+								<li>One full week, non-stop, during the Covid crisis: ideation, business plan, prototyping, pitching and teamwork. Ranked 5th of 34 participating teams.</li>
+							</ul>
+							<p class="skills"><strong>Skills:</strong> Python · Docker · pitching</p>
 						</div>
-						<div class="field">
-							<label for="subject">Subject</label>
-							<input type="text" name="subject" id="subject" autocomplete="subject" />
+					</li>
+
+					<li class="entry">
+						<p class="entry-when"><span>Jun 2020 – Nov 2020</span><span>Near Aix-en-Provence</span></p>
+						<div>
+							<h3>Industrial Engineer, Data Analyst (internship)</h3>
+							<p class="entry-org">STMicroelectronics</p>
+							<ul>
+								<li><strong>KPI dashboards.</strong> Designed and deployed two interactive TIBCO Spotfire dashboards to monitor real-time production-line indicators, with data processing in R, back-end customisation in .NET and an HTML front end.</li>
+								<li><strong>Automated reporting.</strong> Built an automated distribution system that routes service documents and KPIs to industrial engineers and plant managers, removing manual reporting.</li>
+								<li><strong>Predictive maintenance.</strong> Led a data-driven project to forecast production-tool breakdowns, using Python and SQL on historical machine data to find early indicators of equipment failure.</li>
+							</ul>
+							<p class="skills"><strong>Skills:</strong> KPIs and KPI dashboards · cybersecurity · R · Python · SQL</p>
 						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="4" autocomplete="off" required></textarea>
+					</li>
+
+					<li class="entry">
+						<p class="entry-when"><span>Oct 2018 – Jun 2020</span><span>Marseille area</span></p>
+						<div>
+							<h3>Consultant / Junior Data Analyst</h3>
+							<p class="entry-org">Aix Marseille Strategy Consulting Group (AMS CG)</p>
+							<ul>
+								<li>Data projects for clients: data cleansing (Corsica Ferries, Nexity) and customer-feedback analysis (PSA Group).</li>
+								<li>Gantt planning for a team of 20 stakeholders.</li>
+								<li>Assessing the quality and meaning of data; filtering data through reports and KPIs to identify trends and threats.</li>
+								<li>Statistical analysis of complex data sets for diagnosis and prediction.</li>
+								<li>Annual, quarterly and monthly financial projections for client groups, explaining variances with budget and forecasts.</li>
+								<li>Client meetings to set requirements and milestones; testing (including performance tests), troubleshooting and integration.</li>
+							</ul>
+							<p class="skills"><strong>Skills:</strong> Microsoft Excel · cybersecurity · Python · SQL</p>
 						</div>
+					</li>
+
+					<li class="entry">
+						<p class="entry-when"><span>May 2019 – Jul 2019</span><span>Marseille</span></p>
+						<div>
+							<h3>Research Assistant (internship)</h3>
+							<p class="entry-org">Aix-Marseille School of Economics</p>
+							<ul>
+								<li><em>The para-demographic productivity gap in the developing world: an international comparison.</em></li>
+								<li>Under the supervision of Prof. Gilles Dufrénot: review of the literature, then econometric regressions and their interpretation.</li>
+								<li>The paper studies heterogeneous productivity gaps with panel stochastic frontier models and finds a para-demographic “burden” through labour-productivity inefficiencies in developing countries: in terms of productivity, Sub-Saharan Africa does not benefit from a demographic dividend.</li>
+								<li><strong>Order of authors:</strong> Kimiko Sugimoto; Gilles Dufrénot; Sitraka Forler.</li>
+							</ul>
+							<p class="small">The work was published in 2023 as a book chapter, reference [1] in <a href="#research">section 4</a>.</p>
+						</div>
+					</li>
+				</ol>
+
+				<figure>
+					<img src="images/Engineering.jpg" width="800" height="450" loading="lazy" decoding="async" alt="Technical drawings of mechanical parts on a desk, with a caliper, bearings and a hand holding a pen." />
+					<figcaption><b>Figure 1.</b> Engineering drawings. Illustrative image.</figcaption>
+				</figure>
+			</section>
+
+			<!-- 3 Teaching -->
+			<section id="teaching" aria-labelledby="teaching-title">
+				<h2 id="teaching-title">Teaching</h2>
+				<p>Teaching sits alongside my job: I teach as an industry practitioner, not as a member of faculty. Courses and dates are on <a href="https://sitraka.lu/teaching/">sitraka.lu/teaching</a>; interactive practice modules are on the <a href="teachings.html">teaching modules</a> page of this portfolio.</p>
+				<div class="table-wrap">
+					<table class="stack">
+						<caption><b>Table 2.</b> Where I teach.</caption>
+						<thead>
+							<tr><th scope="col">School</th><th scope="col">Programme</th><th scope="col">What I teach</th></tr>
+						</thead>
+						<tbody>
+							<tr><th scope="row">Centrale Méditerranée</th><td>DDEFI option, final year</td><td>Data project parts of several course units, e.g. <a href="https://wiki.centrale-med.fr/mmefi/en:ddefidode2022">Data and Decisions</a> and <a href="https://wiki.centrale-med.fr/mmefi/en:ddefimode2022">Models and Decisions</a></td></tr>
+							<tr><th scope="row">AMSE</th><td>M2 DADEE</td><td>Corporate Strategy, co-taught (<a href="https://www.amse-aixmarseille.fr/sites/default/files/study/master/syllabi_m2_dadee.pdf">syllabus</a>)</td></tr>
+							<tr><th scope="row">IAE Metz</th><td>Course materials, 2026</td><td>Databases in the investment-fund industry</td></tr>
+							<tr><th scope="row">Université Catholique de Lille</th><td>M2 International Management</td><td>Data Analytics for Business, from December 2026</td></tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<!-- 4 Research and writing -->
+			<section id="research" aria-labelledby="research-title">
+				<h2 id="research-title">Research and writing</h2>
+				<h3 class="numbered">Book chapter</h3>
+				<ol class="refs">
+					<li><span>Dufrénot, G., Mahaman, H., Sugimoto, K. and Forler, S. (2023). “Productivity Gaps in the Developing World: An International Comparison”. In D. Avom and G. Dufrénot (eds.), <em>Topical Issues in International Development and Economics</em>, ch. 12, pp. 344–387. <a href="https://archive.cambridgescholars.com/product/978-1-5275-5387-3/">Cambridge Scholars Publishing</a>. Listed on <a href="https://scholar.google.com/citations?user=OLiHYHIAAAAJ">Google Scholar</a>.</span></li>
+				</ol>
+				<h3 class="numbered">Articles in AGEFI Luxembourg</h3>
+				<p>Signed articles, in French, on European digital sovereignty and the economics of AI.</p>
+				<ol class="refs" start="2" style="counter-reset: ref 1;">
+					<li><span><a href="https://www.agefi.lu/Fax-Article.aspx?date=07-11-2025&amp;fax=6150&amp;rubr=6106&amp;art=86120" hreflang="fr">“La souveraineté numérique européenne : pourquoi nous ne pouvons pas nous en passer”</a>. <em>AGEFI Luxembourg</em>, 7 November 2025.<span class="gloss">European digital sovereignty: why we cannot do without it.</span></span></li>
+					<li><span><a href="https://www.agefi.lu/Mensuel-Article.aspx?art=32799&amp;date=Mar-2026&amp;mens=334&amp;rubr=3212" hreflang="fr">“Souveraineté numérique européenne : former pour ne plus dépendre”</a>. <em>AGEFI Luxembourg</em>, March 2026.<span class="gloss">European digital sovereignty: training so we no longer depend on others.</span></span></li>
+					<li><span><a href="https://agefi.lu/Mensuel-Article.aspx?date=Jul-2026&amp;mens=338&amp;rubr=3240&amp;art=33220" hreflang="fr">“La fin de l’euphorie, le début de la dette ?”</a>. <em>AGEFI Luxembourg</em>, July 2026.<span class="gloss">The end of the euphoria, the start of the debt?</span></span></li>
+				</ol>
+				<p>Longer posts, mostly in English, are on <a href="https://medium.com/@sitrakaforler">Medium</a>.</p>
+			</section>
+
+			<!-- 5 Talks -->
+			<section id="talks" aria-labelledby="talks-title">
+				<h2 id="talks-title">Talks</h2>
+				<ol class="refs" start="5" style="counter-reset: ref 4;">
+					<li><span>“<a href="https://m.devoxx.com/events/voxxedlu2025/talks/2789/from-data-to-decisions-ai-powered-software-development-in-the-age-of-intelligent-systems">From Data to Decisions: AI-Powered Software Development in the Age of Intelligent Systems</a>”. Fifteen-minute lunch talk, Voxxed Days Luxembourg 2025, Mondorf-les-Bains, 20 June 2025. <a href="https://www.youtube.com/watch?v=2tJS7lhlmb0">Recording</a> on the conference’s YouTube channel.</span></li>
+				</ol>
+			</section>
+
+			<!-- 6 LuxAIOps -->
+			<section id="luxaiops" aria-labelledby="luxaiops-title">
+				<h2 id="luxaiops-title">LuxAIOps</h2>
+				<aside class="block note" aria-label="About LuxAIOps">
+					<p class="block-title">A separate company</p>
+					<div class="block-body">
+						<p><a href="https://lux-aiops.com">LuxAIOps</a> is a venture I co-founded with partners. It is separate from my job at POST Luxembourg and is not my employer.</p>
 					</div>
-					<ul class="actions">
-						<li><input type="submit" value="Send Message" class="primary" /></li>
-						<li><input type="reset" value="Reset" /></li>
-					</ul>
-				</form>
-				<ul class="icons">
-					<li><a href="https://twitter.com/ForlerSitraka" class="icon brands fa-twitter" aria-label="Twitter"><span
-								class="label">Twitter</span></a></li>
-					<li><a href="https://www.linkedin.com/in/sitraka-matthieu-forler/"
-							class="icon brands fa-linkedin" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
-					<li><a href="https://github.com/Sitraka17" class="icon brands fa-github" aria-label="GitHub"><span
-								class="label">GitHub</span></a></li>
+				</aside>
+				<p>LuxAIOps works on AIOps (artificial intelligence for IT operations) in Luxembourg and Europe: AI-augmented observability, hosted in Europe, for teams that cannot ship their telemetry to US clouds.</p>
+				<h3 class="numbered">Vision</h3>
+				<p>IT infrastructure keeps getting more complex. The LuxAIOps approach is to use AI and machine learning to automate monitoring, detect anomalies before they cause downtime and streamline IT operations, for more resilient enterprise systems.</p>
+				<h3 class="numbered">Areas of work</h3>
+				<ul>
+					<li><strong>Predictive analytics:</strong> forecasting system failures and resource bottlenecks before they reach the business.</li>
+					<li><strong>Intelligent automation:</strong> automated root-cause analysis and self-healing systems.</li>
+					<li><strong>Secure and compliant AI:</strong> solutions built for European regulatory requirements (GDPR, DORA).</li>
+					<li><strong>MLOps consulting:</strong> helping companies deploy and scale their own machine-learning models reliably.</li>
 				</ul>
-			</article>
+				<p>Enquiries about LuxAIOps go through <a href="https://lux-aiops.com">lux-aiops.com</a>.</p>
+			</section>
 
+			<!-- 7 Code and skills -->
+			<section id="skills" aria-labelledby="skills-title">
+				<h2 id="skills-title">Code and skills</h2>
+				<p>Code is on <a href="https://github.com/Sitraka17">GitHub</a>. Interactive demos are on the <a href="tools.html">tools page</a>.</p>
+				<div class="table-wrap">
+					<table class="stack">
+						<caption><b>Table 3.</b> Technical stack by area.</caption>
+						<thead>
+							<tr><th scope="col">Area</th><th scope="col">Main tools</th></tr>
+						</thead>
+						<tbody>
+							<tr><th scope="row"><a href="#skill-observability">Observability and AIOps</a></th><td>Splunk, Zabbix, Grafana, Prometheus, ELK, BMC Discovery, ServiceNow</td></tr>
+							<tr><th scope="row"><a href="#skill-python">Python and ML</a></th><td>pandas, NumPy, scikit-learn, XGBoost</td></tr>
+							<tr><th scope="row"><a href="#skill-deep-learning">Deep learning</a></th><td>PyTorch, TensorFlow, Hugging Face, LLMs, RAG</td></tr>
+							<tr><th scope="row"><a href="#skill-cloud">Cloud architecture</a></th><td>AWS, Azure, Kubernetes, infrastructure as code, CI/CD</td></tr>
+							<tr><th scope="row"><a href="#skill-sql-nosql">SQL and NoSQL</a></th><td>PostgreSQL, MySQL, MongoDB, Cassandra</td></tr>
+							<tr><th scope="row"><a href="#skill-cybersecurity">Cybersecurity</a></th><td>Splunk, Venafi, DevSecOps</td></tr>
+							<tr><th scope="row"><a href="#skill-fintech">FinTech and quant</a></th><td>Time series, risk models, portfolio optimisation</td></tr>
+						</tbody>
+					</table>
+				</div>
+
+				<h3 class="numbered" id="skill-observability">Observability and AIOps</h3>
+				<p>My current work: making systems observable with <strong>Splunk</strong>, <strong>Zabbix</strong>, <strong>Grafana</strong>, <strong>Prometheus</strong> and <strong>ELK</strong>, modelling services in a CMDB, and using machine learning for anomaly detection and incident-response automation.</p>
+
+				<h3 class="numbered" id="skill-python">Python and ML</h3>
+				<p>Python is the cornerstone of my data science and machine learning workflows. I build end-to-end ML pipelines, from data wrangling with <strong>pandas</strong> and <strong>NumPy</strong> to training predictive models with <strong>scikit-learn</strong> and <strong>XGBoost</strong>, with a focus on models that bring actionable business value.</p>
+
+				<h3 class="numbered" id="skill-deep-learning">Deep learning</h3>
+				<p>Deep learning lets me work on perception problems such as NLP and computer vision. I use <strong>PyTorch</strong>, <strong>TensorFlow</strong> and <strong>Hugging Face</strong> to develop, fine-tune and deploy neural networks, including large language models and retrieval-augmented generation (RAG) applications.</p>
+
+				<h3 class="numbered" id="skill-cloud">Cloud architecture</h3>
+				<p>I design cloud-native architectures on <strong>AWS</strong> and <strong>Azure</strong>, with infrastructure as code for reproducible and secure deployments, CI/CD pipelines, container orchestration with <strong>Kubernetes</strong> and serverless components.</p>
+
+				<h3 class="numbered" id="skill-sql-nosql">SQL and NoSQL</h3>
+				<p>A solid data layer is the foundation of any application. I model business requirements in relational databases (<strong>PostgreSQL</strong>, <strong>MySQL</strong>) and NoSQL stores (<strong>MongoDB</strong>, <strong>Cassandra</strong>): advanced querying, query optimisation, indexing and scalable data warehouses.</p>
+
+				<h3 class="numbered" id="skill-cybersecurity">Cybersecurity</h3>
+				<p>Security has to be built in from the start. I have used <strong>Splunk</strong> and <strong>Venafi</strong> for threat detection, certificate management and securing data in transit, with security embedded in the DevOps lifecycle (DevSecOps).</p>
+
+				<h3 class="numbered" id="skill-fintech">FinTech and quant</h3>
+				<p>I apply mathematical and statistical methods to financial data: models for risk assessment, algorithmic trading and portfolio optimisation, built on real-time data ingestion and time-series analysis.</p>
+
+				<figure>
+					<img src="images/code.jpeg" width="1280" height="850" loading="lazy" decoding="async" alt="Close-up of a laptop screen showing source code in a dark-themed editor, with a file tree on the left." />
+					<figcaption><b>Figure 2.</b> Source code in an editor. Illustrative image.</figcaption>
+				</figure>
+			</section>
+
+			<!-- 8 Education -->
+			<section id="education" aria-labelledby="education-title">
+				<h2 id="education-title">Education</h2>
+				<p>I studied at <strong>AMSE (Aix-Marseille School of Economics)</strong> and graduated from its master’s programme in economics. The school features me in its <a href="https://www.amse-aixmarseille.fr/fr/actualite/t%C3%A9moignage-alumni-3" hreflang="fr">alumni testimonials</a>.</p>
+			</section>
+
+			<!-- 9 Contact -->
+			<section id="contact" aria-labelledby="contact-title">
+				<h2 id="contact-title">Contact and profiles</h2>
+				<p>For work enquiries, the best route is <a href="https://sitraka.lu/work/">sitraka.lu/work</a> or a message on LinkedIn.</p>
+				<dl class="kv">
+					<dt>Main site</dt><dd><a href="https://sitraka.lu/">sitraka.lu</a></dd>
+					<dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/sitraka-matthieu-forler/">in/sitraka-matthieu-forler</a></dd>
+					<dt>GitHub</dt><dd><a href="https://github.com/Sitraka17">Sitraka17</a></dd>
+					<dt>Medium</dt><dd><a href="https://medium.com/@sitrakaforler">@sitrakaforler</a></dd>
+					<dt>Google Scholar</dt><dd><a href="https://scholar.google.com/citations?user=OLiHYHIAAAAJ">Sitraka Forler</a></dd>
+					<dt>YouTube</dt><dd><a href="https://www.youtube.com/@sitrakaforler1896">@sitrakaforler1896</a></dd>
+					<dt>X (Twitter)</dt><dd><a href="https://twitter.com/ForlerSitraka">@ForlerSitraka</a></dd>
+				</dl>
+			</section>
 		</main>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<p class="copyright">&copy; <span id="current-year"></span> Sitraka Forler. Built with Passion & AI.</p>
-		</footer>
-
 	</div>
 
-	<!-- BG -->
-	<div id="bg"></div>
-	<canvas id="particles-canvas" aria-hidden="true"
-		style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
-
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js" defer></script>
-	<script src="assets/js/browser.min.js" defer></script>
-	<script src="assets/js/breakpoints.min.js" defer></script>
-	<script src="assets/js/util.js" defer></script>
-	<script src="assets/js/main.js" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="sha512-rdhY3cbXURo13l/WU9VlaRyaIYeJ/KBakckXIvJNAQde8DgpOmE+eZf7ha4vdqVjTtwQt69bD2wH2LXob/LB7Q==" crossorigin="anonymous" defer></script>
-	<script src="assets/js/main-effects.js" defer></script>
-		<script src="assets/js/inline-scripts.js" defer></script>
-
+	<footer class="foot">
+		<div class="wrap">
+			<p>© 2026 Sitraka Forler · Portfolio on GitHub Pages</p>
+			<p>Main site: <a href="https://sitraka.lu/">sitraka.lu</a> · Biography: <a href="https://sitraka.lu/about/">EN</a>, <a href="https://sitraka.lu/fr/about/" hreflang="fr">FR</a>, <a href="https://sitraka.lu/de/about/" hreflang="de">DE</a></p>
+		</div>
+	</footer>
 </body>
-
 </html>
