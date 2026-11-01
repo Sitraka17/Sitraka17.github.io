@@ -75,8 +75,8 @@ Chaque page HTML a été vérifiée par script : `title`, `description` (≤ 155
 
 ### ⚠️ À faire de ton côté
 
-1. **Formulaire de contact — très probablement cassé.** Il poste vers `https://formspree.io/sitraka.forler@gmail.com`, l'ancien format par adresse e-mail que Formspree n'accepte plus pour les nouveaux formulaires. Crée un formulaire sur formspree.io et remplace l'`action` par `https://formspree.io/f/<ID>`. Teste en envoyant un message. (En attendant, le lien `mailto:` ajouté sert de solution de secours.)
-2. **Photo de profil.** `pic01.jpg` est une bannière floue du template : une vraie photo pro augmente fortement la confiance et la conversion. Elle servira aussi d'`image` dans le JSON-LD.
+1. ✅ **Formulaire migré vers FormSubmit** (`formsubmit.co`), page de remerciement `thanks.html`. ⚠️ **Au tout premier envoi, FormSubmit t'envoie un e-mail d'activation sur sitraka.forler@gmail.com : clique sur le lien, sinon aucun message ne sera transmis.** Ancien constat : Il poste vers `https://formspree.io/sitraka.forler@gmail.com`, l'ancien format par adresse e-mail que Formspree n'accepte plus pour les nouveaux formulaires. Crée un formulaire sur formspree.io et remplace l'`action` par `https://formspree.io/f/<ID>`. Teste en envoyant un message. (En attendant, le lien `mailto:` ajouté sert de solution de secours.)
+2. ✅ **Bannière** : `pic01.jpg` (dégradé flou du template) remplacée par un visuel net 1920×640 « réseau de données ». 💡 Une vraie photo pro reste recommandée. Ancien constat : `pic01.jpg` était une bannière floue du template : une vraie photo pro augmente fortement la confiance et la conversion. Elle servira aussi d'`image` dans le JSON-LD.
 3. **Mesure d'audience.** Aucune analytics : impossible de savoir d'où viennent les visiteurs ni si le formulaire convertit. Une solution sans cookie (Plausible, Umami, GoatCounter) évite la bannière RGPD.
 4. **Google Search Console.** La balise de vérification est présente : soumets `sitemap.xml` et surveille les requêtes.
 5. **Preuves sociales.** Ajoute 2–3 résultats chiffrés (« −40 % d'incidents P1 », « modèle LLM servi à N utilisateurs »), logos clients/écoles, une recommandation LinkedIn.
