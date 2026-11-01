@@ -50,6 +50,19 @@ Légende : ✅ corrigé dans cette branche · ⚠️ action de ta part nécessai
 | Le site est sur `github.io` alors que `sitraka.lu` existe : deux domaines se concurrencent. | 💡 choisir un domaine principal ; idéalement servir ce portfolio sur un sous-domaine de `sitraka.lu` (fichier `CNAME`) |
 | Teachings : les 12 leçons sont injectées en JS sur une seule URL → seule la leçon 1 est réellement indexée. | 💡 une page HTML statique par leçon (gros potentiel de trafic longue traîne : « SQL index optimization », « pandas groupby finance »…) |
 
+### Balises — couverture complète (passe 2)
+
+Chaque page HTML a été vérifiée par script : `title`, `description` (≤ 155 car.), `lang`, `charset`, `viewport`, `robots`, `author`, `theme-color`, `canonical`, favicon + `apple-touch-icon`, Open Graph complet (`type`, `title`, `description`, `url`, `image` + dimensions + `alt`, `site_name`, `locale`), Twitter Card complète, JSON-LD valide.
+
+| Page | Indexation | Statut |
+|---|---|---|
+| `index.html` | index | ✅ complet (description raccourcie à 149 car.) |
+| `tools.html` | index | ✅ complété (`author`, `theme-color`, `og:locale`, `og:image:alt`, `twitter:creator`) |
+| `teachings.html` | index | ✅ complété + lien vers le cours FR |
+| `CoffreFort/iae.html` | index | ✅ **page orpheline sans aucune balise** → balises FR complètes, JSON-LD `Article`/`LearningResource` + fil d'Ariane, ajoutée au sitemap et liée depuis Teachings ; 4 images manquantes (404) remplacées par des drapeaux SVG et pictogrammes |
+| `CoffreFort/index.html` | noindex | ✅ balises + chemins CSS/JS/images réparés |
+| `404.html` | noindex | ✅ balises complètes (pas de canonical, volontairement) |
+
 ## 4. Marketing / conversion
 
 | Constat | Statut |
