@@ -41,22 +41,19 @@ function pomoShowFloatingAlert(title, msg, type) {
     var existing = document.getElementById('pomo-float-alert');
     if (existing) existing.remove();
     var isBreak = (type === 'green');
-    var accent  = isBreak ? '#10b981' : '#a78bfa';
-    var emoji   = isBreak ? '\u2615' : '\ud83c\udf45';
+    var accent  = '#1f3864';
     var el = document.createElement('div');
     el.id = 'pomo-float-alert';
     el.innerHTML = '<div style="display:flex;align-items:flex-start;gap:0.9rem;">'
-        + '<span style="font-size:1.8rem;line-height:1;">' + emoji + '</span>'
-        + '<div style="flex:1;"><div style="font-weight:700;font-size:0.97rem;color:#fff;margin-bottom:0.25rem;">' + title + '</div>'
-        + '<div style="font-size:0.82rem;color:rgba(255,255,255,0.72);">' + msg + '</div></div>'
-        + '<button id="pomo-float-close" style="background:none;border:none;color:rgba(255,255,255,0.45);cursor:pointer;font-size:1.4rem;line-height:1;padding:0;">&times;</button></div>'
-        + '<div style="margin-top:0.7rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:0.6rem;">'
-        + '<a href="#tool-pomodoro" id="pomo-float-link" style="font-size:0.8rem;color:' + accent + ';text-decoration:none;font-weight:600;">\u25b6 Go to Timer</a></div>';
-    el.style.cssText = 'position:fixed;bottom:1.8rem;right:1.8rem;z-index:99999;'
-        + 'background:rgba(12,8,30,0.97);border:1px solid ' + accent + ';border-radius:14px;'
-        + 'padding:1.1rem 1.3rem;width:290px;box-shadow:0 10px 40px rgba(0,0,0,0.6);'
-        + 'backdrop-filter:blur(14px);font-family:Inter,sans-serif;'
-        + 'transform:translateX(130%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);';
+        + '<div style="flex:1;"><div style="font-weight:600;color:#1b1b1b;margin-bottom:0.25rem;">' + title + '</div>'
+        + '<div style="font-size:0.95rem;color:#4a4a4a;">' + msg + '</div></div>'
+        + '<button id="pomo-float-close" aria-label="Close" style="background:none;border:none;color:#4a4a4a;cursor:pointer;font-size:1.4rem;line-height:1;padding:0;">&times;</button></div>'
+        + '<div style="margin-top:0.6rem;border-top:1px solid #c9c6bd;padding-top:0.5rem;">'
+        + '<a href="#tool-pomodoro" id="pomo-float-link" style="color:' + accent + ';">Go to the timer</a></div>';
+    el.style.cssText = 'position:fixed;bottom:1rem;right:1rem;z-index:99999;'
+        + 'background:#fbfaf7;border:1px solid ' + accent + ';border-top:4px solid ' + accent + ';'
+        + 'padding:0.8rem 1rem;width:min(290px, calc(100vw - 2rem));box-shadow:0 4px 14px rgba(0,0,0,0.15);'
+        + 'font-family:inherit;transform:translateX(130%);transition:transform 0.3s ease;';
     // Accessibility: announce toast and mark as status
     el.setAttribute('role', 'status');
     el.setAttribute('aria-live', 'polite');
@@ -114,7 +111,7 @@ $(document).ready(function () {
     function applyPomoMode(focus, lb) {
         var ring = document.getElementById('pomo-ring-fill');
         var wrap = document.getElementById('pomo-ring-wrap');
-        if (ring) ring.setAttribute('stroke', focus ? 'url(#pgFocus)' : (lb ? '#f59e0b' : 'url(#pgBreak)'));
+        if (ring) ring.setAttribute('stroke', focus ? '#1f3864' : (lb ? '#6b6b6b' : '#3d5a1e'));
         if (wrap) {
             wrap.classList.toggle('pulsing',       focus && !lb);
             wrap.classList.toggle('break-pulse',   !focus && !lb);
@@ -145,7 +142,7 @@ $(document).ready(function () {
         // Accessibility: update live region text and progress attributes
         try {
             var display = document.getElementById('pomodoro-display');
-            if (display) display.setAttribute('aria-label', txt + (isFocus ? ' — Focus time' : ' — Break time'));
+            if (display) display.setAttribute('aria-label', txt + (isFocus ? ', focus time' : ', break time'));
             var ringEl = document.getElementById('pomo-ring-fill');
             if (ringEl && pomoTotalTime > 0) {
                 var pct = Math.round((pomoTotalTime - pomoTimeLeft) / pomoTotalTime * 100);
@@ -157,7 +154,7 @@ $(document).ready(function () {
             }
         } catch(e) {}
         // tab title
-        document.title = txt + ' | ' + (isFocus ? '🎯 Focus' : '☕ Break');
+        document.title = txt + ' | ' + (isFocus ? 'Focus' : 'Break');
         // ring
         const ring = document.getElementById('pomo-ring-fill');
         if (ring && pomoTotalTime > 0) {
@@ -185,11 +182,11 @@ $(document).ready(function () {
             var el = document.createElement('div');
             el.className = 'pomo-log-entry';
             el.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:0.4rem;">'
-                + '<strong style="color:#a78bfa;">Session #' + e.num + '</strong>'
-                + '<span style="color:rgba(255,255,255,0.3);font-size:0.72rem;">' + e.ts + '</span></div>'
-                + (e.goal     ? '<div class="log-goal">🎯 ' + e.goal + '</div>' : '')
-                + (e.achieved ? '<div class="log-achieved">✨ ' + e.achieved + '</div>'
-                              : '<div style="color:rgba(255,255,255,0.25);font-style:italic;">No notes</div>');
+                + '<strong style="color:#1f3864;">Session #' + e.num + '</strong>'
+                + '<span style="color:#4a4a4a;font-size:0.85rem;">' + e.ts + '</span></div>'
+                + (e.goal     ? '<div class="log-goal">Goal: ' + e.goal + '</div>' : '')
+                + (e.achieved ? '<div class="log-achieved">Done: ' + e.achieved + '</div>'
+                              : '<div style="color:#4a4a4a;font-style:italic;">No notes</div>');
             list.appendChild(el);
         });
     }
@@ -225,19 +222,16 @@ $(document).ready(function () {
         overlay.id = 'pomo-ach-modal';
         overlay.setAttribute('role', 'dialog');
         overlay.setAttribute('aria-modal', 'true');
-        overlay.style.cssText = 'position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1rem;';
-        overlay.innerHTML = '<div style="background:rgba(12,6,30,0.98);border:1px solid rgba(167,139,250,0.3);border-radius:20px;padding:2rem;max-width:450px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.7);">'
-            + '<div style="text-align:center;margin-bottom:1.4rem;"><div style="font-size:2.4rem;">' + (lb ? '🌙' : '🍅') + '</div>'
-            + '<h3 style="color:#c4b5fd;margin:0.4rem 0 0.2rem;font-size:1.1rem;">Session ' + sNum + ' Complete!</h3>'
-            + '<p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">' + (lb ? 'Long Break' : 'Break') + ' — ' + bMin + ' minutes</p></div>'
-            + '<div style="background:rgba(123,47,255,0.08);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:0.85rem 1rem;margin-bottom:1.1rem;">'
-            + '<div style="font-size:0.7rem;color:rgba(167,139,250,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.35rem;">🎯 You planned to</div>'
-            + '<div style="color:rgba(255,255,255,0.85);font-size:0.9rem;">' + goal + '</div></div>'
-            + '<label style="display:block;font-size:0.7rem;color:rgba(167,139,250,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;">✨ What did you actually achieve?</label>'
-            + '<textarea id="pomo-ach-input" rows="3" placeholder="Describe what you accomplished…" style="width:100%;box-sizing:border-box;font-size:0.88rem;padding:0.6rem 0.8rem;border-radius:8px;resize:vertical;margin-bottom:1.2rem;"></textarea>'
-            + '<div style="display:flex;gap:0.8rem;justify-content:flex-end;">'
-            + '<button id="pomo-ach-skip" class="button" style="font-size:0.85rem;">Skip</button>'
-            + '<button id="pomo-ach-save" class="button primary" style="font-size:0.85rem;">💾 Save &amp; Start Break</button></div></div>';
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;padding:1rem;';
+        var safeGoal = $('<div>').text(goal).html();
+        overlay.innerHTML = '<div class="ach-dialog">'
+            + '<p class="ach-title">Session ' + sNum + ' complete</p>'
+            + '<div class="ach-body"><p class="ach-sub">Next: ' + (lb ? 'long break' : 'break') + ', ' + bMin + ' minutes</p>'
+            + '<p class="ach-label">You planned to</p><p class="ach-goal">' + safeGoal + '</p>'
+            + '<label class="ach-label" for="pomo-ach-input">What did you actually achieve?</label>'
+            + '<textarea id="pomo-ach-input" rows="3" placeholder="Describe what you accomplished"></textarea>'
+            + '<div class="ach-actions"><button id="pomo-ach-skip" type="button" class="button">Skip</button>'
+            + '<button id="pomo-ach-save" type="button" class="button primary">Save and start the break</button></div></div></div>';
         document.body.appendChild(overlay);
         overlay.addEventListener('click', function (event) {
             event.stopPropagation();
@@ -269,13 +263,13 @@ $(document).ready(function () {
             isLongBreak = (pomoSessionCount % 4 === 0);
             pomoTotalTime = isLongBreak ? d.longBreak : d.breakT;
             pomoTimeLeft  = pomoTotalTime;
-            var label = isLongBreak ? '🌙 Long Break' : 'Break Time';
+            var label = isLongBreak ? 'Long Break' : 'Break Time';
             $('#pomodoro-status').text(label).removeClass('focus break longbreak').addClass(isLongBreak ? 'longbreak' : 'break');
             applyPomoMode(false, isLongBreak);
             updatePomoDisplay();
             pomoBeep(880, 0.3); setTimeout(function(){ pomoBeep(660, 0.4); }, 320);
             if (isLongBreak) setTimeout(function(){ pomoBeep(440, 0.5); }, 700);
-            var nTitle = isLongBreak ? '🌙 Long Break! You earned it!' : '🍅 Pomodoro Complete!';
+            var nTitle = isLongBreak ? 'Long break: you earned it' : 'Pomodoro complete';
             var nBody  = isLongBreak ? 'Session ' + pomoSessionCount + ' done! Enjoy your ' + Math.round(d.longBreak/60) + '-min break.' : 'Take a ' + Math.round(d.breakT/60) + '-min break.';
             showToast(nTitle, 'success');
             pomoSendNotification(nTitle, nBody);
@@ -292,9 +286,9 @@ $(document).ready(function () {
             applyPomoMode(true, false);
             updatePomoDisplay();
             pomoBeep(440, 0.5);
-            showToast("Break's over! Back to work! 🎯", 'info');
-            pomoSendNotification("⏰ Break's Over!", 'Time to focus again!');
-            if (!isPomodoroVisible()) pomoShowFloatingAlert("⏰ Break's Over!", 'Time to focus again!', 'purple');
+            showToast("Break's over. Back to work.", 'info');
+            pomoSendNotification("Break's over", 'Time to focus again!');
+            if (!isPomodoroVisible()) pomoShowFloatingAlert("Break's over", 'Time to focus again!', 'purple');
             startPomoInterval();
         }
     }
@@ -325,7 +319,7 @@ $(document).ready(function () {
             if (handled) return; handled = true;
             if (perm === 'granted') {
                 $('#pomo-notif-banner').slideUp(300);
-                showToast('\ud83d\udd14 Notifications enabled!', 'success');
+                showToast('Notifications enabled.', 'success');
                 try { new Notification('Pomodoro Timer', { body: "You'll be alerted when sessions end!" }); } catch(e) {}
             } else {
                 showToast('Notifications blocked \u2014 allow them in browser settings.', 'warning');
@@ -338,7 +332,7 @@ $(document).ready(function () {
     $('#pomodoro-start').on('click', function () {
         if (pomoInterval) return;
         if (isFocus && pomoTimeLeft === pomoTotalTime) {
-            // Fresh focus session — capture goal
+            // Fresh focus session: capture goal
             pomoCurrentGoal = $('#pomo-goal-input').val().trim();
             var d = getPomoDurations();
             pomoTotalTime = d.focus;
@@ -409,8 +403,8 @@ $(document).ready(function () {
             count++;
             if (count > 15) {
                 clearInterval(interval);
-                $('#name-picker-result').css('color', '#a78bfa');
-                setTimeout(() => $('#name-picker-result').css('color', '#00c9ff'), 300);
+                $('#name-picker-result').css('color', '#4a4a4a');
+                setTimeout(() => $('#name-picker-result').css('color', '#1f3864'), 300);
             }
         }, 50);
     });
@@ -526,7 +520,7 @@ $(document).ready(function () {
         if (!container) return;
         container.innerHTML = '';
         if (todos.length === 0) {
-            container.innerHTML = '<div class="todo-empty"><i class="fas fa-clipboard-list" style="font-size:2rem; display:block; margin-bottom:0.8rem; opacity:0.3;"></i>No tasks yet — add one above!</div>';
+            container.innerHTML = '<div class="todo-empty">No tasks yet. Add one above.</div>';
             updateTodoStats();
             return;
         }
@@ -655,7 +649,7 @@ $(document).ready(function () {
                 'DTSTAMP:' + fmtICS(new Date()) + '\r\n' +
                 'DTSTART:' + fmtICS(dtStart) + '\r\n' +
                 'DTEND:' + fmtICS(dtEnd) + '\r\n' +
-                'SUMMARY:' + (t.done ? '✅ ' : '') + t.text + '\r\n' +
+                'SUMMARY:' + (t.done ? '[done] ' : '') + t.text + '\r\n' +
                 'DESCRIPTION:Status: ' + (t.done ? 'Done' : 'Pending') + '\r\n' +
                 'STATUS:' + (t.done ? 'CONFIRMED' : 'TENTATIVE') + '\r\n' +
                 'END:VEVENT\r\n';
@@ -719,10 +713,10 @@ $(document).ready(function () {
     // 5. Deep Search
     const searchData = [];
     setTimeout(() => {
-        $('#main article').each(function () {
+        $('#main > section').each(function () {
             const id = $(this).attr('id');
-            if (!id) return;
-            const title = $(this).find('h2.major').text() || id;
+            if (!id || id === 'tool-deep-search') return;
+            const title = $(this).find('h2').first().text() || id;
             let content = $(this).text().replace(/\s+/g, ' ').trim();
             searchData.push({ id, title, content });
         });
@@ -734,7 +728,7 @@ $(document).ready(function () {
         resContainer.empty();
 
         if (query.length < 2) {
-            resContainer.html('<p style="text-align:center; color: #a78bfa;">Start typing to search...</p>');
+            resContainer.html('<p class="small">Start typing to search.</p>');
             return;
         }
 
@@ -749,23 +743,23 @@ $(document).ready(function () {
                     const start = Math.max(0, matchIdx - 40);
                     const end = Math.min(item.content.length, matchIdx + query.length + 40);
                     snippet = "..." + item.content.substring(start, end) + "...";
-                    const regex = new RegExp(`(${query})`, "gi");
-                    snippet = snippet.replace(regex, `<span style="background: rgba(123,47,255,0.4); color:#fff; font-weight:bold;">$1</span>`);
+                    const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', "gi");
+                    snippet = $('<div>').text(snippet).html().replace(regex, '<mark>$1</mark>');
                 } else {
                     snippet = item.content.substring(0, 100) + "...";
                 }
 
                 resContainer.append(`
-                    <a href="#${item.id}" class="skill-card" style="text-align:left; align-items:flex-start; text-decoration:none; display:block; padding: 1.5rem; width:100%; box-sizing:border-box;">
-                        <span style="font-size: 1.1rem; color: #ffffff; font-weight:bold; margin-bottom:0.5rem; display:block;">${item.title}</span>
-                        <p style="font-size:0.85rem; color:#d8b4fe; margin:0; line-height:1.4;">${snippet}</p>
+                    <a href="#${item.id}" class="search-hit">
+                        <span class="search-hit-title">${item.title}</span>
+                        <span class="search-hit-snippet">${snippet}</span>
                     </a>
                 `);
             }
         });
 
         if (results === 0) {
-            resContainer.html('<p style="text-align:center; color: #ef4444;">No results found.</p>');
+            resContainer.html('<p class="small">No results found.</p>');
         }
     });
 });
