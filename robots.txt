@@ -1,3 +1,5 @@
+# /CoffreFort/ stays crawlable on purpose so that its noindex tag is seen.
 User-agent: *
 Allow: /
+
 Sitemap: https://sitraka17.github.io/sitemap.xml
