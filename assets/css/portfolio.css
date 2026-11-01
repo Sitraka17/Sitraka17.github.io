@@ -13,13 +13,60 @@
 	--hairline: #c9c6bd;
 	--struct: #1f3864;
 	--struct-ink: #ffffff;
+	--accent: #1f3864;
+	--field: #ffffff;
+	--field-rule: #8a877f;
+	--code-bg: #f3f2ee;
+	--ok: #3d5a1e;
+	--warn: #7a2e2e;
+	--mark: #dfe5f1;
+	--syn-kw: #1f3864;
+	--syn-str: #7a2e2e;
+	--syn-num: #3d5a1e;
+	--syn-com: #5f5f5f;
 	--block: #eceff5;
 	--block-rule: #b9c2d6;
 	--note: #f3f1ea;
+	--note-title: #1b1b1b;
 	--serif: "Crimson Pro", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 	--mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
 	--measure: 46rem;
 	--gutter: 16px;
+	color-scheme: light;
+}
+
+/*
+ * Dark reading mode, screen only (print always uses the light palette).
+ * Same layout and typography; only the paper and ink are inverted.
+ */
+@media screen and (prefers-color-scheme: dark) {
+	:root {
+		--paper: #15171c;
+		--ink: #e7e4dc;
+		--muted: #bcb8ae;
+		--faint: #9d998f;
+		--rule: #e7e4dc;
+		--hairline: #41444c;
+		--struct: #1f3864;
+		--struct-ink: #ffffff;
+		--accent: #a9c0ea;
+		--block: #1b2130;
+		--block-rule: #3b4763;
+		--note: #1d1e22;
+		--note-title: #34363d;
+		--field: #1d2026;
+		--field-rule: #80838b;
+		--code-bg: #1b1d22;
+		--ok: #a8cf86;
+		--warn: #e7a4a4;
+		--mark: #3a4766;
+		--syn-kw: #a9c0ea;
+		--syn-str: #e7a4a4;
+		--syn-num: #a8cf86;
+		--syn-com: #a3a29d;
+		color-scheme: dark;
+	}
+	figure img { filter: brightness(.9); }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -40,9 +87,9 @@ body {
 
 img { max-width: 100%; height: auto; display: block; }
 
-a { color: var(--struct); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
 a:hover { text-decoration-thickness: 2px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--struct); outline-offset: 2px; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .skip-link {
 	position: absolute; left: var(--gutter); top: -3rem;
@@ -68,6 +115,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--struct); outlin
 .mast-role { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; opacity: .9; font-weight: 400; }
 .mast-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; }
 .mast-nav a { color: var(--struct-ink); font-family: var(--mono); font-size: .8rem; text-decoration: none; letter-spacing: .02em; }
+.mast-nav a:focus-visible, .mast-id:focus-visible { outline-color: var(--struct-ink); }
 .mast-nav a:hover, .mast-nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
 .mast-rule { height: 3px; border-bottom: 1px solid var(--rule); margin-top: 2px; }
 
@@ -85,8 +133,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--struct); outlin
 .toc li { counter-increment: toc; display: flex; gap: .55rem; line-height: 1.6; }
 .toc li::before { content: counter(toc); font-family: var(--mono); font-size: .8rem; color: var(--faint); min-width: 1.1rem; padding-top: .2rem; }
 .toc a { color: var(--ink); text-decoration: none; }
-.toc a:hover { color: var(--struct); text-decoration: underline; }
+.toc a:hover { color: var(--accent); text-decoration: underline; }
 .toc-ext { margin: .7rem 0 0; padding-top: .6rem; border-top: 1px solid var(--hairline); font-size: .95rem; }
+.toc .toc-ext a { color: var(--accent); text-decoration: underline; }
 @media (max-width: 959px) {
 	.toc ol { columns: 2; column-gap: 1.5rem; }
 	.toc li { break-inside: avoid; }
@@ -125,7 +174,7 @@ strong { font-weight: 600; }
 .block-body { padding: .75rem .9rem .3rem; }
 .block-body p, .block-body ul { margin-bottom: .6rem; }
 .block.note { background: var(--note); border-color: var(--hairline); }
-.block.note .block-title { background: var(--ink); }
+.block.note .block-title { background: var(--note-title); }
 
 /* ---------- Tables ---------- */
 .table-wrap { overflow-x: auto; margin: 1.2rem 0 1.4rem; }
@@ -194,5 +243,12 @@ dl.kv dd { margin: 0; }
 	a { color: inherit; }
 	.block-title { background: none; color: inherit; border-bottom: 1px solid #000; }
 	.block { background: none; }
-	main section { break-inside: avoid-page; }
+	main section { margin-top: 1.4rem; }
+	h2, h3, caption { break-after: avoid-page; }
+	.entry, tr, .refs li, .block, dl.kv { break-inside: avoid-page; }
+	.table-wrap { overflow: visible; }
+	.foot .wrap { padding: .6rem 0 0; }
 }
+
+/* Visually hidden text, still read by screen readers. */
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }

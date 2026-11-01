@@ -40,18 +40,16 @@ function isPomodoroVisible() {
 function pomoShowFloatingAlert(title, msg, type) {
     var existing = document.getElementById('pomo-float-alert');
     if (existing) existing.remove();
-    var isBreak = (type === 'green');
-    var accent  = '#1f3864';
     var el = document.createElement('div');
     el.id = 'pomo-float-alert';
+    // Colours come from tools.css so the alert follows the light and dark palettes.
     el.innerHTML = '<div style="display:flex;align-items:flex-start;gap:0.9rem;">'
-        + '<div style="flex:1;"><div style="font-weight:600;color:#1b1b1b;margin-bottom:0.25rem;">' + title + '</div>'
-        + '<div style="font-size:0.95rem;color:#4a4a4a;">' + msg + '</div></div>'
-        + '<button id="pomo-float-close" aria-label="Close" style="background:none;border:none;color:#4a4a4a;cursor:pointer;font-size:1.4rem;line-height:1;padding:0;">&times;</button></div>'
-        + '<div style="margin-top:0.6rem;border-top:1px solid #c9c6bd;padding-top:0.5rem;">'
-        + '<a href="#tool-pomodoro" id="pomo-float-link" style="color:' + accent + ';">Go to the timer</a></div>';
+        + '<div style="flex:1;"><div class="pomo-float-title">' + title + '</div>'
+        + '<div class="pomo-float-msg" style="font-size:0.95rem;">' + msg + '</div></div>'
+        + '<button type="button" id="pomo-float-close" class="pomo-float-close" aria-label="Close" style="background:none;border:none;cursor:pointer;font-size:1.4rem;line-height:1;padding:0;">&times;</button></div>'
+        + '<div class="pomo-float-foot">'
+        + '<a href="#tool-pomodoro" id="pomo-float-link">Go to the timer</a></div>';
     el.style.cssText = 'position:fixed;bottom:1rem;right:1rem;z-index:99999;'
-        + 'background:#fbfaf7;border:1px solid ' + accent + ';border-top:4px solid ' + accent + ';'
         + 'padding:0.8rem 1rem;width:min(290px, calc(100vw - 2rem));box-shadow:0 4px 14px rgba(0,0,0,0.15);'
         + 'font-family:inherit;transform:translateX(130%);transition:transform 0.3s ease;';
     // Accessibility: announce toast and mark as status
@@ -111,7 +109,10 @@ $(document).ready(function () {
     function applyPomoMode(focus, lb) {
         var ring = document.getElementById('pomo-ring-fill');
         var wrap = document.getElementById('pomo-ring-wrap');
-        if (ring) ring.setAttribute('stroke', focus ? '#1f3864' : (lb ? '#6b6b6b' : '#3d5a1e'));
+        if (ring) {
+            ring.classList.toggle('is-break', !focus && !lb);
+            ring.classList.toggle('is-longbreak', !focus && !!lb);
+        }
         if (wrap) {
             wrap.classList.toggle('pulsing',       focus && !lb);
             wrap.classList.toggle('break-pulse',   !focus && !lb);
@@ -181,12 +182,14 @@ $(document).ready(function () {
         pomoSessionLog.slice().reverse().forEach(function(e) {
             var el = document.createElement('div');
             el.className = 'pomo-log-entry';
-            el.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:0.4rem;">'
-                + '<strong style="color:#1f3864;">Session #' + e.num + '</strong>'
-                + '<span style="color:#4a4a4a;font-size:0.85rem;">' + e.ts + '</span></div>'
-                + (e.goal     ? '<div class="log-goal">Goal: ' + e.goal + '</div>' : '')
-                + (e.achieved ? '<div class="log-achieved">Done: ' + e.achieved + '</div>'
-                              : '<div style="color:#4a4a4a;font-style:italic;">No notes</div>');
+            // Goal and notes are typed by the user: escape them before inserting.
+            var esc = function (t) { return $('<div>').text(String(t)).html(); };
+            el.innerHTML = '<div class="pomo-log-head">'
+                + '<strong>Session #' + esc(e.num) + '</strong>'
+                + '<span class="pomo-log-ts">' + esc(e.ts) + '</span></div>'
+                + (e.goal     ? '<div class="log-goal">Goal: ' + esc(e.goal) + '</div>' : '')
+                + (e.achieved ? '<div class="log-achieved">Done: ' + esc(e.achieved) + '</div>'
+                              : '<div class="pomo-log-none">No notes</div>');
             list.appendChild(el);
         });
     }
@@ -222,10 +225,11 @@ $(document).ready(function () {
         overlay.id = 'pomo-ach-modal';
         overlay.setAttribute('role', 'dialog');
         overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-labelledby', 'pomo-ach-title');
         overlay.style.cssText = 'position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;padding:1rem;';
         var safeGoal = $('<div>').text(goal).html();
         overlay.innerHTML = '<div class="ach-dialog">'
-            + '<p class="ach-title">Session ' + sNum + ' complete</p>'
+            + '<p class="ach-title" id="pomo-ach-title">Session ' + sNum + ' complete</p>'
             + '<div class="ach-body"><p class="ach-sub">Next: ' + (lb ? 'long break' : 'break') + ', ' + bMin + ' minutes</p>'
             + '<p class="ach-label">You planned to</p><p class="ach-goal">' + safeGoal + '</p>'
             + '<label class="ach-label" for="pomo-ach-input">What did you actually achieve?</label>'
@@ -322,7 +326,7 @@ $(document).ready(function () {
                 showToast('Notifications enabled.', 'success');
                 try { new Notification('Pomodoro Timer', { body: "You'll be alerted when sessions end!" }); } catch(e) {}
             } else {
-                showToast('Notifications blocked \u2014 allow them in browser settings.', 'warning');
+                showToast('Notifications blocked: allow them in your browser settings.', 'warning');
             }
         }
         var result = Notification.requestPermission(onPerm);
@@ -397,14 +401,16 @@ $(document).ready(function () {
             return;
         }
         let count = 0;
+        // Announce only the final name, not every name shown while it spins.
+        $('#name-picker-result').attr('aria-busy', 'true');
         let interval = setInterval(() => {
             let rand = names[Math.floor(Math.random() * names.length)];
             $('#name-picker-result').text(rand);
             count++;
             if (count > 15) {
                 clearInterval(interval);
-                $('#name-picker-result').css('color', '#4a4a4a');
-                setTimeout(() => $('#name-picker-result').css('color', '#1f3864'), 300);
+                $('#name-picker-result').attr('aria-busy', 'false').addClass('flash');
+                setTimeout(() => $('#name-picker-result').removeClass('flash'), 300);
             }
         }, 50);
     });
@@ -499,11 +505,17 @@ $(document).ready(function () {
     });
 
     // 4. To-Do List Maker
+    // Storage can be blocked (private window, strict settings): fall back to an in-memory list.
+    let todoMemory = [];
     function getTodos() {
-        return JSON.parse(localStorage.getItem('todoListItems') || '[]');
+        try {
+            const v = JSON.parse(localStorage.getItem('todoListItems') || '[]');
+            return Array.isArray(v) ? v : [];
+        } catch (e) { return todoMemory.slice(); }
     }
     function saveTodos(todos) {
-        localStorage.setItem('todoListItems', JSON.stringify(todos));
+        todoMemory = todos.slice();
+        try { localStorage.setItem('todoListItems', JSON.stringify(todos)); } catch (e) { /* in-memory only */ }
     }
     function updateTodoStats() {
         const todos = getTodos();
@@ -525,21 +537,22 @@ $(document).ready(function () {
             return;
         }
         todos.forEach((t, i) => {
+            const esc = (v) => $('<div>').text(String(v)).html();
             let metaHtml = '';
-            if (t.date) metaHtml += `<span><i class="fas fa-calendar" style="margin-right:3px;"></i>${t.date}</span>`;
-            if (t.timeStart) metaHtml += `<span><i class="fas fa-clock" style="margin-right:3px;"></i>${t.timeStart}${t.timeEnd ? ' – ' + t.timeEnd : ''}</span>`;
+            if (t.date) metaHtml += `<span>${esc(t.date)}</span>`;
+            if (t.timeStart) metaHtml += `<span>${esc(t.timeStart)}${t.timeEnd ? ' – ' + esc(t.timeEnd) : ''}</span>`;
             const safeText = document.createElement('span');
             safeText.textContent = t.text;
 
             const row = document.createElement('div');
             row.className = 'todo-item' + (t.done ? ' checked' : '');
             row.innerHTML = `
-                <div class="todo-checkbox${t.done ? ' checked' : ''}" aria-label="${t.done ? 'Mark pending' : 'Mark done'}"></div>
+                <button type="button" role="checkbox" aria-checked="${t.done ? 'true' : 'false'}" class="todo-checkbox${t.done ? ' checked' : ''}" aria-label="Done: ${esc(t.text)}"></button>
                 <div style="flex:1; min-width:0;">
                     <div class="todo-text">${safeText.innerHTML}</div>
                     ${metaHtml ? '<div class="todo-meta">' + metaHtml + '</div>' : ''}
                 </div>
-                <button class="todo-delete" type="button" aria-label="Delete pending action"><i class="fas fa-trash-alt"></i></button>
+                <button class="todo-delete" type="button" aria-label="Delete task: ${esc(t.text)}"></button>
             `;
             container.appendChild(row);
 
@@ -595,7 +608,8 @@ $(document).ready(function () {
     $('#todo-clear-btn').click(function () {
         if (getTodos().length === 0) return;
         if (!confirm('Clear all tasks?')) return;
-        localStorage.removeItem('todoListItems');
+        todoMemory = [];
+        try { localStorage.removeItem('todoListItems'); } catch (e) { /* storage blocked */ }
         renderTodos();
     });
     $('#todo-copy-btn').click(function () {
@@ -676,7 +690,8 @@ $(document).ready(function () {
     $('#reset-all-tools-btn').click(function () {
         if (!confirm('Reset ALL tools to their initial state? This will clear your to-do list, stopwatch, laps, and name picker.')) return;
         // Reset To-Do List
-        localStorage.removeItem('todoListItems');
+        todoMemory = [];
+        try { localStorage.removeItem('todoListItems'); } catch (e) { /* storage blocked */ }
         renderTodos();
         // Reset Pomodoro
         clearInterval(pomoInterval);
