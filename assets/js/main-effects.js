@@ -1,10 +1,10 @@
-hljs.highlightAll();
+if (window.hljs) { hljs.highlightAll(); }
 
 /* ---- Typing Animation ---- */
 (function () {
     var phrases = [
         'Data Scientist & MLOps Engineer',
-        'Co-Founder, LuxAiOps',
+        'Co-Founder, LuxAIOps',
         'IT Consultant & MLOps',
         'Python & Cloud Specialist',
         'Cybersecurity & Automation Expert'
@@ -63,7 +63,7 @@ hljs.highlightAll();
         }
     });
 
-    // Show LuxAiOps specific glow when that article is active
+    // Show LuxAIOps specific glow when that article is active
     var observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
             if (mutation.attributeName === 'class') {

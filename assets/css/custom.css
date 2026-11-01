@@ -1175,3 +1175,18 @@ article a:hover {
 .pomo-log-entry { background:rgba(15,10,35,0.5); border:1px solid rgba(167,139,250,0.12); border-radius:10px; padding:0.75rem 1rem; font-size:0.82rem; }
 .pomo-log-entry .log-goal { color:rgba(255,255,255,0.5); margin-bottom:0.3rem; font-style:italic; }
 .pomo-log-entry .log-achieved { color:#c4b5fd; }
+
+/* ---- Header tagline (value proposition) ---- */
+#header .content .inner p.tagline {
+    text-transform: none;
+    letter-spacing: 0.01em;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 34rem;
+    margin: 0.75rem auto 0;
+    opacity: 0.8;
+}
+
+#footer .copyright a {
+    border-bottom: none;
+}

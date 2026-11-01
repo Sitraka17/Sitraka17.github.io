@@ -6,7 +6,7 @@
 
 - Project 3 : [Cartography](https://github.com/Sitraka17/Cartography-Maps)
 
-![Cartography](https://github.com/Sitraka17/Sitraka17.github.io/blob/main/image/maps.jpg)
+![Cartography](https://github.com/Sitraka17/Sitraka17.github.io/blob/main/images/maps.jpg?raw=true)
 
 
 Cartography is the study and practice of making and using maps. Combining science, aesthetics and technique, cartography builds on the premise that reality can be modeled in ways that communicate spatial information effectively. Wikipedia
