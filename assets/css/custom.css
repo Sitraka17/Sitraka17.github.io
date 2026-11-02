@@ -1190,3 +1190,38 @@ article a:hover {
 #footer .copyright a {
     border-bottom: none;
 }
+
+/* ---- Header nav: centered, no line crossing the labels ---- */
+/* The template draws a vertical line through the middle item when the
+   nav has an even number of entries; with unequal label widths it cut
+   through text. Keep the connector above the nav only. */
+#header nav.use-middle:after {
+    display: none;
+}
+
+#header nav.use-middle ul li.is-middle {
+    border-left: solid 1px #ffffff;
+}
+
+#header nav ul {
+    justify-content: center;
+}
+
+/* ---- Section banners (SVG) ---- */
+.image.main img[src$=".svg"] {
+    aspect-ratio: 3 / 1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background: #0d0a24;
+}
+
+/* ---- Tools table of contents ---- */
+.tool-toc {
+    margin-top: 1.5rem;
+}
+
+.tool-toc .skill-card {
+    text-decoration: none;
+    border-bottom: none;
+}
