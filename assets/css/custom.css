@@ -666,6 +666,7 @@ article hr {
 
 /* ---------- 18. IMAGES ---------- */
 .image.main img {
+  height: auto;
   border-radius: 14px;
   box-shadow:
     0 8px 28px rgba(0, 0, 0, 0.5),
@@ -1224,4 +1225,41 @@ article a:hover {
 .tool-toc .skill-card {
     text-decoration: none;
     border-bottom: none;
+}
+
+/* ---- Header portrait (replaces the gem icon on the home page) ---- */
+#header .logo.logo-photo {
+    overflow: hidden;
+    padding: 0;
+    border-width: 2px;
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.25), 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+#header .logo.logo-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+/* ---- Speaker photo in the About article ---- */
+#main article figure.speaker-photo {
+    margin: 0 0 2rem 0;
+}
+
+#main article figure.speaker-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+
+#main article figure.speaker-photo figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    color: rgba(196, 181, 253, 0.9);
+    text-align: center;
+    letter-spacing: 0.02em;
 }
