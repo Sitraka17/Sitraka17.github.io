@@ -435,3 +435,164 @@
         padding: 0 16px;
       }
     }
+
+/* ---- EcoFin Learning promotion ---- */
+.ecofin-btn {
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+  font-weight: 600;
+}
+.ecofin-btn:hover {
+  background: rgba(77, 237, 159, 0.1);
+}
+
+.ecofin-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 1.2rem;
+  padding: 16px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(77, 237, 159, 0.45);
+  background: linear-gradient(135deg, rgba(77, 237, 159, 0.10), rgba(56, 152, 236, 0.10));
+  color: var(--text-light);
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ecofin-card:hover,
+.ecofin-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--success);
+  box-shadow: 0 8px 24px rgba(77, 237, 159, 0.15);
+}
+.ecofin-icon { font-size: 28px; line-height: 1; }
+.ecofin-text { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.ecofin-text strong { font-size: 15px; }
+.ecofin-text span { font-size: 13px; color: var(--text-muted); }
+.ecofin-cta {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: var(--success);
+  color: #0d1f16;
+}
+.ecofin-end { margin-top: 2rem; }
+
+.ecofin-side {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(77, 237, 159, 0.4);
+  background: rgba(77, 237, 159, 0.07);
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 13px;
+}
+.ecofin-side span { font-size: 11px; color: var(--text-muted); }
+.ecofin-side:hover { border-color: var(--success); }
+
+@media (max-width: 600px) {
+  .ecofin-card { flex-wrap: wrap; }
+  .ecofin-cta { width: 100%; text-align: center; }
+}
+
+/* ---- Mobile layout: stack header, sidebar and content ---- */
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+    height: auto;
+  }
+
+  header {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .header-divider,
+  .breadcrumb {
+    display: none;
+  }
+
+  .header-right {
+    width: 100%;
+    margin-left: 0;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .progress-info {
+    flex: 1 1 100%;
+  }
+
+  .progress-bar {
+    flex: 1;
+  }
+
+  .header-right .home-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  aside {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    overflow: visible;
+  }
+
+  .sidebar-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px 16px;
+  }
+
+  .sidebar-title {
+    flex: 1 1 100%;
+  }
+
+  .sidebar-section .module-item,
+  .sidebar-section .lesson-sub {
+    margin: 0;
+    padding: 6px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    font-size: 12px;
+  }
+
+  .ecofin-side {
+    flex: 1 1 100%;
+  }
+
+  main,
+  .content-area {
+    overflow: visible;
+  }
+
+  main {
+    padding: 16px;
+  }
+
+  main .intro h1 {
+    font-size: 1.4rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide lesson groups whose lessons all belong to another module */
+  .sidebar-section:has([data-lesson]):not(:has([data-lesson]:not([style*="display: none"]))) {
+    display: none;
+  }
+}

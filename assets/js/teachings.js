@@ -14,6 +14,9 @@ const lessons = {
   "py-finance": { module: "python", title: "Building a Financial App", subtitle: "Complete example: Portfolio analysis tool", tag: "Lesson 12 of 12", content: `<div class="section"><div class="section-title">Portfolio Analysis Application</div><p class="content-text">A complete Python application that analyzes investment portfolios:</p><div class="code-block"><span class="kw">class</span> Portfolio:<br>&nbsp;&nbsp;<span class="kw">def</span> __init__(self, name):<br>&nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br>&nbsp;&nbsp;&nbsp;&nbsp;self.holdings = []<br>&nbsp;&nbsp;<span class="kw">def</span> add_stock(self, symbol, shares, price):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"""Add stock to portfolio"""</span><br>&nbsp;&nbsp;&nbsp;&nbsp;self.holdings.append({<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'symbol'</span>: symbol,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'shares'</span>: shares,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'price'</span>: price<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;<span class="kw">def</span> total_value(self):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"""Calculate portfolio total value"""</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> sum(h[<span class="str">'shares'</span>] * h[<span class="str">'price'</span>] <span class="kw">for</span> h <span class="kw">in</span> self.holdings)</div></div><div class="section"><div class="section-title">Congratulations! 🎉</div><p class="content-text">You've completed all 12 lessons covering Databases, Financial Data Analysis, and Python programming. You now have the foundational knowledge to build data-driven financial applications!</p></div>` }
 };
 
+// Promo shown at the end of every lesson
+const ECOFIN_CTA = `<a class="ecofin-card ecofin-end" href="https://ecofinlearning.com/?utm_source=sitraka17.github.io&utm_medium=referral&utm_campaign=teachings&utm_content=lesson-end" target="_blank" rel="noopener"><span class="ecofin-icon" aria-hidden="true">🎓</span><span class="ecofin-text"><strong>Continue learning on EcoFin Learning</strong><span>Go deeper into economics &amp; finance on ecofinlearning.com</span></span><span class="ecofin-cta">Visit ↗</span></a>`;
+
 // STATE
 let currentModule = 'databases';
 let currentLesson = 'db-intro';
@@ -82,7 +85,7 @@ function loadLesson(lessonId) {
   updateProgress();
 
   const contentArea = document.getElementById('contentArea');
-  contentArea.innerHTML = `<div class="lesson-header"><div class="lesson-tag">${lesson.tag}</div><div class="lesson-title">${lesson.title}</div><div class="lesson-subtitle">${lesson.subtitle}</div></div>${lesson.content}`;
+  contentArea.innerHTML = `<div class="lesson-header"><div class="lesson-tag">${lesson.tag}</div><div class="lesson-title">${lesson.title}</div><div class="lesson-subtitle">${lesson.subtitle}</div></div>${lesson.content}${ECOFIN_CTA}`;
 
   document.getElementById('breadcrumb').textContent = lesson.module.charAt(0).toUpperCase() + lesson.module.slice(1);
 }
