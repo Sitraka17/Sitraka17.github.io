@@ -35,7 +35,7 @@
 	<meta property="og:title" content="Sitraka Forler | Data Scientist & MLOps Engineer — Luxembourg" />
 	<meta property="og:description" content="Portfolio of Sitraka Forler — Data Scientist, MLOps Engineer & Co-founder of LuxAIOps. Expert in ML, AI Ops, Cloud, Cybersecurity and FinTech based in Luxembourg." />
 	<meta property="og:image" content="https://sitraka17.github.io/images/og-image.jpg" />
-	<meta property="og:image:alt" content="Sitraka Forler — Data Scientist and MLOps Engineer" />
+	<meta property="og:image:alt" content="Sitraka Forler speaking at Voxxed Days Luxembourg" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 
@@ -48,7 +48,7 @@
 	<meta name="twitter:title" content="Sitraka Forler | Data Scientist & MLOps Engineer" />
 	<meta name="twitter:description" content="Portfolio of Sitraka Forler — ML, AI Ops, Cloud & Cybersecurity expert. Co-founder of LuxAIOps in Luxembourg." />
 	<meta name="twitter:image" content="https://sitraka17.github.io/images/og-image.jpg" />
-	<meta name="twitter:image:alt" content="Sitraka Forler — Data Scientist and MLOps Engineer" />
+	<meta name="twitter:image:alt" content="Sitraka Forler speaking at Voxxed Days Luxembourg" />
 
 	<!-- ═══════════════════════════════════════════
 	     JSON-LD STRUCTURED DATA
@@ -76,7 +76,13 @@
 	      "jobTitle": "Systems Architect & AIOps Engineer",
 	      "description": "Data Scientist, MLOps Engineer and IT Consultant based in Luxembourg. Co-founder of LuxAIOps, specialising in AI, Machine Learning, Cloud Architecture and Cybersecurity.",
 	      "url": "https://sitraka17.github.io/",
-	      "image": "https://sitraka17.github.io/images/og-image.jpg",
+	      "image": {
+	        "@type": "ImageObject",
+	        "url": "https://sitraka17.github.io/images/sitraka-forler-voxxed-days.jpg",
+	        "caption": "Sitraka Forler speaking at Voxxed Days Luxembourg",
+	        "width": 1200,
+	        "height": 800
+	      },
 	      "email": "mailto:sitraka.forler@gmail.com",
 	      "nationality": "French",
 	      "address": {
@@ -173,8 +179,8 @@
 
 		<!-- Header -->
 		<header id="header">
-			<div class="logo">
-				<span class="icon fa-gem"></span>
+			<div class="logo logo-photo">
+				<img src="images/sitraka-forler-avatar.jpg" alt="Portrait of Sitraka Forler" width="160" height="160" fetchpriority="high" />
 			</div>
 			<div class="content">
 				<div class="inner">
@@ -202,7 +208,13 @@
 			<!-- Intro -->
 			<article id="intro">
 				<h2 class="major">About Me</h2>
-				<span class="image main"><img src="images/banners/about.svg" alt="From data to models to production: the end-to-end pipeline I build" width="1200" height="400" /></span>
+				<figure class="image main speaker-photo">
+					<img src="images/sitraka-forler-voxxed-days.jpg"
+						srcset="images/sitraka-forler-voxxed-days-800.jpg 800w, images/sitraka-forler-voxxed-days.jpg 1200w"
+						sizes="(max-width: 736px) 100vw, 560px"
+						alt="Sitraka Forler giving a talk at Voxxed Days Luxembourg" width="1200" height="800" loading="lazy" decoding="async" />
+					<figcaption>🎤 Speaking at Voxxed Days Luxembourg</figcaption>
+				</figure>
 				<p>Hello! I'm <strong>Sitraka FORLER</strong>, a French Data &amp; IT professional passionate about
 					building intelligent systems that create real-world impact. With expertise spanning Data Science,
 					Machine Learning, Cloud, and Cybersecurity, I help organizations unlock the value hidden in their
@@ -211,6 +223,7 @@
 					to bringing intelligent IT Operations and automation to Luxembourg and Europe. I also take on
 					freelance projects — delivering tailored, production-ready solutions to clients.</p>
 				<h3>How I can help</h3>
+				<span class="image main"><img src="images/banners/about.svg" alt="From data to models to production: the end-to-end pipeline I build" width="1200" height="400" loading="lazy" decoding="async" /></span>
 				<ul>
 					<li><strong>AI &amp; LLMs in production</strong> — from POC to a monitored, secure service (RAG, NLP, forecasting).</li>
 					<li><strong>MLOps &amp; AIOps</strong> — CI/CD for models, observability (Splunk, Grafana, Prometheus), anomaly detection.</li>
