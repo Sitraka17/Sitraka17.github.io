@@ -596,3 +596,6 @@
     display: none;
   }
 }
+
+.tuto-card { border-color: rgba(167, 139, 250, 0.5); background: linear-gradient(135deg, rgba(123, 47, 255, 0.14), rgba(56, 152, 236, 0.10)); }
+.tuto-card .ecofin-cta { background: #a78bfa; color: #120d2b; }
