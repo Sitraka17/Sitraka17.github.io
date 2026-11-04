@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Créer un site web gratuit avec GitHub Pages : tuto pas à pas</title>
+	<meta name="description" content="Tuto en français : mettre en ligne un site web gratuit sur GitHub Pages (pseudo.github.io) en 6 étapes, sans logiciel, avec un schéma à chaque étape." />
+	<meta name="author" content="Sitraka Forler" />
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+	<meta name="theme-color" content="#0f0a1e" />
+	<link rel="canonical" href="https://sitraka17.github.io/creer-site-gratuit-github-pages.html" />
+	<link rel="alternate" hreflang="fr" href="https://sitraka17.github.io/creer-site-gratuit-github-pages.html" />
+	<link rel="alternate" hreflang="x-default" href="https://sitraka17.github.io/creer-site-gratuit-github-pages.html" />
+	<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="Sitraka Forler Portfolio" />
+	<meta property="og:locale" content="fr_FR" />
+	<meta property="og:url" content="https://sitraka17.github.io/creer-site-gratuit-github-pages.html" />
+	<meta property="og:title" content="Créer un site web gratuit avec GitHub Pages : tuto pas à pas" />
+	<meta property="og:description" content="6 étapes, 0 €, aucun logiciel à installer : votre site en ligne sur pseudo.github.io en moins de 30 minutes, avec un schéma d’écran à chaque étape." />
+	<meta property="og:image" content="https://sitraka17.github.io/images/tuto/og-tuto.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Un site personnel affiché dans un navigateur à l’adresse monpseudo.github.io" />
+	<meta property="article:author" content="https://sitraka17.github.io/" />
+	<meta property="article:published_time" content="2026-11-05" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@ForlerSitraka" />
+	<meta name="twitter:creator" content="@ForlerSitraka" />
+	<meta name="twitter:title" content="Créer un site web gratuit avec GitHub Pages : tuto pas à pas" />
+	<meta name="twitter:description" content="6 étapes, 0 €, aucun logiciel à installer : votre site en ligne sur pseudo.github.io en moins de 30 minutes." />
+	<meta name="twitter:image" content="https://sitraka17.github.io/images/tuto/og-tuto.jpg" />
+	<meta name="twitter:image:alt" content="Un site personnel affiché dans un navigateur à l’adresse monpseudo.github.io" />
+
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@graph": [
+	    {
+	      "@type": "TechArticle",
+	      "@id": "https://sitraka17.github.io/creer-site-gratuit-github-pages.html#article",
+	      "headline": "Créer un site web gratuit avec GitHub Pages : tuto pas à pas",
+	      "alternativeHeadline": "Mettre un site en ligne sur pseudo.github.io en 6 étapes, sans rien installer",
+	      "description": "Tutoriel simple en français pour créer et mettre en ligne un site web gratuit avec GitHub Pages en 6 étapes, sans installer de logiciel.",
+	      "inLanguage": "fr",
+	      "url": "https://sitraka17.github.io/creer-site-gratuit-github-pages.html",
+	      "image": "https://sitraka17.github.io/images/tuto/og-tuto.jpg",
+	      "datePublished": "2026-11-05",
+	      "dateModified": "2026-11-05",
+	      "proficiencyLevel": "Beginner",
+	      "author": { "@type": "Person", "@id": "https://sitraka17.github.io/#person", "name": "Sitraka Forler", "url": "https://sitraka17.github.io/" },
+	      "publisher": { "@type": "Person", "@id": "https://sitraka17.github.io/#person", "name": "Sitraka Forler" },
+	      "isPartOf": { "@id": "https://sitraka17.github.io/#website" },
+	      "about": ["GitHub Pages", "Hébergement web gratuit", "HTML", "Site personnel"],
+	      "isAccessibleForFree": true
+	    },
+	    {
+	      "@type": "BreadcrumbList",
+	      "itemListElement": [
+	        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://sitraka17.github.io/" },
+	        { "@type": "ListItem", "position": 2, "name": "Teachings", "item": "https://sitraka17.github.io/teachings.html" },
+	        { "@type": "ListItem", "position": 3, "name": "Créer un site gratuit avec GitHub Pages", "item": "https://sitraka17.github.io/creer-site-gratuit-github-pages.html" }
+	      ]
+	    }
+	  ]
+	}
+	</script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/tutorial.css" />
+</head>
+<body>
+	<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+	<header class="topbar">
+		<img src="images/sitraka-forler-avatar.jpg" alt="Portrait de Sitraka Forler" width="40" height="40" />
+		<div class="who">
+			<strong>Sitraka Forler</strong>
+			<span>Data Scientist &amp; MLOps Engineer, Luxembourg</span>
+		</div>
+		<nav aria-label="Site">
+			<a href="index.html">Portfolio</a>
+			<a href="teachings.html">Teachings</a>
+			<a href="tools.html">Tools</a>
+			<a href="index.html#contact">Contact</a>
+		</nav>
+	</header>
+
+	<main id="contenu">
+		<nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> › <a href="teachings.html">Teachings</a> › Créer un site gratuit avec GitHub Pages</nav>
+
+		<h1>Créer un site web <span class="grad">gratuit</span> avec GitHub Pages, pas à pas</h1>
+		<p class="lead">Un site en ligne à l’adresse <code>votre-pseudo.github.io</code>, hébergé gratuitement et pour toujours, sans installer de logiciel ni écrire une ligne de commande. Ce site que vous lisez est fait exactement comme ça.</p>
+		<div class="meta">
+			<span>⏱️ 20 à 30 minutes</span>
+			<span>💶 0 €, sans carte bancaire</span>
+			<span>🧰 Juste un navigateur</span>
+			<span>📅 Mis à jour en novembre 2026</span>
+		</div>
+
+		<div class="box">
+			<span class="label">Pourquoi ce tuto plutôt que la doc officielle ?</span>
+			<p>La <a href="https://docs.github.com/fr/pages/getting-started-with-github-pages" target="_blank" rel="noopener">documentation de GitHub</a> est complète mais suppose que vous connaissez déjà Git, les branches et le terminal. Ici : uniquement des clics dans le navigateur, un schéma d’écran à chaque étape, et les erreurs classiques expliquées avant que vous tombiez dessus.</p>
+		</div>
+
+		<div class="toc">
+			<strong>Sommaire</strong>
+			<ol>
+				<li><a href="#etape-1">Créer un compte GitHub</a></li>
+				<li><a href="#etape-2">Créer le dépôt « pseudo.github.io »</a></li>
+				<li><a href="#etape-3">Ajouter la page d’accueil</a></li>
+				<li><a href="#etape-4">Enregistrer (« commit »)</a></li>
+				<li><a href="#etape-5">Vérifier la mise en ligne</a></li>
+				<li><a href="#etape-6">Modifier votre site</a></li>
+				<li><a href="#plus-loin">Aller plus loin</a></li>
+				<li><a href="#problemes">Problèmes fréquents</a></li>
+				<li><a href="#faq">Questions fréquentes</a></li>
+			</ol>
+		</div>
+
+		<h2 id="avant">Avant de commencer</h2>
+		<ul class="checklist">
+			<li>Une adresse e-mail valide (pour confirmer le compte).</li>
+			<li>Un navigateur à jour (Chrome, Firefox, Safari, Edge).</li>
+			<li>Rien d’autre : pas de logiciel, pas de carte bancaire, pas de Git à installer.</li>
+		</ul>
+		<p>Dans tout le tutoriel, remplacez <code>monpseudo</code> par le nom d’utilisateur que vous choisirez à l’étape 1.</p>
+
+		<h2 id="etape-1"><span class="num">1</span>Créer un compte GitHub</h2>
+		<ol>
+			<li>Ouvrez <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
+			<li>Saisissez votre e-mail, un mot de passe et un <strong>nom d’utilisateur</strong>. Choisissez-le avec soin : <strong>il deviendra l’adresse de votre site</strong> (<code>monpseudo.github.io</code>). Lettres minuscules, chiffres et tirets uniquement ; évitez les noms trop longs.</li>
+			<li>Validez le code reçu par e-mail. Le plan gratuit (« Free ») suffit, ne prenez rien d’autre.</li>
+		</ol>
+		<div class="box tip">
+			<span class="label">Conseil</span>
+			<p>Pour un site personnel ou un portfolio, un pseudo du type <code>prenom-nom</code> est idéal : <code>prenom-nom.github.io</code> est lisible, facile à dicter et reste professionnel.</p>
+		</div>
+
+		<h2 id="etape-2"><span class="num">2</span>Créer le dépôt « monpseudo.github.io »</h2>
+		<p>Sur GitHub, un site vit dans un <strong>dépôt</strong> (« repository ») : c’est simplement un dossier en ligne qui garde l’historique de vos modifications.</p>
+		<ol>
+			<li>Une fois connecté, ouvrez <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a> (ou le bouton vert <strong>New</strong> en haut à gauche).</li>
+			<li>Dans <strong>Repository name</strong>, tapez <strong>exactement</strong> <code>monpseudo.github.io</code> — votre nom d’utilisateur, suivi de <code>.github.io</code>. C’est ce nom précis qui dit à GitHub « publie ce dépôt comme un site ». Un ✓ vert confirme qu’il est disponible.</li>
+			<li>Laissez <strong>Public</strong> coché (obligatoire pour GitHub Pages avec un compte gratuit).</li>
+			<li>Cochez <strong>Add a README file</strong> : cela crée le dépôt avec un premier fichier, ce qui évite un écran intermédiaire déroutant.</li>
+			<li>Cliquez sur <strong>Create repository</strong>.</li>
+		</ol>
+		<figure>
+			<img src="images/tuto/01-nouveau-depot.svg" alt="Formulaire de création de dépôt GitHub : le nom monpseudo.github.io, la visibilité Public, la case Add a README cochée et le bouton Create repository, numérotés de 1 à 4" width="1100" height="640" loading="lazy" decoding="async" />
+			<figcaption><b>1</b> Nom exact du dépôt · <b>2</b> Public · <b>3</b> README · <b>4</b> Créer. <em>Schéma de l’écran, libellés identiques à GitHub.</em></figcaption>
+		</figure>
+		<div class="box warn">
+			<span class="label">L’erreur n°1</span>
+			<p>Si le nom du dépôt n’est pas <em>exactement</em> votre pseudo + <code>.github.io</code> (une majuscule, une faute, un autre nom), le site ne se publiera pas à cette adresse. Vous pouvez renommer le dépôt plus tard dans <strong>Settings → General → Repository name</strong>.</p>
+		</div>
+
+		<h2 id="etape-3"><span class="num">3</span>Ajouter la page d’accueil (index.html)</h2>
+		<p>Un site web, au minimum, c’est un fichier nommé <code>index.html</code>. C’est lui que le navigateur affiche quand on ouvre votre adresse.</p>
+		<ol>
+			<li>Sur la page de votre dépôt, cliquez sur <strong>Add file</strong> puis <strong>Create new file</strong>.</li>
+		</ol>
+		<figure>
+			<img src="images/tuto/02-ajouter-fichier.svg" alt="Page du dépôt avec le bouton Add file ouvert et l’option Create new file en surbrillance" width="1100" height="640" loading="lazy" decoding="async" />
+			<figcaption><b>1</b> Add file · <b>2</b> Create new file</figcaption>
+		</figure>
+		<ol start="2">
+			<li>Dans la case du nom de fichier, tapez <code>index.html</code> (tout en minuscules).</li>
+			<li>Copiez le modèle ci-dessous et collez-le dans la grande zone de texte. Changez le nom et le texte, bien sûr !</li>
+		</ol>
+		<div class="codeblock">
+			<button type="button" class="copy" data-copy="modele-html" aria-label="Copier le code">Copier</button>
+<pre><code id="modele-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Camille Dupont — Mon site&lt;/title&gt;
+  &lt;meta name="description" content="Site personnel de Camille Dupont : projets, CV et contact."&gt;
+  &lt;style&gt;
+    body { font-family: system-ui, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #222; }
+    h1 { color: #4c1d95; }
+    a { color: #4c1d95; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Bonjour, je suis Camille !&lt;/h1&gt;
+  &lt;p&gt;Bienvenue sur mon site. Je suis étudiante en économie et je m’intéresse à la data et à l’IA.&lt;/p&gt;
+
+  &lt;h2&gt;Mes projets&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Analyse de données : bientôt ici&lt;/li&gt;
+    &lt;li&gt;Mémoire de fin d’études : bientôt ici&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;h2&gt;Contact&lt;/h2&gt;
+  &lt;p&gt;Écrivez-moi : &lt;a href="mailto:camille@example.com"&gt;camille@example.com&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+		</div>
+		<figure>
+			<img src="images/tuto/03-index-html.svg" alt="Éditeur de GitHub : le nom index.html saisi en haut, le code HTML collé dans la zone d’édition et le bouton vert Commit changes" width="1100" height="640" loading="lazy" decoding="async" />
+			<figcaption><b>1</b> Nom du fichier · <b>2</b> Code collé · <b>3</b> Commit changes…</figcaption>
+		</figure>
+
+		<h2 id="etape-4"><span class="num">4</span>Enregistrer : le « commit »</h2>
+		<p>Sur GitHub, enregistrer s’appelle <strong>commit</strong>. Chaque commit est une version datée de votre site : vous pourrez toujours revenir en arrière.</p>
+		<ol>
+			<li>Cliquez sur le bouton vert <strong>Commit changes…</strong> en haut à droite.</li>
+			<li>Dans la fenêtre, écrivez un court message (par exemple <em>Création de la page d’accueil</em>). Laissez <strong>Commit directly to the main branch</strong> sélectionné.</li>
+			<li>Cliquez sur <strong>Commit changes</strong>.</li>
+		</ol>
+		<figure>
+			<img src="images/tuto/04-commit.svg" alt="Fenêtre Commit changes de GitHub avec le message « Création de la page d’accueil » et le bouton vert Commit changes" width="1100" height="640" loading="lazy" decoding="async" />
+			<figcaption><b>1</b> Message · <b>2</b> Commit changes</figcaption>
+		</figure>
+
+		<h2 id="etape-5"><span class="num">5</span>Vérifier la mise en ligne</h2>
+		<p>Pour un dépôt nommé <code>monpseudo.github.io</code>, GitHub publie automatiquement la branche <code>main</code>. Vous n’avez normalement rien à régler, mais voici où regarder.</p>
+		<h3>Les réglages (Settings → Pages)</h3>
+		<p>Ouvrez l’onglet <strong>Settings</strong> du dépôt, puis <strong>Pages</strong> dans le menu de gauche. Sous <em>Build and deployment</em>, vous devez voir <strong>Source : Deploy from a branch</strong>, <strong>Branch : main</strong>, dossier <strong>/ (root)</strong>. Quand le site est publié, un cadre vert affiche <em>Your site is live at https://monpseudo.github.io/</em>.</p>
+		<figure>
+			<img src="images/tuto/05-settings-pages.svg" alt="Page Settings → Pages de GitHub : source Deploy from a branch, branche main, dossier root, et le message vert Your site is live" width="1100" height="640" loading="lazy" decoding="async" />
+			<figcaption><b>1</b> Settings · <b>2</b> Pages · <b>3</b> main / (root)</figcaption>
+		</figure>
+		<h3>Le déploiement (onglet Actions)</h3>
+		<p>L’onglet <strong>Actions</strong> liste chaque mise en ligne (« pages build and deployment »). Une coche verte = c’est en ligne. Un rond orange = encore une minute. <strong>La toute première publication peut prendre jusqu’à 10 minutes</strong> ; ensuite, comptez environ une minute après chaque modification.</p>
+		<figure>
+			<img src="images/tuto/06-actions.svg" alt="Onglet Actions de GitHub montrant un déploiement « pages build and deployment » réussi avec une coche verte et un autre en cours" width="1100" height="640" loading="lazy" decoding="async" />
+			<figcaption><b>1</b> Onglet Actions · <b>2</b> Coche verte = en ligne</figcaption>
+		</figure>
+		<p>Ouvrez maintenant <code>https://monpseudo.github.io</code> dans un nouvel onglet. 🎉</p>
+		<figure>
+			<img src="images/tuto/07-site-en-ligne.svg" alt="Le site affiché dans un navigateur à l’adresse monpseudo.github.io, avec le titre « Bonjour, je suis Camille ! »" width="1100" height="640" loading="lazy" decoding="async" />
+			<figcaption>Votre site, en ligne, en HTTPS, gratuitement.</figcaption>
+		</figure>
+		<div class="box tip">
+			<span class="label">Si vous voyez une page 404</span>
+			<p>Attendez quelques minutes et rechargez avec <kbd>Ctrl</kbd> + <kbd>F5</kbd> (<kbd>Cmd</kbd> + <kbd>Maj</kbd> + <kbd>R</kbd> sur Mac). Si ça persiste après 10 minutes, revérifiez le nom du dépôt (étape 2) et que le fichier s’appelle bien <code>index.html</code>.</p>
+		</div>
+
+		<h2 id="etape-6"><span class="num">6</span>Modifier votre site</h2>
+		<ol>
+			<li>Sur la page du dépôt, cliquez sur <code>index.html</code>.</li>
+			<li>Cliquez sur l’icône <strong>crayon ✎</strong> en haut à droite du fichier.</li>
+			<li>Modifiez le texte, puis <strong>Commit changes…</strong> → <strong>Commit changes</strong>, comme à l’étape 4.</li>
+			<li>Une minute plus tard, rechargez votre site : la modification est en ligne.</li>
+		</ol>
+		<figure>
+			<img src="images/tuto/08-modifier.svg" alt="Fichier index.html affiché sur GitHub avec l’icône crayon en haut à droite et une ligne de texte à modifier en surbrillance" width="1100" height="640" loading="lazy" decoding="async" />
+			<figcaption><b>1</b> Crayon ✎ · <b>2</b> Modifiez, puis Commit</figcaption>
+		</figure>
+		<p>C’est tout le cycle : <strong>modifier → commit → une minute → en ligne</strong>. Vous pouvez le faire depuis n’importe quel ordinateur, et même depuis votre téléphone.</p>
+
+		<h2 id="plus-loin">Aller plus loin</h2>
+		<h3>Ajouter une photo ou des images</h3>
+		<p><strong>Add file → Upload files</strong>, glissez vos images (idéalement dans un dossier <code>images</code> : tapez <code>images/</code> devant le nom pour le créer), commit. Puis dans votre HTML : <code>&lt;img src="images/photo.jpg" alt="Ma photo"&gt;</code>. Compressez vos images avant (moins de 300 Ko chacune) pour que le site reste rapide.</p>
+		<h3>Ajouter d’autres pages</h3>
+		<p>Créez par exemple <code>projets.html</code> de la même façon que <code>index.html</code>, et reliez-la depuis l’accueil : <code>&lt;a href="projets.html"&gt;Mes projets&lt;/a&gt;</code>. L’adresse sera <code>monpseudo.github.io/projets.html</code>.</p>
+		<h3>Partir d’un modèle gratuit, joli dès le départ</h3>
+		<p>Des modèles HTML gratuits et responsives existent, par exemple ceux de <a href="https://html5up.net/" target="_blank" rel="noopener">HTML5 UP</a> (ce portfolio utilise leur modèle « Dimension »). Téléchargez le zip, décompressez-le, puis <strong>Add file → Upload files</strong> en glissant <em>tout le contenu</em> du dossier (le <code>index.html</code> doit être à la racine du dépôt, pas dans un sous-dossier).</p>
+		<h3>Une page d’erreur personnalisée</h3>
+		<p>Créez un fichier <code>404.html</code> : GitHub l’affichera automatiquement pour toute adresse inexistante.</p>
+		<h3>Votre propre nom de domaine</h3>
+		<p>Vous pouvez relier un domaine acheté ailleurs (<code>www.monnom.fr</code>) : <strong>Settings → Pages → Custom domain</strong>, puis chez votre registrar un enregistrement <code>CNAME</code> vers <code>monpseudo.github.io</code>. GitHub fournit le certificat HTTPS gratuitement. Détails dans la <a href="https://docs.github.com/fr/pages/configuring-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">doc officielle</a>.</p>
+		<h3>Être trouvé sur Google</h3>
+		<p>Ajoutez une <code>&lt;meta name="description"&gt;</code> parlante à chaque page, un vrai titre, puis déclarez votre site dans la <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a>. Partagez l’adresse sur LinkedIn : les premiers visiteurs viendront de là.</p>
+
+		<h2 id="problemes">Problèmes fréquents</h2>
+		<details>
+			<summary>« There isn’t a GitHub Pages site here » ou page 404</summary>
+			<p>Dans 90 % des cas : le dépôt ne s’appelle pas exactement <code>monpseudo.github.io</code>, ou le fichier ne s’appelle pas <code>index.html</code> (attention à <code>Index.html</code> ou <code>index.html.txt</code>). Sinon, attendez 10 minutes : la première publication est lente.</p>
+		</details>
+		<details>
+			<summary>Je modifie, mais rien ne change</summary>
+			<p>Vérifiez dans l’onglet <strong>Actions</strong> que le déploiement est vert, puis forcez le rechargement (<kbd>Ctrl</kbd> + <kbd>F5</kbd>). Votre navigateur garde souvent l’ancienne version en cache.</p>
+		</details>
+		<details>
+			<summary>Les accents s’affichent bizarrement (Ã©, Ã¨…)</summary>
+			<p>Il manque la ligne <code>&lt;meta charset="utf-8"&gt;</code> dans le <code>&lt;head&gt;</code>. Le modèle de l’étape 3 l’inclut.</p>
+		</details>
+		<details>
+			<summary>Mon image ne s’affiche pas</summary>
+			<p>Le chemin est sensible à la casse : <code>images/Photo.JPG</code> et <code>images/photo.jpg</code> sont deux fichiers différents. Vérifiez le nom exact dans le dépôt.</p>
+		</details>
+		<details>
+			<summary>Je veux un deuxième site (un projet, une association…)</summary>
+			<p>Créez un autre dépôt avec n’importe quel nom (ex. <code>mon-projet</code>), puis <strong>Settings → Pages → Source : Deploy from a branch → main</strong>. Il sera publié à <code>monpseudo.github.io/mon-projet/</code>. Vous pouvez en avoir autant que vous voulez.</p>
+		</details>
+
+		<h2 id="faq">Questions fréquentes</h2>
+		<details>
+			<summary>C’est vraiment gratuit ? Il y a un piège ?</summary>
+			<p>Oui, c’est gratuit et sans publicité, depuis plus de dix ans. Les limites sont larges pour un site personnel : 1 Go de fichiers, environ 100 Go de trafic par mois, 10 publications par heure. Le seul « prix » : votre code est public (le dépôt est visible), ce qui est normal pour un site web de toute façon.</p>
+		</details>
+		<details>
+			<summary>Quelles sont les limites techniques ?</summary>
+			<p>GitHub Pages sert des fichiers <em>statiques</em> : HTML, CSS, JavaScript, images, PDF. Pas de PHP, pas de base de données, pas d’espace membre côté serveur. Pour un formulaire de contact, utilisez un service gratuit comme FormSubmit ou Formspree ; pour des commentaires, un outil comme Giscus.</p>
+		</details>
+		<details>
+			<summary>Dois-je apprendre HTML ?</summary>
+			<p>Pour ce tutoriel, non : copiez-collez le modèle. Pour aller plus loin, les bases du HTML et du CSS s’apprennent en quelques heures ; <a href="https://developer.mozilla.org/fr/docs/Learn_web_development" target="_blank" rel="noopener">MDN (Mozilla)</a> est la meilleure référence gratuite en français.</p>
+		</details>
+		<details>
+			<summary>Et si je veux un blog avec des articles ?</summary>
+			<p>GitHub Pages sait générer un blog à partir de fichiers texte avec Jekyll (déjà intégré, sans installation) : ajoutez un fichier <code>_config.yml</code> contenant <code>theme: minima</code> et écrivez vos articles en Markdown dans un dossier <code>_posts</code>. C’est un bon « niveau 2 » une fois ce tutoriel terminé.</p>
+		</details>
+		<details>
+			<summary>Puis-je supprimer le site ?</summary>
+			<p>Oui : <strong>Settings → General</strong>, tout en bas, <strong>Delete this repository</strong>. Le site disparaît en quelques minutes.</p>
+		</details>
+
+		<section class="cta" aria-labelledby="cta-title">
+			<h2 id="cta-title">Votre site est en ligne ? Continuez.</h2>
+			<p>Je m’appelle Sitraka Forler, Data Scientist et MLOps Engineer au Luxembourg, et j’enseigne la data science à l’université. Sur ce site vous trouverez des <strong>leçons gratuites</strong> (SQL, Python, finance) et des <strong>outils</strong> en ligne. Et si ce tutoriel vous a aidé, partagez-le à quelqu’un qui veut son site.</p>
+			<div class="buttons">
+				<a class="btn primary" href="teachings.html">Leçons gratuites SQL &amp; Python</a>
+				<a class="btn" href="index.html">Mon parcours</a>
+				<a class="btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsitraka17.github.io%2Fcreer-site-gratuit-github-pages.html" target="_blank" rel="noopener">Partager sur LinkedIn</a>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site">
+		© <span id="current-year">2026</span> Sitraka Forler · <a href="index.html">Portfolio</a> · <a href="teachings.html">Teachings</a> · <a href="tools.html">Tools</a> · <a href="https://sitraka.lu/">sitraka.lu</a><br />
+		Les schémas d’écran reproduisent les libellés de l’interface GitHub ; GitHub est une marque de GitHub, Inc., sans lien avec ce site.
+	</footer>
+
+	<script src="assets/js/tutorial.js" defer></script>
+</body>
+</html>
