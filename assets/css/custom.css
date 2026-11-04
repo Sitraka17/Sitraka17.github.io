@@ -72,7 +72,7 @@ body,
 input,
 select,
 textarea {
-  font-family: 'Inter', 'Source Sans Pro', sans-serif;
+  font-family: 'Inter', 'Inter Fallback', sans-serif;
 }
 
 /* ---------- 2. ANIMATED GRADIENT BACKGROUND ---------- */
@@ -1055,7 +1055,7 @@ article a:hover {
 	padding: 0.9rem 1.2rem;
 	font-size: 1rem;
 	font-weight: 600;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Inter', 'Inter Fallback', sans-serif;
 	letter-spacing: 0.03em;
 	border: none;
 	cursor: pointer;
@@ -1262,4 +1262,63 @@ article a:hover {
     color: rgba(196, 181, 253, 0.9);
     text-align: center;
     letter-spacing: 0.02em;
+}
+
+/* ---- Metric-compatible fallback for Inter: avoids layout shift while the web font loads ---- */
+@font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+    ascent-override: 90.49%;
+    descent-override: 22.56%;
+    line-gap-override: 0%;
+    size-adjust: 107.06%;
+}
+
+/* ---- Legibility & contrast (Lighthouse) ---- */
+#footer .copyright {
+    font-size: 0.82rem;
+    color: #b9addf;
+}
+
+#footer .copyright a {
+    color: #d6ccff;
+    text-decoration: underline;
+    text-decoration-color: rgba(214, 204, 255, 0.5);
+    text-underline-offset: 3px;
+}
+
+@media screen and (max-width: 736px) {
+    #header nav ul li a {
+        font-size: 0.85rem;
+        letter-spacing: 0.15rem;
+    }
+
+    #header .content .inner p#typed-subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 0.15rem;
+        /* reserve two lines so the typing animation never pushes the nav around */
+        min-height: 3.2em;
+    }
+
+    #main article .button {
+        font-size: 0.85rem;
+    }
+}
+
+/* ---- Header intro: fade in only. The template also animated max-height/padding
+   from 0, which pushed the nav down after load (layout shift, CLS ~0.1-0.2). ---- */
+body.is-preload #header .content .inner {
+    max-height: 40rem;
+    padding: 3rem 2rem;
+}
+
+#header .content .inner {
+    transition: opacity 0.325s ease-in-out;
+    transition-delay: 0.25s;
+}
+
+@media screen and (max-width: 736px) {
+    body.is-preload #header .content .inner {
+        padding: 2.5rem 0;
+    }
 }

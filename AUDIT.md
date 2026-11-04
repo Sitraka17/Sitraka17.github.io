@@ -88,3 +88,71 @@ Chaque page HTML a été vérifiée par script : `title`, `description` (≤ 155
 - Poids images de l'accueil : ~650 Ko → ~135 Ko.
 - Requêtes tierces supprimées : 2 (highlight.js CSS + JS).
 - JSON-LD : valide (parse OK).
+
+
+---
+
+# Audit n°2 — vérification après fusion (4 novembre 2026)
+
+Portée : l'état de `main` après les PR #2, #3, #4 et #5, pas seulement les diffs. Outils : Chromium headless (erreurs JS, 404, défilement horizontal, JSON-LD, liens internes, images), script de couverture des balises, Lighthouse 12.8 (mobile + desktop) sur un serveur local.
+
+## 1. Résultat des PR fusionnées
+
+| PR | Contenu | Verdict |
+|---|---|---|
+| #2 Audit technique/SEO/marketing | Correctifs JS, images, balises, JSON-LD, 404, maillage | ✅ Aucune régression trouvée |
+| #3 Bannières SVG + page Tools | 5 bannières, nav Tools centrée, grille d'outils | ✅ Les 2 bannières signalées « non chargées » par le test sont simplement en `loading="lazy"` dans des sections masquées ; elles se chargent à l'ouverture (vérifié) |
+| #4 Photos Voxxed Days | Portrait d'en-tête, photo About, image OG | ✅ |
+| #5 EcoFin Learning + mobile Teachings | 4 liens UTM, mise en page mobile | ✅ 0 défilement horizontal, 0 erreur |
+
+Contrôles passés sur les 7 pages HTML : 0 erreur JavaScript, 0 ressource 404, 0 défilement horizontal (1440 px et 390 px), JSON-LD valide, 0 lien interne cassé (fichiers et ancres), 0 image sans `alt`, 0 lien `target="_blank"` sans `rel="noopener"`, balises complètes partout (seules `thanks.html` et `404.html`, en `noindex`, n'ont pas de canonical — voulu).
+
+## 2. Ce que Lighthouse a révélé et ce qui a été corrigé (PR #6)
+
+| Constat | Cause | Correctif |
+|---|---|---|
+| SEO 92 sur l'accueil : « liens non explorables » | Les 6 cartes Skills utilisaient `href="javascript:void(0)"` | Vraies ancres `#skill-…` + `preventDefault` (le défilement doux est conservé, la navigation du gabarit n'est pas déclenchée) |
+| 1,4 à 1,9 s de ressources bloquantes | `main.css` commençait par deux `@import` (Font Awesome 5 local + police *Source Sans Pro* inutilisée) : chaîne de 4 requêtes avant le premier rendu, plus Font Awesome 6 chargé en double depuis un CDN | `@import` supprimés ; **une seule** Font Awesome (la copie locale v5, plus de dépendance CDN) ; les 2 seules classes propres à v6 renommées (`fa-shield-halved`→`fa-shield-alt`, `fa-rotate-left`→`fa-undo`) ; Google Fonts chargée sans bloquer le rendu sur l'accueil et Tools |
+| CLS 0,12–0,13 (accueil, Tools) | L'animation d'intro du gabarit fait passer le bloc d'en-tête de `max-height: 0` à `40rem` après le chargement → le menu descend | L'en-tête ne fait plus que s'estomper (fondu conservé) ; hauteur réservée pour le sous-titre animé sur mobile ; police de repli aux métriques d'Inter (`size-adjust`, `ascent-override`) pour éviter le saut au chargement de la police |
+| 55 % du texte < 12 px sur mobile | Pied de page à 0,6 rem (8,8 px), menu et sous-titre à 0,8 rem | 0,82 rem / 0,85 rem |
+| Contraste insuffisant | Pied de page (2,1:1), module actif et commentaires de code sur Teachings (4,1:1 et 2,9:1) | Couleurs relevées (≥ 4,5:1), liens du pied de page soulignés |
+| « Erreurs console » | Uniquement les CDN bloqués par le bac à sable de test | Rien à faire (et plus de CDN Font Awesome de toute façon) |
+
+Essai abandonné : charger la police *Poppins* de Teachings sans bloquer le rendu faisait passer le CLS mobile de 0 à 0,31 (échange de police). Revenu au chargement bloquant, mesuré à CLS 0.
+
+### Scores Lighthouse (mobile / desktop)
+
+| Page | Avant | Après |
+|---|---|---|
+| Accueil | Perf 79 / 86 · A11y 93 / 100 · BP 93 / 96 · SEO 92 / 92 · CLS 0,13 | **Perf 88 / 98 · A11y 100 / 100 · BP 100 / 100 · SEO 100 / 100 · CLS 0,00** |
+| Tools | Perf 78 / 92 · A11y 100 · BP 93 / 96 · SEO 100 · CLS 0,12 | **Perf 81 / 96 · A11y 100 · BP 100 · SEO 100 · CLS 0,00** |
+| Teachings | Perf 91 / 99 · A11y 96 · BP 100 · SEO 100 | **Perf 92 / 99 · A11y 100 · BP 100 · SEO 100** |
+
+Mesures faites sur un serveur local sans compression : les audits « compression de texte » et « durée de cache » ne s'appliquent pas à GitHub Pages, qui compresse et met en cache. Le LCP mobile (3,3–3,8 s sous limitation 4G simulée) reste dominé par le gabarit (jQuery + CSS de 100 Ko dont ~70 % inutilisé) et l'animation d'intro ; gain suivant possible en purgeant `main.css`.
+
+Divers : `images/pic02.jpg` et `pic03.jpg` (restes du gabarit, jamais référencés) supprimés ; `CoffreFort/index.html` pointait encore vers l'ancien domaine `sitraka.fr`.
+
+## 3. PR #1 (« identité Systems Architect… », ouverte le 1er novembre, hors de cette session)
+
+**Non fusionnable en l'état** : GitHub la signale en conflit avec `main` (elle part du commit d'avant la PR #2) et elle remplace tout le site par un gabarit « papier/LaTeX » clair, à l'opposé de la direction prise depuis (gabarit sombre conservé, photos, bannières). Fusionner écraserait les PR #2 à #5.
+
+Elle contient en revanche du **contenu absent du site actuel** qui mérite d'être repris dans la mise en page actuelle :
+- publications : chapitre d'ouvrage 2023 (Dufrénot, Mahaman, Sugimoto, Forler — Cambridge Scholars Publishing), 3 articles AGEFI Luxembourg (nov. 2025, mars 2026, juil. 2026) ;
+- conférence : lunch talk Voxxed Days Luxembourg 2025 (la photo est déjà en ligne, le texte non) ;
+- enseignement : Université Catholique de Lille à partir de décembre 2026 ;
+- JSON-LD : `Person @id` pointant vers `https://sitraka.lu/#person` pour relier les deux sites.
+
+Et des **points d'exactitude à trancher**, repris de sa description :
+1. REVEALS : « Designing and deploying LLMs from POC to Production » — d'après ses notes, le LLM serait resté au stade POC ;
+2. Research Assistant 2019 : l'ordre des auteurs affiché (Sugimoto ; Dufrénot ; Forler) ne correspond pas à la publication (Dufrénot, Mahaman, Sugimoto, Forler) ;
+3. `alumniOf` contient Centrale Méditerranée alors que la timeline la cite comme lieu d'enseignement, pas de formation ;
+4. « Visiting Professor » vs « Lecturer (industry practitioner) ».
+
+Recommandation : fermer la PR #1 et porter ces éléments de contenu dans une PR dédiée sur la mise en page actuelle.
+
+## 4. Reste à faire (inchangé)
+
+- Activer FormSubmit (premier envoi → e-mail d'activation).
+- Mesure d'audience sans cookie ; soumettre le sitemap dans Search Console.
+- `Knowledge/*.md` est publié tel quel par GitHub Pages (`/Knowledge/Data.md`) : à garder, exclure dans `_config.yml` ou transformer en page.
+- Vérifier le texte EcoFin Learning (site inaccessible depuis l'environnement de test).

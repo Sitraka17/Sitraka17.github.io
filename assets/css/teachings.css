@@ -168,7 +168,7 @@
     .module-item.active {
       background: rgba(56, 152, 236, 0.15);
       border-left-color: var(--primary);
-      color: var(--primary);
+      color: var(--primary-light);
     }
 
     .lesson-sub {
@@ -285,7 +285,7 @@
     .kw { color: #ff79c6; font-weight: 600; }
     .str { color: #f1fa8c; }
     .num { color: #bd93f9; }
-    .com { color: #6272a4; }
+    .com { color: #93a4d4; }
 
     /* INTERACTIVE ELEMENTS */
     .interactive-box {
