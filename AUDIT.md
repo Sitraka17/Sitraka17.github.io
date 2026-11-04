@@ -148,7 +148,7 @@ Et des **points d'exactitude à trancher**, repris de sa description :
 3. `alumniOf` contient Centrale Méditerranée alors que la timeline la cite comme lieu d'enseignement, pas de formation ;
 4. « Visiting Professor » vs « Lecturer (industry practitioner) ».
 
-Recommandation : fermer la PR #1 et porter ces éléments de contenu dans une PR dédiée sur la mise en page actuelle.
+✅ **Fait (PR #7)** : PR #1 fermée avec un commentaire explicatif ; contenu porté dans la mise en page actuelle — bloc « Publications » et « Talks » en fin d'article Experience (chapitre Cambridge Scholars + Google Scholar, 3 articles AGEFI, Medium, lunch talk Voxxed Days 2025 + enregistrement), lien « watch the talk » sous la photo, Université Catholique de Lille (déc. 2026), intitulé « Lecturer (industry practitioner) », ordre des auteurs 2019 corrigé, REVEALS reformulé « from proof of concept to pilot » (à rétablir si le modèle est bien allé en production), JSON-LD : `alumniOf` = AMSE seule, `affiliation` pour les établissements où il enseigne, `sameAs` + Google Scholar, Medium et `https://sitraka.lu/#person`.
 
 ## 4. Reste à faire (inchangé)
 
