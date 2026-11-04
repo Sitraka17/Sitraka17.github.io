@@ -1322,3 +1322,13 @@ body.is-preload #header .content .inner {
         padding: 2.5rem 0;
     }
 }
+
+/* ---- Publications & talks ---- */
+.pub-list li {
+    margin-bottom: 0.9rem;
+    line-height: 1.65;
+}
+
+.pub-list li a[lang="fr"] {
+    font-style: italic;
+}

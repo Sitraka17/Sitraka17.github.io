@@ -65,7 +65,7 @@
 	      "inLanguage": "en",
 	      "isPartOf": { "@id": "https://sitraka17.github.io/#website" },
 	      "mainEntity": { "@id": "https://sitraka17.github.io/#person" },
-	      "dateModified": "2026-11-01"
+	      "dateModified": "2026-11-04"
 	    },
 	    {
 	      "@type": "Person",
@@ -96,8 +96,12 @@
 	        "url": "https://www.post.lu/"
 	      },
 	      "alumniOf": [
-	        { "@type": "EducationalOrganization", "name": "Aix-Marseille School of Economics" },
-	        { "@type": "EducationalOrganization", "name": "Centrale Méditerranée" }
+	        { "@type": "CollegeOrUniversity", "name": "Aix-Marseille School of Economics", "alternateName": "AMSE", "url": "https://www.amse-aixmarseille.fr/" }
+	      ],
+	      "affiliation": [
+	        { "@type": "CollegeOrUniversity", "name": "Centrale Méditerranée" },
+	        { "@type": "CollegeOrUniversity", "name": "IAE Metz" },
+	        { "@type": "CollegeOrUniversity", "name": "Université Catholique de Lille" }
 	      ],
 	      "knowsAbout": [
 	        "Machine Learning", "MLOps", "AIOps", "Deep Learning", "Large Language Models",
@@ -110,7 +114,10 @@
 	        "https://github.com/Sitraka17",
 	        "https://twitter.com/ForlerSitraka",
 	        "https://huggingface.co/SitrakaForler",
-	        "https://sitraka.lu/"
+	        "https://scholar.google.com/citations?user=OLiHYHIAAAAJ",
+	        "https://medium.com/@sitrakaforler",
+	        "https://sitraka.lu/",
+	        "https://sitraka.lu/#person"
 	      ]
 	    },
 	    {
@@ -211,7 +218,7 @@
 						srcset="images/sitraka-forler-voxxed-days-800.jpg 800w, images/sitraka-forler-voxxed-days.jpg 1200w"
 						sizes="(max-width: 736px) 100vw, 560px"
 						alt="Sitraka Forler giving a talk at Voxxed Days Luxembourg" width="1200" height="800" loading="lazy" decoding="async" />
-					<figcaption>🎤 Speaking at Voxxed Days Luxembourg</figcaption>
+					<figcaption>🎤 Speaking at Voxxed Days Luxembourg 2025 — <a href="https://www.youtube.com/watch?v=2tJS7lhlmb0" target="_blank" rel="noopener">watch the talk</a></figcaption>
 				</figure>
 				<p>Hello! I'm <strong>Sitraka FORLER</strong>, a French Data &amp; IT professional passionate about
 					building intelligent systems that create real-world impact. With expertise spanning Data Science,
@@ -232,7 +239,7 @@
 					<li><a href="#contact" class="button primary">Work with me</a></li>
 					<li><a href="#work" class="button">See my experience</a></li>
 				</ul>
-				<p>Feel free to explore my <a href="#work">professional experience</a>, browse my <a
+				<p>Feel free to explore my <a href="#work">professional experience</a> and <a href="#work" onclick="setTimeout(function(){var e=document.getElementById('publications'); if(e) e.scrollIntoView({behavior:'smooth'});}, 900)">publications</a>, browse my <a
 					 href="tools.html">interactive tools</a> and <a href="teachings.html">free teaching modules</a>, learn about <a href="#luxaiops">LuxAIOps</a>, or <a
 						href="#contact">get in touch</a>. You can also visit my main website at <a
 						href="https://sitraka.lu/">sitraka.lu</a>.</p>
@@ -263,8 +270,8 @@
 					<div class="timeline-item">
 						<span class="timeline-date">March 2023 — Present | France &amp; Luxembourg</span>
 						<div class="timeline-header">
-							<h3 class="timeline-title">🎓 Visiting Professor &amp; Lecturer</h3>
-							<span class="timeline-subtitle">IAE Metz, Centrale Méditerranée &amp; AMSE</span>
+							<h3 class="timeline-title">🎓 Lecturer (industry practitioner)</h3>
+							<span class="timeline-subtitle">Centrale Méditerranée, AMSE &amp; IAE Metz · Université Catholique de Lille from December 2026</span>
 						</div>
 						<ul>
 							<li>Teaching Data Science for Finance, Machine Learning, Deep Learning, and Transformers.
@@ -280,7 +287,7 @@
 							<span class="timeline-subtitle">REVEALS SA</span>
 						</div>
 						<ul>
-							<li>Designing and deploying LLMs from POC to Production.</li>
+							<li>Designing LLM applications for finance teams, from proof of concept to pilot.</li>
 							<li>Managing Data Engineering and Architecture for finance departments.</li>
 							<li>Executing large-scale data migration projects.</li>
 						</ul>
@@ -398,9 +405,27 @@
 								models to confirm a para demographic “burden” through inefficiencies in the labor
 								productivity in the developing countries. As a result, in terms of productivity,
 								Sub-Saharan Africa does not benefit from a demographic dividend.</li>
-							<li><strong>Order of Authors:</strong> Kimiko Sugimoto; Gilles Dufrénot; Sitraka Forler</li>
+							<li><strong>Published in 2023</strong> as a book chapter — Dufrénot, Mahaman, Sugimoto &amp; Forler, see <a href="#publications" onclick="event.preventDefault(); document.getElementById('publications').scrollIntoView({behavior:'smooth'})">Publications</a>.</li>
 						</ul>
 					</div>
+				</div>
+
+				<hr>
+
+				<div id="publications" style="padding-top: 3rem; margin-top: -3rem;">
+					<h3>📚 Publications</h3>
+					<ul class="pub-list">
+						<li><strong>Book chapter —</strong> Dufrénot, G., Mahaman, H., Sugimoto, K. &amp; Forler, S. (2023). “Productivity Gaps in the Developing World: An International Comparison”. In D. Avom &amp; G. Dufrénot (eds.), <em>Topical Issues in International Development and Economics</em>, ch. 12, pp. 344–387, <a href="https://archive.cambridgescholars.com/product/978-1-5275-5387-3/" target="_blank" rel="noopener">Cambridge Scholars Publishing</a>. Listed on <a href="https://scholar.google.com/citations?user=OLiHYHIAAAAJ" target="_blank" rel="noopener me">Google Scholar</a>.</li>
+						<li><strong>AGEFI Luxembourg (FR) —</strong> <a href="https://www.agefi.lu/Fax-Article.aspx?date=07-11-2025&amp;fax=6150&amp;rubr=6106&amp;art=86120" target="_blank" rel="noopener" lang="fr">« La souveraineté numérique européenne : pourquoi nous ne pouvons pas nous en passer »</a>, 7 November 2025.</li>
+						<li><strong>AGEFI Luxembourg (FR) —</strong> <a href="https://www.agefi.lu/Mensuel-Article.aspx?art=32799&amp;date=Mar-2026&amp;mens=334&amp;rubr=3212" target="_blank" rel="noopener" lang="fr">« Souveraineté numérique européenne : former pour ne plus dépendre »</a>, March 2026.</li>
+						<li><strong>AGEFI Luxembourg (FR) —</strong> <a href="https://agefi.lu/Mensuel-Article.aspx?date=Jul-2026&amp;mens=338&amp;rubr=3240&amp;art=33220" target="_blank" rel="noopener" lang="fr">« La fin de l’euphorie, le début de la dette ? »</a>, July 2026.</li>
+						<li>Longer posts, mostly in English, on <a href="https://medium.com/@sitrakaforler" target="_blank" rel="noopener me">Medium</a>.</li>
+					</ul>
+
+					<h3>🎤 Talks</h3>
+					<ul class="pub-list">
+						<li><a href="https://m.devoxx.com/events/voxxedlu2025/talks/2789/from-data-to-decisions-ai-powered-software-development-in-the-age-of-intelligent-systems" target="_blank" rel="noopener">“From Data to Decisions: AI-Powered Software Development in the Age of Intelligent Systems”</a> — lunch talk, Voxxed Days Luxembourg 2025, Mondorf-les-Bains, 20 June 2025. <a href="https://www.youtube.com/watch?v=2tJS7lhlmb0" target="_blank" rel="noopener">Watch the recording</a>.</li>
+					</ul>
 				</div>
 			</article>
 
