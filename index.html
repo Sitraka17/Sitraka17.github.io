@@ -141,11 +141,9 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-	<link rel="preload" href="assets/css/main.css" as="style" />
-	<link rel="preload" href="assets/css/custom.css" as="style" />
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" media="print" onload="this.media='all'" />
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" /></noscript>
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="assets/css/custom.css" />
 	<noscript>
@@ -416,27 +414,27 @@
 
 				<h3>🚀 Tech Stack</h3>
 				<div class="skill-grid">
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-python').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
+					<a href="#skill-python" onclick="event.preventDefault(); document.getElementById(\'skill-python\').scrollIntoView({behavior: \'smooth\'})" class="skill-card" style="text-decoration: none;">
 						<i class="fab fa-python"></i>
 						<span>Python &amp; ML</span>
 					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-deep-learning').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
+					<a href="#skill-deep-learning" onclick="event.preventDefault(); document.getElementById(\'skill-deep-learning\').scrollIntoView({behavior: \'smooth\'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-brain"></i>
 						<span>Deep Learning</span>
 					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-cloud').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
+					<a href="#skill-cloud" onclick="event.preventDefault(); document.getElementById(\'skill-cloud\').scrollIntoView({behavior: \'smooth\'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-cloud"></i>
 						<span>Cloud Architect</span>
 					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-sql-nosql').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
+					<a href="#skill-sql-nosql" onclick="event.preventDefault(); document.getElementById(\'skill-sql-nosql\').scrollIntoView({behavior: \'smooth\'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-database"></i>
 						<span>SQL &amp; NoSQL</span>
 					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-cybersecurity').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
-						<i class="fas fa-shield-halved"></i>
+					<a href="#skill-cybersecurity" onclick="event.preventDefault(); document.getElementById(\'skill-cybersecurity\').scrollIntoView({behavior: \'smooth\'})" class="skill-card" style="text-decoration: none;">
+						<i class="fas fa-shield-alt"></i>
 						<span>Cybersecurity</span>
 					</a>
-					<a href="javascript:void(0)" onclick="document.getElementById('skill-fintech').scrollIntoView({behavior: 'smooth'})" class="skill-card" style="text-decoration: none;">
+					<a href="#skill-fintech" onclick="event.preventDefault(); document.getElementById(\'skill-fintech\').scrollIntoView({behavior: \'smooth\'})" class="skill-card" style="text-decoration: none;">
 						<i class="fas fa-chart-line"></i>
 						<span>FinTech</span>
 					</a>
